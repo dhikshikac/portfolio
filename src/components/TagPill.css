@@ -1,0 +1,21 @@
+.tag-pill {
+  display: inline-block;
+  padding: 3px 12px;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  border: 1px solid;
+  white-space: nowrap;
+  background: transparent;
+}
+
+.tag-pill--default {
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
+}
+
+.tag-pill--gold {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}

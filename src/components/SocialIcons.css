@@ -1,0 +1,44 @@
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.social-icons__link {
+  display: flex;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.social-icons__link:hover {
+  transform: scale(1.08);
+  opacity: 0.9;
+}
+
+.social-icons--md .social-icons__link svg {
+  width: 28px;
+  height: 28px;
+}
+
+.social-icons--sm .social-icons__link svg {
+  width: 22px;
+  height: 22px;
+}
+
+.social-icons__resume {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-color: var(--accent-pink);
+  color: var(--bg-navy);
+  border-radius: 999px;
+  font-weight: 700;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.social-icons__resume:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}

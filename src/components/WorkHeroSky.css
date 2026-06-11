@@ -1,0 +1,40 @@
+.work-hero__sky {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.work-hero__sky-bg,
+.work-hero__sky-constellations {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.work-hero__sky-bg {
+  object-fit: cover;
+  object-position: center center;
+}
+
+.work-hero__sky-constellations {
+  overflow: visible;
+  pointer-events: none;
+  transition: opacity 280ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-hero__sky-constellations {
+    transition: none;
+  }
+}
+
+.constellation-hover-field {
+  pointer-events: visiblePainted;
+}
+
+.work-hero__sky-constellations .constellation {
+  width: 100%;
+  height: 100%;
+}
