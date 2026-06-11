@@ -1,0 +1,63 @@
+.constellation {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.constellation__dot {
+  fill: var(--accent-gold);
+  filter: drop-shadow(0 0 4px rgba(200, 168, 75, 0.75));
+  pointer-events: all;
+}
+
+.constellation__line {
+  stroke: var(--accent-gold);
+  stroke-width: 0.55;
+  stroke-dashoffset: 0;
+  opacity: 0.14;
+  fill: none;
+  pointer-events: stroke;
+}
+
+.work-hero__sky-constellations .constellation__line {
+  stroke-width: 1.1;
+  opacity: 0.16;
+}
+
+.constellation__hit {
+  stroke: transparent;
+  stroke-width: 12;
+  fill: none;
+  pointer-events: stroke;
+}
+
+.constellation__label {
+  fill: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .constellation__line {
+    transition:
+      stroke-dashoffset 500ms ease-in,
+      opacity 400ms ease;
+    transition-delay: var(--line-delay, 0ms);
+  }
+
+  .constellation--active .constellation__line {
+    opacity: 0.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .constellation__line {
+    opacity: 0.2;
+  }
+
+  .constellation--active .constellation__line {
+    opacity: 0.75;
+  }
+}
