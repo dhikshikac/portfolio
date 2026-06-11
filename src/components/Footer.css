@@ -61,14 +61,8 @@
 }
 
 @media (max-width: 768px) {
-  .footer {
-    padding: 48px 20px 28px;
-    margin-top: 48px;
-  }
-
   .footer__inner {
     flex-direction: column;
-    gap: 28px;
   }
 
   .footer__right {
