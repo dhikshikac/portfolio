@@ -10,8 +10,13 @@ const LINKS = [
 export default function Nav() {
   return (
     <header className="nav">
-      <NavLink to="/work" className="nav__brand">
-        @DHIKSHIKAC
+      <NavLink to="/work" className="nav__brand" aria-label="Dhikshika Cherivirala">
+        <img
+          src="/images/about/community-star.png"
+          alt=""
+          className="nav__logo"
+        />
+        <span className="nav__handle">@DHIKSHIKAC</span>
       </NavLink>
       <nav className="nav__links" aria-label="Main navigation">
         {LINKS.map(({ to, label }) => (

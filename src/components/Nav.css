@@ -12,15 +12,30 @@
 }
 
 .nav__brand {
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  gap: 10px;
   transition: opacity var(--transition);
 }
 
 .nav__brand:hover {
-  opacity: 0.8;
+  opacity: 0.85;
+}
+
+.nav__logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: brightness(1.35) drop-shadow(0 0 6px rgba(200, 168, 75, 0.45));
+}
+
+.nav__handle {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  line-height: 1;
 }
 
 .nav__links {
@@ -32,7 +47,7 @@
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-primary);
+  color: var(--accent-gold);
   transition: opacity var(--transition);
 }
 
@@ -55,8 +70,13 @@
   }
 
   .nav__link,
-  .nav__brand {
+  .nav__handle {
     font-size: 0.58rem;
     letter-spacing: 0.1em;
+  }
+
+  .nav__logo {
+    width: 28px;
+    height: 28px;
   }
 }
