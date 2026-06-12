@@ -12,6 +12,8 @@
 }
 
 .nav__brand {
+  position: relative;
+  z-index: 102;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -38,6 +40,46 @@
   line-height: 1;
 }
 
+.nav__toggle {
+  display: none;
+  position: relative;
+  z-index: 102;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav__toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 5px auto;
+  background: var(--accent-gold);
+  border-radius: 1px;
+  transition:
+    transform var(--transition),
+    opacity var(--transition);
+}
+
+.nav--open .nav__toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav--open .nav__toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav--open .nav__toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav__menu {
+  display: contents;
+}
+
 .nav__links {
   display: flex;
   gap: clamp(16px, 3vw, 32px);
@@ -62,14 +104,47 @@
   .nav {
     padding: 16px 20px;
   }
+
+  .nav__toggle {
+    display: block;
+  }
+
+  .nav__menu {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 101;
+    background: rgba(13, 27, 42, 0.96);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 240ms ease,
+      visibility 240ms ease;
+  }
+
+  .nav--open .nav__menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav__links {
+    position: absolute;
+    inset: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    padding: calc(var(--nav-height) + 24px) 24px 48px;
+  }
+
+  .nav__link {
+    font-size: 0.82rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .nav__links {
-    gap: 10px;
-  }
-
-  .nav__link,
   .nav__handle {
     font-size: 0.58rem;
     letter-spacing: 0.1em;
@@ -78,5 +153,15 @@
   .nav__logo {
     width: 28px;
     height: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__menu {
+    transition: none;
+  }
+
+  .nav__toggle-bar {
+    transition: none;
   }
 }
