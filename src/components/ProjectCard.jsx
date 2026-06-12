@@ -2,15 +2,33 @@ import { Link } from 'react-router-dom';
 import TagPill from './TagPill';
 import './ProjectCard.css';
 
+function isVideoThumbnail(src) {
+  return /\.(mp4|webm|mov)(\?.*)?$/i.test(src);
+}
+
 export default function ProjectCard({ project }) {
+  const useVideo = isVideoThumbnail(project.thumbnail);
+
   return (
     <Link to={`/work/${project.slug}`} className="project-card">
       <div className="project-card__image-wrap">
-        <img
-          src={project.thumbnail}
-          alt={`${project.title} project thumbnail`}
-          className="project-card__image"
-        />
+        {useVideo ? (
+          <video
+            src={project.thumbnail}
+            className="project-card__image"
+            autoPlay
+            loop
+            muted
+            playsInline
+            aria-label={`${project.title} project preview`}
+          />
+        ) : (
+          <img
+            src={project.thumbnail}
+            alt={`${project.title} project thumbnail`}
+            className="project-card__image"
+          />
+        )}
       </div>
       <div className="project-card__body">
         <div className="project-card__header">

@@ -1,61 +1,48 @@
 .camera-gallery {
-  max-width: min(1480px, 100%);
-  margin: 0 auto;
-  padding: 0 clamp(16px, 3vw, 32px) 56px;
+  padding-bottom: 56px;
 }
 
 .camera-gallery__masonry {
-  column-count: 5;
-  column-gap: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+}
+
+.camera-gallery__column {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .camera-photo {
-  break-inside: avoid;
-  margin: 0 0 14px;
+  margin: 0;
 }
 
 .camera-photo__media {
   overflow: hidden;
   border-radius: 16px;
   background: #1a2d42;
+  width: 100%;
 }
 
 .camera-photo__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
-@media (max-width: 1200px) {
-  .camera-gallery__masonry {
-    column-count: 4;
-  }
-}
-
-@media (max-width: 900px) {
-  .camera-gallery__masonry {
-    column-count: 3;
-  }
-}
-
 @media (max-width: 640px) {
-  .camera-gallery__masonry {
-    column-count: 2;
-    column-gap: 10px;
-  }
-
-  .camera-photo {
-    margin-bottom: 10px;
+  .camera-gallery__masonry,
+  .camera-gallery__column {
+    gap: 10px;
   }
 
   .camera-photo__media {
     border-radius: 14px;
-  }
-}
-
-@media (max-width: 400px) {
-  .camera-gallery__masonry {
-    column-count: 1;
   }
 }

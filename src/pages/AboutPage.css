@@ -273,6 +273,11 @@
   display: block;
 }
 
+.about-hobby-frame:hover {
+  transform: rotate(var(--card-rotate, 2.5deg)) translateY(calc(var(--card-offset, 0px) - 8px)) scale(1.02);
+  z-index: 5;
+  }
+
 .about-hobby-frame--cafe-1 {
   top: 2%;
   left: 0;
@@ -402,44 +407,6 @@
 
 .about-hobbies__view-more:hover {
   transform: scale(1.06);
-}
-
-.about-hobbies__corner-star {
-  position: absolute;
-  top: 72%;
-  left: 50%;
-  width: clamp(18px, 2.2vw, 26px);
-  height: clamp(18px, 2.2vw, 26px);
-  object-fit: contain;
-  pointer-events: none;
-  z-index: 5;
-  filter: brightness(0) saturate(100%) invert(76%) sepia(48%) saturate(500%) hue-rotate(358deg);
-}
-
-.about-hobby-dot {
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent-gold);
-  opacity: 0.85;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.about-hobby-dot--1 {
-  top: 16%;
-  left: 44%;
-}
-
-.about-hobby-dot--2 {
-  top: 70%;
-  left: 62%;
-}
-
-.about-hobby-dot--3 {
-  top: 28%;
-  right: 4%;
 }
 
 /* ── Responsive ── */

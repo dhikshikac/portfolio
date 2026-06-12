@@ -282,7 +282,7 @@ export const projects = [
     slug: 'wolters-kluwer',
     title: 'Wolters Kluwer',
     tags: ['CONTRACT', 'WEBSITE'],
-    thumbnail: '/images/work/wolters-thumb.svg',
+    thumbnail: '/videos/wolters-thumb.mp4',
     description:
       'Designed a GenAI research tool for a global professional information company.',
     role: 'Product Designer',
@@ -295,7 +295,7 @@ export const projects = [
     slug: 'hudson-valley-textile',
     title: 'Hudson Valley Textile',
     tags: ['UX'],
-    thumbnail: '/images/work/hudson-thumb.svg',
+    thumbnail: '/videos/hvtp-thumb.mp4',
     description: 'UX research and interface design for a regional textile company.',
     role: 'UX Designer',
     team: '1 Product Manager, 2 Designers',

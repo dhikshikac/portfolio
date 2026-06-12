@@ -3,13 +3,15 @@ import './CameraPage.css';
 
 const POLAROIDS = [
   {
-    alt: 'Two people at a cafe table',
+    alt: 'Dhikshika at a cafe',
+    src: '/images/camera/digi2.jpg',
     className: 'camera-hero__frame--small',
     rotation: -3.774,
     zIndex: 6,
   },
   {
-    alt: 'Person in front of a storefront',
+    alt: 'Dhikshika portrait',
+    src: '/images/camera/digi.jpg',
     className: 'camera-hero__frame--large',
     rotation: 1.556,
     zIndex: 7,
@@ -41,7 +43,11 @@ export default function CameraPage() {
                 zIndex: frame.zIndex,
               }}
             >
-              <div className="camera-hero__frame-photo" role="img" aria-label={frame.alt} />
+              <img
+                src={frame.src}
+                alt={frame.alt}
+                className="camera-hero__frame-photo"
+              />
               {frame.label && (
                 <p className="camera-hero__label">{frame.label}</p>
               )}
@@ -49,7 +55,9 @@ export default function CameraPage() {
           ))}
 
           <div className="camera-hero__camera-wrap">
-            <div className="camera-hero__screen-placeholder" aria-hidden="true" />
+            <div className="camera-hero__screen-placeholder" aria-hidden="true">
+              <img src="/images/camera/digi-me.jpg" alt="" />
+            </div>
             <img
               src="/images/camera/camera-frame.png"
               alt="Canon PowerShot ELPH 180 digital camera"
