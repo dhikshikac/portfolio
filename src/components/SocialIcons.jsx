@@ -8,9 +8,9 @@ const LINKS = {
 };
 
 const ICONS = {
-  linkedin: '/images/social/linkedin.png',
-  github: '/images/social/github.png',
-  gmail: '/images/social/gmail.png',
+  linkedin: '/images/social/linkedin.svg',
+  github: '/images/social/github.svg',
+  gmail: '/images/social/gmail.svg',
 };
 
 export default function SocialIcons({ showResume = true, size = 'md' }) {
