@@ -1,11 +1,9 @@
-// Coordinates mapped to work-sky.svg viewBox (0 0 1920 1024)
 const SKY_VIEWBOX = '0 0 1920 1024';
 
 export const CONSTELLATIONS = {
   aquila: {
     name: 'Aquila',
     viewBox: SKY_VIEWBOX,
-    // Traced from Group_2 reference: hub, left hook chain, bottom path, right wing
     nodes: [
       { x: 1239.4, y: 193.0 },
       { x: 1001.7, y: 328.9 },
@@ -25,7 +23,6 @@ export const CONSTELLATIONS = {
   pisces: {
     name: 'Pisces',
     viewBox: SKY_VIEWBOX,
-    // Traced from Group_1 reference: V-vertex, up-arm triangle, right-arm circlet
     nodes: [
       { x: 1285.2, y: 566.9 },
       { x: 1336.8, y: 509.9 },
@@ -52,7 +49,6 @@ export const CONSTELLATIONS = {
   delphinus: {
     name: 'Delphinus',
     viewBox: SKY_VIEWBOX,
-    // Traced from Group_3 reference: tilted diamond + tail from bottom-right
     nodes: [
       { x: 1617.9, y: 199.1 },
       { x: 1711.6, y: 202.2 },
