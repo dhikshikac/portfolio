@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import TagPill from './TagPill';
 import './ProjectCard.css';
 
@@ -10,7 +9,7 @@ export default function ProjectCard({ project }) {
   const useVideo = isVideoThumbnail(project.thumbnail);
 
   return (
-    <Link to={`/work/${project.slug}`} className="project-card">
+    <article className="project-card">
       <div className="project-card__image-wrap">
         {useVideo ? (
           <video
@@ -57,6 +56,6 @@ export default function ProjectCard({ project }) {
           </div>
         </dl>
       </div>
-    </Link>
+    </article>
   );
 }

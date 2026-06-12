@@ -61,10 +61,25 @@
 }
 
 .work-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
   padding-bottom: 40px;
+}
+
+.work-grid__columns {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.work-grid__column {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.work-grid__stack {
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -78,8 +93,16 @@
   }
 
   .work-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
     padding-bottom: 32px;
+  }
+
+  .work-grid__columns {
+    display: none;
+  }
+
+  .work-grid__stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import WorkHeroSky from '../components/WorkHeroSky';
 import ProjectCard from '../components/ProjectCard';
 import SocialIcons from '../components/SocialIcons';
@@ -8,6 +8,10 @@ import './WorkPage.css';
 export default function WorkPage() {
   const gridRef = useRef(null);
   const [constellationOpacity, setConstellationOpacity] = useState(1);
+  const [leftColumnProjects, rightColumnProjects] = useMemo(() => [
+    projects.filter((_, index) => index % 2 === 0),
+    projects.filter((_, index) => index % 2 === 1),
+  ], []);
 
   useEffect(() => {
     const updateConstellationOpacity = () => {
@@ -60,9 +64,23 @@ export default function WorkPage() {
         </section>
 
         <section ref={gridRef} className="work-grid" aria-label="Projects">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
+          <div className="work-grid__columns">
+            <div className="work-grid__column">
+              {leftColumnProjects.map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+            </div>
+            <div className="work-grid__column">
+              {rightColumnProjects.map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+            </div>
+          </div>
+          <div className="work-grid__stack">
+            {projects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
         </section>
       </div>
     </div>

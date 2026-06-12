@@ -1,10 +1,13 @@
 .project-card {
   position: relative;
   display: block;
+  width: 100%;
+  align-self: start;
   background-color: var(--bg-card);
   border: 1px solid transparent;
   border-radius: 22px;
   padding: clamp(18px, 3vw, 24px);
+  cursor: default;
   transition:
     box-shadow var(--transition),
     border-color var(--transition),
@@ -47,13 +50,16 @@
 
 .project-card__body {
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card__header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
+  min-height: 2.6rem;
   margin-bottom: 10px;
   flex-wrap: wrap;
 }
@@ -76,6 +82,7 @@
   color: var(--text-primary);
   line-height: 1.55;
   opacity: 0.92;
+  min-height: calc(2 * 1.55em);
 }
 
 .project-card__meta {

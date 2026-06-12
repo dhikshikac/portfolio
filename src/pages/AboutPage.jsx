@@ -145,13 +145,13 @@ export default function AboutPage() {
           ))}
 
           {HOBBY_LABELS.map((label) => (
-            <span key={label.id} className={`about-tape about-tape--${label.id}`}>
+            <span key={label.id} className={`about-label about-label--${label.id}`}>
               {label.text}
             </span>
           ))}
 
           <div className="about-hobbies__photo-action">
-            <span className="about-tape about-tape--photography">PHOTOGRAPHY</span>
+            <span className="about-label about-label--photography">PHOTOGRAPHY</span>
             <Link to="/camera" className="about-hobbies__view-more">
               VIEW MORE →
             </Link>

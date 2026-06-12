@@ -154,10 +154,6 @@
   margin-bottom: 48px;
 }
 
-.about-section-title--right {
-  text-align: right;
-}
-
 .about-communities {
   margin-bottom: 100px;
 }
@@ -264,6 +260,10 @@
   background: #0d1b2a;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    z-index 0s;
 }
 
 .about-hobby-frame img {
@@ -274,9 +274,11 @@
 }
 
 .about-hobby-frame:hover {
-  transform: rotate(var(--card-rotate, 2.5deg)) translateY(calc(var(--card-offset, 0px) - 8px)) scale(1.02);
+  transform: rotate(var(--card-rotate, 2.5deg)) translateY(calc(var(--card-offset, 0px) - 8px))
+    scale(1.02);
   z-index: 5;
-  }
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.38);
+}
 
 .about-hobby-frame--cafe-1 {
   top: 2%;
@@ -300,6 +302,7 @@
   width: 22.25%;
   aspect-ratio: 3 / 4;
   height: auto;
+  --card-rotate: -5.802deg;
   transform: rotate(-5.802deg);
   z-index: 2;
 }
@@ -319,6 +322,7 @@
   width: 14%;
   aspect-ratio: 3 / 4;
   height: auto;
+  --card-rotate: -10.062deg;
   transform: rotate(-10.062deg);
   z-index: 3;
 }
@@ -332,7 +336,7 @@
   z-index: 2;
 }
 
-.about-tape {
+.about-label {
   position: absolute;
   z-index: 6;
   padding: 5px 12px;
@@ -345,21 +349,21 @@
   white-space: nowrap;
 }
 
-.about-tape--cafe {
+.about-label--cafe {
   top: 51.5%;
   left: calc(21.167% - 10px);
   transform: rotate(8.04deg);
   transform-origin: top right;
 }
 
-.about-tape--painting {
+.about-label--painting {
   top: 5%;
   left: 48%;
   transform: rotate(-12deg);
   transform-origin: top left;
 }
 
-.about-tape--drawing {
+.about-label--drawing {
   top: 0;
   right: 4%;
   left: auto;
@@ -367,7 +371,7 @@
   transform-origin: top right;
 }
 
-.about-tape--baking {
+.about-label--baking {
   top: 87%;
   left: 74%;
   transform: rotate(14deg);
@@ -387,7 +391,7 @@
   z-index: 7;
 }
 
-.about-tape--photography {
+.about-label--photography {
   position: static;
   transform: none;
 }
@@ -430,10 +434,6 @@
 }
 
 @media (max-width: 900px) {
-  .about-hero {
-    grid-template-columns: 1fr;
-  }
-
   .about-communities__row {
     flex-direction: column;
     align-items: center;
@@ -550,9 +550,5 @@
   .about-hobby-frame--cafe-3,
   .about-hobby-frame--painting {
     grid-column: 1 / -1;
-  }
-
-  .about-section-title--right {
-    text-align: left;
   }
 }
