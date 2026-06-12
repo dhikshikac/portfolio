@@ -281,7 +281,7 @@ export const projects = [
   {
     slug: 'wolters-kluwer',
     title: 'Wolters Kluwer',
-    tags: ['CONTRACT', 'WEBSITE'],
+    tags: ['CONTRACT', 'WEBSITE', 'DESIGN'],
     thumbnail: '/videos/wolters-thumb.mp4',
     description:
       'Designed a GenAI research tool for a global professional information company.',
@@ -294,7 +294,7 @@ export const projects = [
   {
     slug: 'hudson-valley-textile',
     title: 'Hudson Valley Textile',
-    tags: ['NON-PROFIT', 'WEBSITE'],
+    tags: ['NON-PROFIT', 'WEBSITE', 'DESIGN'],
     thumbnail: '/videos/hvtp-thumb.mp4',
     description: 'Designed an inventory platform for a sustainable regional wool supply chain npo.',
     role: 'Product Designer',
@@ -306,7 +306,7 @@ export const projects = [
   {
     slug: 'connectu',
     title: 'ConnectU',
-    tags: ['CONCEPT', 'MOBILE APP'],
+    tags: ['CONCEPT', 'MOBILE APP', 'DESIGN'],
     thumbnail: '/images/work/connectu-thumb.svg',
     description: 'Designed a concept app for Cornell freshmen to discover clubs and communities.',
     role: 'Product Designer',
