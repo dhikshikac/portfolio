@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Layout from './components/Layout';
 import WorkPage from './pages/WorkPage';
 import AboutPage from './pages/AboutPage';
@@ -16,6 +17,7 @@ function App() {
           <Route path="camera" element={<CameraPage />} />
         </Route>
       </Routes>
+      <Analytics />
     </BrowserRouter>
   );
 }
