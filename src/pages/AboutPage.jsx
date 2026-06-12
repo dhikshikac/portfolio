@@ -6,33 +6,33 @@ const COMMUNITIES = [
   {
     title: 'HACK 4 IMPACT @ CORNELL',
     role: 'Design New Member Instructor & Designer',
-    image: '/images/about/h4i.svg',
+    image: '/images/about/h4i.jpeg',
     rotate: 0,
     offsetY: 0,
   },
   {
     title: 'DESIGN CONSULTING @ CORNELL',
     role: 'Product Design Consultant',
-    image: '/images/about/dcc.svg',
+    image: '/images/about/dcc.jpeg',
     rotate: 4.329,
     offsetY: -32,
   },
   {
     title: 'ART ACROSS AGES',
     role: 'Co-Founder & Ex Executive Director',
-    image: '/images/about/aaa.svg',
+    image: '/images/about/aaa.jpeg',
     rotate: -3.451,
     offsetY: 0,
   },
 ];
 
 const HOBBY_FRAMES = [
-  { id: 'cafe-1', src: '/images/about/cafe-1.svg', alt: 'At a vending machine' },
-  { id: 'cafe-2', src: '/images/about/cafe-2.svg', alt: 'Matcha drinks' },
-  { id: 'cafe-3', src: '/images/about/cafe-3.svg', alt: 'Pastries in bags' },
-  { id: 'painting', src: '/images/about/painting.svg', alt: 'Paint supplies' },
-  { id: 'drawing', src: '/images/about/drawing.svg', alt: 'Lighthouse drawing' },
-  { id: 'baking', src: '/images/about/baking.svg', alt: 'Chocolate chip cookies' },
+  { id: 'cafe-1', src: '/images/about/cafehopping.jpg', alt: 'Dhikshika in a cafe' },
+  { id: 'cafe-2', src: '/images/about/matcha.jpg', alt: 'Matcha' },
+  { id: 'cafe-3', src: '/images/about/creampuffs.jpeg', alt: 'Giant Cream puffs' },
+  { id: 'painting', src: '/images/about/painting.jpg', alt: 'Painting of cats' },
+  { id: 'drawing', src: '/images/about/drawing.jpeg', alt: 'Lighthouse drawing' },
+  { id: 'baking', src: '/images/about/cookies.jpeg', alt: 'Chocolate chip cookies' },
 ];
 
 const HOBBY_LABELS = [
@@ -47,13 +47,13 @@ export default function AboutPage() {
     <div className="about-page">
       <section className="about-hero">
         <div className="about-hero__left">
-          <h1 className="about-hero__title">HI! I&apos;M DHIKSHIKA!</h1>
+          <h1 className="about-hero__title">HI! I'M DHIKSHIKA!</h1>
           <p className="about-hero__location">
             📍 LONG ISLAND, NY &nbsp;✦&nbsp; CS @ CORNELL UNIVERSITY
           </p>
           <div className="about-hero__bio">
             <p>
-              I&apos;ve always loved creating things—whether that meant baking,
+              I've always loved creating things—whether that meant baking,
               making handcrafted birthday gifts for friends, designing
               merchandise, or sharing the joys of art with my community.
               Creating has always been a big part of who I am.
@@ -71,7 +71,7 @@ export default function AboutPage() {
           <div className="about-hero__frame">
             <div className="about-hero__portrait-wrap">
               <img
-                src="/images/about/portrait.svg"
+                src="/images/about/about.jpg"
                 alt="Dhikshika sitting on grass at sunset"
                 className="about-hero__portrait"
               />
@@ -156,16 +156,6 @@ export default function AboutPage() {
               VIEW MORE →
             </Link>
           </div>
-
-          <img
-            src="/images/about/community-star.png"
-            alt=""
-            className="about-hobbies__corner-star"
-            aria-hidden="true"
-          />
-          <span className="about-hobby-dot about-hobby-dot--1" aria-hidden="true" />
-          <span className="about-hobby-dot about-hobby-dot--2" aria-hidden="true" />
-          <span className="about-hobby-dot about-hobby-dot--3" aria-hidden="true" />
         </div>
       </section>
     </div>

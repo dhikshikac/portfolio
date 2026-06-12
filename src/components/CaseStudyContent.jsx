@@ -80,7 +80,10 @@ function renderBlock(block, index) {
         </div>
       );
 
-    case 'subsection':
+    case 'subsection': {
+      const hasSplitLayout =
+        block.paragraphs?.length > 0 && block.images?.length === 1;
+
       return (
         <div key={index} className="case-study__subsection">
           <h4
@@ -88,23 +91,45 @@ function renderBlock(block, index) {
           >
             {block.label}
           </h4>
-          {block.paragraphs?.map((p, i) => (
-            <p key={i} className="case-study__subsection-text">
-              {p}
-            </p>
-          ))}
-          {block.images?.length === 1 && (
-            <CaseStudyImage src={block.images[0].src} alt={block.images[0].alt} />
-          )}
-          {block.images?.length > 1 && (
-            <div className="case-study__image-row">
-              {block.images.map((img, i) => (
-                <CaseStudyImage key={i} src={img.src} alt={img.alt} />
-              ))}
+
+          {hasSplitLayout ? (
+            <div className="case-study__subsection-split">
+              <CaseStudyImage src={block.images[0].src} alt={block.images[0].alt} />
+              <div className="case-study__subsection-callout">
+                {block.paragraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
             </div>
+          ) : (
+            <>
+              {block.paragraphs?.map((p, i) => (
+                <p key={i} className="case-study__subsection-text">
+                  {p}
+                </p>
+              ))}
+              {block.images?.length === 1 && (
+                <CaseStudyImage src={block.images[0].src} alt={block.images[0].alt} />
+              )}
+              {block.images?.length === 2 && (
+                <div className="case-study__image-row">
+                  {block.images.map((img, i) => (
+                    <CaseStudyImage key={i} src={img.src} alt={img.alt} />
+                  ))}
+                </div>
+              )}
+              {block.images?.length > 2 && (
+                <div className="case-study__image-stack">
+                  {block.images.map((img, i) => (
+                    <CaseStudyImage key={i} src={img.src} alt={img.alt} />
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </div>
       );
+    }
 
     default:
       return null;
@@ -121,7 +146,9 @@ export default function CaseStudyContent({ sections }) {
           >
             {section.label}
           </h3>
-          {section.content.map((block, i) => renderBlock(block, i))}
+          <div className="case-study__section-content">
+            {section.content.map((block, i) => renderBlock(block, i))}
+          </div>
         </section>
       ))}
     </div>
