@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Label from '../components/Label';
 import SocialIcons from '../components/SocialIcons';
 import './AboutPage.css';
 
@@ -145,13 +146,19 @@ export default function AboutPage() {
           ))}
 
           {HOBBY_LABELS.map((label) => (
-            <span key={label.id} className={`about-label about-label--${label.id}`}>
+            <Label
+              key={label.id}
+              className={`about-hobbies__label about-hobbies__label--${label.id}`}
+              delay={label.id}
+            >
               {label.text}
-            </span>
+            </Label>
           ))}
 
           <div className="about-hobbies__photo-action">
-            <span className="about-label about-label--photography">PHOTOGRAPHY</span>
+            <Label className="about-hobbies__label about-hobbies__label--photography" delay="photography">
+              PHOTOGRAPHY
+            </Label>
             <Link to="/camera" className="about-hobbies__view-more">
               VIEW MORE →
             </Link>

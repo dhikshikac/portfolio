@@ -1,4 +1,5 @@
 import CameraPhotoGrid from '../components/CameraPhotoGrid';
+import Label from '../components/Label';
 import './CameraPage.css';
 
 const POLAROIDS = [
@@ -49,7 +50,9 @@ export default function CameraPage() {
                 className="camera-hero__frame-photo"
               />
               {frame.label && (
-                <p className="camera-hero__label">{frame.label}</p>
+                <Label as="p" className="camera-hero__label" delay="camera" size="sm">
+                  {frame.label}
+                </Label>
               )}
             </figure>
           ))}

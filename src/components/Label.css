@@ -1,0 +1,71 @@
+@keyframes label-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+.label {
+  padding: 5px 12px;
+  font-size: clamp(0.5rem, 1.1vw, 0.64rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #1a1a1a;
+  background: #f6c177;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.label--floating {
+  animation: label-float 3s ease-in-out infinite;
+}
+
+.label--sm {
+  font-size: clamp(0.44rem, 0.85vw, 0.54rem);
+  letter-spacing: 0.06em;
+  padding: 5px 9px;
+  border-radius: 3px;
+  max-width: 190px;
+  line-height: 1.3;
+  white-space: normal;
+}
+
+.label--delay-cafe {
+  animation-delay: 0s;
+}
+
+.label--delay-painting {
+  animation-delay: 0.6s;
+}
+
+.label--delay-drawing {
+  animation-delay: 1.2s;
+}
+
+.label--delay-baking {
+  animation-delay: 1.8s;
+}
+
+.label--delay-photography {
+  animation-delay: 2.4s;
+}
+
+.label--delay-camera {
+  animation-delay: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .label--floating {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .label--floating {
+    display: none;
+  }
+}

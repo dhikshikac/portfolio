@@ -176,7 +176,7 @@
   transform: rotate(var(--card-rotate, 0deg)) translateY(var(--card-offset, 0));
   margin: 0 -12px;
   transition: transform var(--transition), z-index 0s;
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 32px #00000059;
 }
 
 .about-community-card:nth-child(1) {
@@ -238,7 +238,7 @@
   padding: 0 4px;
 }
 
-/* ── Hobbies collage (Frame_53) ── */
+/* ── Hobbies collage ── */
 
 .about-hobbies {
   margin-bottom: 48px;
@@ -259,7 +259,7 @@
   border-radius: 4px;
   background: #0d1b2a;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 8px 24px #00000059;
   transition:
     transform var(--transition),
     box-shadow var(--transition),
@@ -277,7 +277,7 @@
   transform: rotate(var(--card-rotate, 2.5deg)) translateY(calc(var(--card-offset, 0px) - 8px))
     scale(1.02);
   z-index: 5;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.38);
+  box-shadow: 0 12px 32px #00000059;
 }
 
 .about-hobby-frame--cafe-1 {
@@ -336,34 +336,26 @@
   z-index: 2;
 }
 
-.about-label {
+.about-hobbies__label {
   position: absolute;
   z-index: 6;
-  padding: 5px 12px;
-  font-size: clamp(0.5rem, 1.1vw, 0.64rem);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #1a1a1a;
-  background: #f6c177;
-  border-radius: 4px;
-  white-space: nowrap;
 }
 
-.about-label--cafe {
+.about-hobbies__label--cafe {
   top: 51.5%;
   left: calc(21.167% - 10px);
   transform: rotate(8.04deg);
   transform-origin: top right;
 }
 
-.about-label--painting {
+.about-hobbies__label--painting {
   top: 5%;
   left: 48%;
   transform: rotate(-12deg);
   transform-origin: top left;
 }
 
-.about-label--drawing {
+.about-hobbies__label--drawing {
   top: 0;
   right: 4%;
   left: auto;
@@ -371,7 +363,7 @@
   transform-origin: top right;
 }
 
-.about-label--baking {
+.about-hobbies__label--baking {
   top: 87%;
   left: 74%;
   transform: rotate(14deg);
@@ -391,7 +383,7 @@
   z-index: 7;
 }
 
-.about-label--photography {
+.about-hobbies__label--photography {
   position: static;
   transform: none;
 }
@@ -406,7 +398,7 @@
   border-radius: 6px;
   font-weight: 700;
   transition: transform var(--transition);
-  box-shadow: 0 4px 16px rgba(255, 107, 157, 0.3);
+  box-shadow: 0 4px 16px #ff6b9d4d;
 }
 
 .about-hobbies__view-more:hover {

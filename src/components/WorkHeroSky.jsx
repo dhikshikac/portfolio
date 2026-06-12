@@ -51,7 +51,7 @@ export default function WorkHeroSky({ constellationOpacity = 1 }) {
           style={{ pointerEvents: constellationsHidden ? 'none' : undefined }}
         >
           {HERO_CONSTELLATIONS.map((variant) => (
-            <Constellation key={variant} variant={variant} active={active} asGroup />
+            <Constellation key={variant} variant={variant} active={active} />
           ))}
         </g>
       </svg>

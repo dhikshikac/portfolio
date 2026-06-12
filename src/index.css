@@ -60,13 +60,6 @@ img {
   height: auto;
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-
 ul {
   list-style: none;
 }
@@ -76,53 +69,10 @@ ul {
   outline-offset: 3px;
 }
 
-@keyframes label-float {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-
-  50% {
-    translate: 0 -7px;
-  }
-}
-
-.about-label,
-.camera-hero__label {
-  animation: label-float 4s ease-in-out infinite;
-}
-
-.about-label--cafe {
-  animation-delay: 0s;
-}
-
-.about-label--painting {
-  animation-delay: 0.6s;
-}
-
-.about-label--drawing {
-  animation-delay: 1.2s;
-}
-
-.about-label--baking {
-  animation-delay: 1.8s;
-}
-
-.about-label--photography {
-  animation-delay: 2.4s;
-}
-
-.camera-hero__label {
-  animation-delay: 0.3s;
-}
-
 /* ── Mobile: hide decorative labels & non-essential UI ── */
 @media (max-width: 768px) {
-  .about-label,
-  .camera-hero__label,
   .camera-hero__frame,
   .camera-hero__camera-wrap,
-  .constellation__label,
   .about-community-card__star,
   .about-hobbies__photo-action,
   .case-study-page__tags,

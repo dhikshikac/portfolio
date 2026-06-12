@@ -11,21 +11,14 @@ function buildLines(nodes, edges) {
   });
 }
 
-export default function Constellation({
-  variant = 'pisces',
-  active = false,
-  showLabel = false,
-  asGroup = false,
-  className = '',
-}) {
+export default function Constellation({ variant = 'pisces', active = false }) {
   const prefix = useId();
   const data = CONSTELLATIONS[variant];
-  const dotRadius = asGroup ? 4 : 2.8;
   const [drawLines, setDrawLines] = useState(false);
 
   const lines = useMemo(
     () => (data ? buildLines(data.nodes, data.edges) : []),
-    [data]
+    [data],
   );
 
   useEffect(() => {
@@ -49,8 +42,9 @@ export default function Constellation({
   if (!data) return null;
 
   const activeClass = active ? 'constellation--active' : '';
-  const content = (
-    <>
+
+  return (
+    <g className={`constellation ${activeClass}`.trim()} aria-hidden="true">
       {lines.map(({ from, to, length, index }) => (
         <g key={`${prefix}-line-${index}`}>
           <line
@@ -78,35 +72,9 @@ export default function Constellation({
           className="constellation__dot"
           cx={node.x}
           cy={node.y}
-          r={dotRadius}
+          r={4}
         />
       ))}
-      {showLabel && (
-        <text x="4" y="12" className="constellation__label">
-          {data.name}
-        </text>
-      )}
-    </>
-  );
-
-  if (asGroup) {
-    return (
-      <g className={`constellation ${activeClass} ${className}`.trim()} aria-hidden="true">
-        {content}
-      </g>
-    );
-  }
-
-  return (
-    <svg
-      className={`constellation ${activeClass} ${className}`.trim()}
-      viewBox={data.viewBox}
-      preserveAspectRatio="xMaxYMin meet"
-      aria-hidden={!showLabel}
-      role={showLabel ? 'img' : undefined}
-      aria-label={showLabel ? `${data.name} constellation` : undefined}
-    >
-      {content}
-    </svg>
+    </g>
   );
 }
