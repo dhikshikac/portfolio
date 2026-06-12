@@ -15,12 +15,21 @@
   opacity: 0.9;
 }
 
-.social-icons--md .social-icons__link svg {
+.social-icons__icon {
+  display: block;
+  object-fit: contain;
+}
+
+.social-icons__icon--github {
+  filter: invert(1);
+}
+
+.social-icons--md .social-icons__icon {
   width: 28px;
   height: 28px;
 }
 
-.social-icons--sm .social-icons__link svg {
+.social-icons--sm .social-icons__icon {
   width: 22px;
   height: 22px;
 }
