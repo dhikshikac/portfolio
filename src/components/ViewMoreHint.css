@@ -1,0 +1,46 @@
+.view-more-hint__trigger {
+  display: contents;
+}
+
+.view-more-hint__trigger > .project-card {
+  cursor: none;
+}
+
+.view-more-hint {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 200;
+  padding: 8px 12px;
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f4f0ff;
+  background: #0d1b2ad1;
+  border: 1px solid var(--accent-pink);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 6px 20px #0d1b2a80,
+    0 0 18px var(--accent-pink);
+  pointer-events: none;
+  translate: calc(var(--view-more-x) + 14px) calc(var(--view-more-y) + 14px);
+  white-space: nowrap;
+}
+
+.view-more-hint--coming-soon {
+  border-color: var(--accent-gold);
+  box-shadow:
+    0 6px 20px #0d1b2a80,
+    0 0 18px rgba(200, 168, 75, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view-more-hint {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: #0d1b2aeb;
+  }
+}

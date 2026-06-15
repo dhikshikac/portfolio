@@ -80,6 +80,20 @@ function renderBlock(block, index) {
         </div>
       );
 
+    case 'video':
+      return (
+        <figure key={index} className="case-study__figure case-study__figure--video">
+          <video
+            src={block.src}
+            className="case-study__video"
+            controls
+            playsInline
+            poster={block.poster}
+            aria-label={block.alt || 'Project prototype video'}
+          />
+        </figure>
+      );
+
     case 'subsection': {
       const hasSplitLayout =
         block.paragraphs?.length > 0 && block.images?.length === 1;

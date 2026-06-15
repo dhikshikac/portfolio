@@ -8,7 +8,7 @@ export default function CaseStudyPage() {
   const { slug } = useParams();
   const project = getProjectBySlug(slug);
 
-  if (!project) {
+  if (!project?.hasCaseStudy) {
     return <Navigate to="/work" replace />;
   }
 
@@ -23,7 +23,7 @@ export default function CaseStudyPage() {
           <h1 className="case-study-page__title">{project.title}</h1>
           <div className="case-study-page__tags">
             {project.tags.map((tag, i) => (
-              <TagPill key={tag} variant={i === 1 ? 'gold' : 'default'}>
+              <TagPill key={tag} index={i}>
                 {tag}
               </TagPill>
             ))}
@@ -51,7 +51,7 @@ export default function CaseStudyPage() {
         <hr className="case-study-page__divider" />
       </header>
 
-      <CaseStudyContent sections={project.sections} />
+      <CaseStudyContent sections={project.sections ?? []} />
     </article>
   );
 }

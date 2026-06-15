@@ -19,9 +19,29 @@
 
 .camera-photo {
   margin: 0;
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 520ms ease,
+    transform 520ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.camera-photo--revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .camera-photo {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .camera-photo__media {
+  position: relative;
   overflow: hidden;
   border-radius: 16px;
   background: #1a2d42;
@@ -34,6 +54,52 @@
   object-fit: cover;
   object-position: center;
   display: block;
+  transition: transform var(--transition);
+}
+
+.camera-photo__caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  margin: 0;
+  padding: 16px 18px;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  letter-spacing: 0.03em;
+  color: rgba(244, 240, 255, 0.95);
+  background: linear-gradient(
+    180deg,
+    rgba(13, 27, 42, 0) 35%,
+    rgba(13, 27, 42, 0.72) 72%,
+    rgba(13, 27, 42, 0.9) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .camera-photo__media--has-description:hover img,
+  .camera-photo__media--has-description:focus-within img {
+    transform: scale(1.04);
+  }
+
+  .camera-photo__media--has-description:hover .camera-photo__caption,
+  .camera-photo__media--has-description:focus-within .camera-photo__caption {
+    opacity: 1;
+  }
+}
+
+@media (hover: none) {
+  .camera-photo__media--has-description .camera-photo__caption {
+    opacity: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(13, 27, 42, 0) 55%,
+      rgba(13, 27, 42, 0.82) 100%
+    );
+  }
 }
 
 @media (max-width: 640px) {

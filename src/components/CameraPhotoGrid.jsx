@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import cameraPhotos from '../data/cameraPhotos';
+import CameraPhoto from './CameraPhoto';
 import './CameraPhotoGrid.css';
 
 function parseAspectRatio(aspectRatio) {
@@ -7,32 +8,15 @@ function parseAspectRatio(aspectRatio) {
   return height / width;
 }
 
-function isPortrait(aspectRatio) {
-  const [width, height] = aspectRatio.split('/').map((value) => parseFloat(value.trim()));
-  return height > width;
-}
+function shufflePhotos(photos) {
+  const shuffled = [...photos];
 
-function interleaveByOrientation(photos) {
-  const vertical = photos.filter((photo) => isPortrait(photo.aspectRatio));
-  const horizontal = photos.filter((photo) => !isPortrait(photo.aspectRatio));
-  const interleaved = [];
-
-  let verticalIndex = 0;
-  let horizontalIndex = 0;
-
-  while (verticalIndex < vertical.length || horizontalIndex < horizontal.length) {
-    if (horizontalIndex < horizontal.length) {
-      interleaved.push(horizontal[horizontalIndex]);
-      horizontalIndex += 1;
-    }
-
-    if (verticalIndex < vertical.length) {
-      interleaved.push(vertical[verticalIndex]);
-      verticalIndex += 1;
-    }
+  for (let i = shuffled.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 
-  return interleaved;
+  return shuffled;
 }
 
 function distributeToColumns(photos, columnCount) {
@@ -84,25 +68,23 @@ function useColumnCount() {
 
 export default function CameraPhotoGrid() {
   const columnCount = useColumnCount();
-  const columns = useMemo(() => {
-    const orderedPhotos = interleaveByOrientation(cameraPhotos);
-    return distributeToColumns(orderedPhotos, columnCount);
-  }, [columnCount]);
+  const [shuffledPhotos] = useState(() => shufflePhotos(cameraPhotos));
+  const columns = useMemo(
+    () => distributeToColumns(shuffledPhotos, columnCount),
+    [columnCount, shuffledPhotos],
+  );
 
   return (
     <section className="camera-gallery" aria-label="Photo gallery">
       <div className="camera-gallery__masonry">
         {columns.map((column, columnIndex) => (
           <div key={columnIndex} className="camera-gallery__column">
-            {column.map((photo) => (
-              <figure key={photo.src} className="camera-photo">
-                <div
-                  className="camera-photo__media"
-                  style={{ aspectRatio: photo.aspectRatio }}
-                >
-                  <img src={photo.src} alt={photo.alt} loading="lazy" />
-                </div>
-              </figure>
+            {column.map((photo, photoIndex) => (
+              <CameraPhoto
+                key={photo.src}
+                photo={photo}
+                revealDelay={columnIndex * 70 + photoIndex * 90}
+              />
             ))}
           </div>
         ))}

@@ -74,6 +74,10 @@
   background: #3f6ea8;
 }
 
+.camera-hero__frame--large:hover {
+  transform: scale(1.02);
+}
+
 .camera-hero__frame--small {
   bottom: 20%;
   left: 22%;

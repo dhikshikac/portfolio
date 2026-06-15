@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import TagPill from './TagPill';
+import ViewMoreHint from './ViewMoreHint';
 import './ProjectCard.css';
 
 function isVideoThumbnail(src) {
@@ -7,9 +9,12 @@ function isVideoThumbnail(src) {
 
 export default function ProjectCard({ project }) {
   const useVideo = isVideoThumbnail(project.thumbnail);
+  const cardClassName = `project-card${
+    project.hasCaseStudy ? ' project-card--has-case-study' : ''
+  }`;
 
-  return (
-    <article className="project-card">
+  const card = (
+    <article className={cardClassName}>
       <div className="project-card__image-wrap">
         {useVideo ? (
           <video
@@ -34,7 +39,7 @@ export default function ProjectCard({ project }) {
           <h2 className="project-card__title">{project.title}</h2>
           <div className="project-card__tags">
             {project.tags.map((tag, i) => (
-              <TagPill key={tag} variant={i === 1 ? 'gold' : 'default'}>
+              <TagPill key={tag} index={i}>
                 {tag}
               </TagPill>
             ))}
@@ -56,6 +61,21 @@ export default function ProjectCard({ project }) {
           </div>
         </dl>
       </div>
-    </article>
+      </article>
+  );
+
+  return (
+    <ViewMoreHint
+      label={project.hasCaseStudy ? 'VIEW MORE' : 'COMING SOON'}
+      variant={project.hasCaseStudy ? 'default' : 'coming-soon'}
+    >
+      {project.hasCaseStudy ? (
+        <Link to={`/work/${project.slug}`} className="project-card__link">
+          {card}
+        </Link>
+      ) : (
+        card
+      )}
+    </ViewMoreHint>
   );
 }
