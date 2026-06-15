@@ -1,13 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.8e86adb2.css",
-    "main.js": "/static/js/main.79761970.js",
+    "main.css": "/static/css/main.09fc8384.css",
+    "main.js": "/static/js/main.8a2a49b3.js",
+    "static/media/wk-final-prototype.mp4": "/static/media/wk-final-prototype.4ce29582246e76da45c2.mp4",
+    "static/media/competitor-analysis.png": "/static/media/competitor-analysis.8e270e107b3f5e6df263.png",
+    "static/media/wk-pages.png": "/static/media/wk-pages.0bab81ecd2d96c92cd5a.png",
+    "static/media/wk-hifi-3.png": "/static/media/wk-hifi-3.57f967e9f1c376c38e01.png",
+    "static/media/wk-hifi-1.png": "/static/media/wk-hifi-1.16c3fa114ac516231e85.png",
+    "static/media/wk-lofi-2.png": "/static/media/wk-lofi-2.90aa4036df8f9dcf5179.png",
+    "static/media/wk-lofi-1.png": "/static/media/wk-lofi-1.66d4a544ac492d3dc082.png",
+    "static/media/wk-hifi-2.png": "/static/media/wk-hifi-2.f169fba0ba8440dc4e1c.png",
+    "static/media/wk-midfi-3.png": "/static/media/wk-midfi-3.65cabfdc4666be5dd8b9.png",
+    "static/media/wk.png": "/static/media/wk.b11f2a69925999983f09.png",
+    "static/media/wk-logo.svg": "/static/media/wk-logo.fecbb79d09b6452103868e023237c7a7.svg",
     "index.html": "/index.html",
-    "main.8e86adb2.css.map": "/static/css/main.8e86adb2.css.map",
-    "main.79761970.js.map": "/static/js/main.79761970.js.map"
+    "main.09fc8384.css.map": "/static/css/main.09fc8384.css.map",
+    "main.8a2a49b3.js.map": "/static/js/main.8a2a49b3.js.map"
   },
   "entrypoints": [
-    "static/css/main.8e86adb2.css",
-    "static/js/main.79761970.js"
+    "static/css/main.09fc8384.css",
+    "static/js/main.8a2a49b3.js"
   ]
 }

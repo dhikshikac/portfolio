@@ -3,7 +3,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import Layout from './components/Layout';
 import CaseStudyPage from './pages/CaseStudyPage';
-import WoltersKluwerCaseStudy from './pages/case-studies/wolters';
+import WoltersKluwerCaseStudy from './pages/case-studies/wolters/index';
 import WorkPage from './pages/WorkPage';
 import AboutPage from './pages/AboutPage';
 import CameraPage from './pages/CameraPage';
