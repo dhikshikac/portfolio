@@ -1,8 +1,10 @@
 import { Link, useParams, Navigate } from 'react-router-dom';
 import TagPill from '../components/TagPill';
 import CaseStudyContent from '../components/CaseStudyContent';
+import { CaseStudyBackToTop } from './case-studies/caseStudyComponents';
 import { getProjectBySlug } from '../data/projects';
 import './CaseStudyPage.css';
+import './case-studies/caseStudyShared.css';
 
 export default function CaseStudyPage() {
   const { slug } = useParams();
@@ -52,6 +54,8 @@ export default function CaseStudyPage() {
       </header>
 
       <CaseStudyContent sections={project.sections ?? []} />
+
+      <CaseStudyBackToTop />
     </article>
   );
 }

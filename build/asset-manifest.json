@@ -1,24 +1,38 @@
 {
   "files": {
-    "main.css": "/static/css/main.09fc8384.css",
-    "main.js": "/static/js/main.8a2a49b3.js",
+    "main.css": "/static/css/main.9004ac85.css",
+    "main.js": "/static/js/main.9ed6a15c.js",
     "static/media/wk-final-prototype.mp4": "/static/media/wk-final-prototype.4ce29582246e76da45c2.mp4",
+    "static/media/hvtp-final.mp4": "/static/media/hvtp-final.e4ee932953978b9b44b9.mp4",
+    "static/media/hvtp-info-arch.jpg": "/static/media/hvtp-info-arch.5994f60a7dc19ca8a19a.jpg",
+    "static/media/hvtp-lofi-grid.png": "/static/media/hvtp-lofi-grid.91a2e93a568caa118a8c.png",
+    "static/media/hvtp-lofi-card.png": "/static/media/hvtp-lofi-card.654637220241d13b1045.png",
     "static/media/competitor-analysis.png": "/static/media/competitor-analysis.8e270e107b3f5e6df263.png",
+    "static/media/hvtp-uxr.png": "/static/media/hvtp-uxr.3bab2f78fe9ea75453dc.png",
+    "static/media/hvtp-uxr2.png": "/static/media/hvtp-uxr2.645219de1ce7400c63cd.png",
+    "static/media/hvtp-logo.png": "/static/media/hvtp-logo.c0129186f51c38bcc8a8.png",
+    "static/media/Horizontal Cards-hifi-Default.png": "/static/media/Horizontal Cards-hifi-Default.7b27a8709f566b5d1afe.png",
+    "static/media/Horizontal Cards-hifi-Choose Filter.png": "/static/media/Horizontal Cards-hifi-Choose Filter.3210895224e9c2d7896c.png",
+    "static/media/hvtp-features.png": "/static/media/hvtp-features.eedc5c1bb89e7a654748.png",
     "static/media/wk-pages.png": "/static/media/wk-pages.0bab81ecd2d96c92cd5a.png",
     "static/media/wk-hifi-3.png": "/static/media/wk-hifi-3.57f967e9f1c376c38e01.png",
     "static/media/wk-hifi-1.png": "/static/media/wk-hifi-1.16c3fa114ac516231e85.png",
+    "static/media/Table View-hifi-Default.png": "/static/media/Table View-hifi-Default.af70b742c1086b28c3a3.png",
+    "static/media/FiltersOption-midfi.png": "/static/media/FiltersOption-midfi.97a45dc46cdba4e593dc.png",
+    "static/media/Horizontal Cards-midfi.png": "/static/media/Horizontal Cards-midfi.c431bfe2e59009ffefce.png",
     "static/media/wk-lofi-2.png": "/static/media/wk-lofi-2.90aa4036df8f9dcf5179.png",
     "static/media/wk-lofi-1.png": "/static/media/wk-lofi-1.66d4a544ac492d3dc082.png",
     "static/media/wk-hifi-2.png": "/static/media/wk-hifi-2.f169fba0ba8440dc4e1c.png",
+    "static/media/Vertical Cards-midfi.png": "/static/media/Vertical Cards-midfi.44a4d540fd5e54423f15.png",
     "static/media/wk-midfi-3.png": "/static/media/wk-midfi-3.65cabfdc4666be5dd8b9.png",
     "static/media/wk.png": "/static/media/wk.b11f2a69925999983f09.png",
     "static/media/wk-logo.svg": "/static/media/wk-logo.fecbb79d09b6452103868e023237c7a7.svg",
     "index.html": "/index.html",
-    "main.09fc8384.css.map": "/static/css/main.09fc8384.css.map",
-    "main.8a2a49b3.js.map": "/static/js/main.8a2a49b3.js.map"
+    "main.9004ac85.css.map": "/static/css/main.9004ac85.css.map",
+    "main.9ed6a15c.js.map": "/static/js/main.9ed6a15c.js.map"
   },
   "entrypoints": [
-    "static/css/main.09fc8384.css",
-    "static/js/main.8a2a49b3.js"
+    "static/css/main.9004ac85.css",
+    "static/js/main.9ed6a15c.js"
   ]
 }

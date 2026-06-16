@@ -14,7 +14,7 @@ export const projects = [
   },
   {
     slug: 'hudson-valley-textile',
-    hasCaseStudy: false,
+    hasCaseStudy: true,
     title: 'Hudson Valley Textile',
     tags: ['NON-PROFIT', 'WEBSITE', 'DESIGN'],
     thumbnail: '/videos/hvtp-thumb.mp4',

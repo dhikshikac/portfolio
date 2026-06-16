@@ -1,0 +1,559 @@
+/* ── Case study layout system (shared across all projects) ── */
+
+.cs {
+  --cs-label-col: minmax(100px, 18%);
+  --cs-content-col: minmax(0, 1fr);
+  --cs-col-gap: clamp(24px, 5vw, 64px);
+  --cs-hero-bg: #0f2a45;
+  --cs-hero-border: #0a1c2e;
+  --cs-card-bg: rgba(21, 37, 53, 0.35);
+  --cs-card-border: rgba(100, 140, 180, 0.35);
+  --cs-card-heading: var(--text-primary);
+  --cs-card-body: var(--text-muted);
+
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+/* ── Scroll progress ── */
+
+.cs-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent-pink);
+  z-index: 100;
+  width: 0%;
+  transition: width 0.1s ease;
+}
+
+/* ── Page shell ── */
+
+.cs-container {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 32px clamp(20px, 5vw, 48px) 0;
+}
+
+.cs-hero + .cs-container {
+  padding-top: clamp(8px, 2vw, 16px);
+}
+
+.cs-back {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  transition: text-decoration var(--transition);
+}
+
+.cs-back:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ── Hero banner ── */
+
+.cs-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 20px);
+  width: 100%;
+  min-height: clamp(140px, 22vw, 220px);
+  margin-bottom: clamp(40px, 6vw, 64px);
+  padding: clamp(40px, 7vw, 72px) 24px;
+  background: var(--cs-hero-bg);
+  border-top: 3px solid var(--cs-hero-border);
+  border-bottom: 3px solid var(--cs-hero-border);
+}
+
+.cs-hero-logo {
+  width: clamp(44px, 6vw, 64px);
+  height: clamp(44px, 6vw, 64px);
+  flex-shrink: 0;
+}
+
+.cs-hero-title {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1;
+}
+
+/* ── Header / overview ── */
+
+.cs-header {
+  margin-bottom: clamp(56px, 8vw, 96px);
+  padding: clamp(32px, 5vw, 48px) 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cs-overview {
+  display: grid;
+  grid-template-columns: var(--cs-label-col) var(--cs-content-col);
+  column-gap: var(--cs-col-gap);
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+.cs-overview-name {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+.cs-overview-type {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.cs-overview-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.75;
+}
+
+.cs-meta {
+  display: grid;
+  grid-template-columns: var(--cs-label-col) var(--cs-content-col);
+  column-gap: var(--cs-col-gap);
+  padding-top: clamp(32px, 5vw, 48px);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.cs-meta-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 4vw, 48px);
+}
+
+.cs-meta dt {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 10px;
+}
+
+.cs-meta dd {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* ── Body sections ── */
+
+.cs-body {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(64px, 9vw, 112px);
+}
+
+.cs-section {
+  display: grid;
+  grid-template-columns: var(--cs-label-col) var(--cs-content-col);
+  column-gap: var(--cs-col-gap);
+  align-items: start;
+}
+
+.cs-section-label {
+  position: sticky;
+  top: calc(var(--nav-height) + 24px);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  line-height: 1.4;
+  padding-top: 4px;
+}
+
+.cs-section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+}
+
+/* ── Typography ── */
+
+.cs-heading {
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.cs-heading--spaced {
+  margin-top: 12px;
+}
+
+.cs-eyebrow {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: -12px;
+}
+
+.cs-prose {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.75;
+}
+
+.cs-subheading {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.65;
+}
+
+/* ── Figures & media ── */
+
+.cs-figure {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cs-figure img,
+.cs-figure video {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+.cs-figure--board {
+  background: #fff;
+  padding: clamp(14px, 2.5vw, 24px);
+  border-radius: 12px;
+}
+
+.cs-figure--board img {
+  border-radius: 6px;
+}
+
+.cs-figure--video video {
+  background: #000;
+}
+
+.cs-figure--flow img {
+  width: auto;
+  max-width: 100%;
+}
+
+.cs-figure--framed img {
+  border-radius: 10px;
+}
+
+.cs-figure-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Image rows ── */
+
+.cs-image-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.cs-image-row--weighted {
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+/* ── Media + annotation splits ── */
+
+.cs-media-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.cs-media-frame {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: clamp(14px, 2.5vw, 24px);
+  overflow: hidden;
+}
+
+.cs-aside-split {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(200px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── Callouts ── */
+
+.cs-callout-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cs-callout {
+  background: rgba(30, 28, 24, 0.9);
+  border: 1px solid var(--accent-gold);
+  border-radius: 10px;
+  padding: 22px 20px;
+}
+
+.cs-callout p {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.cs-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.cs-callout p:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.cs-callout ol {
+  padding-left: 1.2rem;
+  list-style: decimal;
+}
+
+.cs-callout li {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.65;
+}
+
+.cs-callout li + li {
+  margin-top: 6px;
+}
+
+/* ── Showcase blocks (heading + image + caption) ── */
+
+.cs-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.cs-showcase + .cs-showcase {
+  margin-top: 12px;
+}
+
+/* ── Card grids ── */
+
+.cs-card-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.cs-card-grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.cs-card-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cs-card-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cs-card {
+  background: var(--cs-card-bg);
+  border: 1px solid var(--cs-card-border);
+  border-radius: 12px;
+  padding: 24px 22px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.cs-card p {
+  font-size: 0.95rem;
+  color: var(--cs-card-body);
+  line-height: 1.65;
+}
+
+.cs-card strong {
+  font-weight: 700;
+  color: var(--cs-card-heading);
+}
+
+.cs-card--titled h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--cs-card-heading);
+  margin-bottom: 14px;
+}
+
+.cs-card--titled p {
+  color: var(--cs-card-body);
+  line-height: 1.7;
+}
+
+.cs-card--titled strong {
+  color: var(--cs-card-heading);
+}
+
+.cs-card--neutral {
+  --cs-card-bg: rgba(21, 37, 53, 0.35);
+  --cs-card-border: rgba(100, 140, 180, 0.35);
+}
+
+.cs-card--blue {
+  --cs-card-bg: rgba(40, 80, 130, 0.28);
+  --cs-card-border: rgba(100, 140, 180, 0.4);
+}
+
+.cs-card--gray {
+  --cs-card-bg: rgba(90, 100, 110, 0.28);
+  --cs-card-border: rgba(140, 150, 160, 0.32);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 960px) {
+  .cs-card-grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cs-aside-split,
+  .cs-media-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .cs-container {
+    padding-top: 24px;
+  }
+
+  .cs-header {
+    padding-bottom: 56px;
+  }
+
+  .cs-overview,
+  .cs-meta,
+  .cs-section {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .cs-meta {
+    gap: 24px;
+  }
+
+  .cs-meta-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cs-section-label {
+    position: static;
+    padding-top: 0;
+    font-size: 0.82rem;
+  }
+
+  .cs-section-content {
+    gap: 22px;
+  }
+
+  .cs-card-grid--4,
+  .cs-card-grid--3,
+  .cs-card-grid--2,
+  .cs-image-row,
+  .cs-image-row--weighted {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs-meta-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Back to top ── */
+
+@keyframes cs-back-to-top-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+.cs-back-to-top {
+  position: fixed;
+  right: clamp(16px, 3vw, 28px);
+  bottom: clamp(16px, 3vw, 28px);
+  z-index: 90;
+  padding: 7px 14px;
+  font-size: clamp(0.52rem, 1vw, 0.62rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--accent-pink);
+  color: var(--bg-navy);
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--transition),
+    visibility var(--transition);
+  box-shadow: 0 4px 16px #ff6b9d4d;
+}
+
+.cs-back-to-top--visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  animation: cs-back-to-top-float 3s ease-in-out infinite;
+}
+
+.cs-back-to-top:hover {
+  animation-play-state: paused;
+  scale: 1.06;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-back-to-top--visible {
+    animation: none;
+  }
+
+  .cs-back-to-top:hover {
+    scale: 1.03;
+  }
+}
