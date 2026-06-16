@@ -171,12 +171,12 @@
   position: relative;
   width: 340px;
   padding: 16px 16px 18px;
-  background: #2b4a7d;
+  background: var(--surface-frame-accent);
   border-radius: 10px;
   transform: rotate(var(--card-rotate, 0deg)) translateY(var(--card-offset, 0));
   margin: 0 -12px;
   transition: transform var(--transition), z-index 0s;
-  box-shadow: 0 10px 32px #00000059;
+  box-shadow: var(--shadow-lift);
 }
 
 .about-community-card:nth-child(1) {
@@ -217,7 +217,7 @@
 }
 
 .about-community-card__image-wrap {
-  background: #d9d9d9;
+  background: var(--surface-neutral);
   border-radius: 6px;
   margin: 0 4px 12px;
   overflow: hidden;
@@ -255,11 +255,11 @@
 .about-hobby-frame {
   position: absolute;
   margin: 0;
-  border: 8px solid #3f6ea8;
+  border: 8px solid var(--surface-frame-accent);
   border-radius: 4px;
-  background: #0d1b2a;
+  background: var(--bg-navy);
   overflow: hidden;
-  box-shadow: 0 8px 24px #00000059;
+  box-shadow: var(--shadow-lift);
   transition:
     transform var(--transition),
     box-shadow var(--transition),
@@ -277,7 +277,7 @@
   transform: rotate(var(--card-rotate, 2.5deg)) translateY(calc(var(--card-offset, 0px) - 8px))
     scale(1.02);
   z-index: 5;
-  box-shadow: 0 12px 32px #00000059;
+  box-shadow: var(--shadow-lift);
 }
 
 .about-hobby-frame--cafe-1 {
@@ -398,7 +398,7 @@
   border-radius: 6px;
   font-weight: 700;
   transition: transform var(--transition);
-  box-shadow: 0 4px 16px #ff6b9d4d;
+  box-shadow: var(--shadow-glow-pink);
 }
 
 .about-hobbies__view-more:hover {

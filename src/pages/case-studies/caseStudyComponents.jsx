@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './caseStudyShared.css';
 
 export function useScrollProgress() {
   const [progress, setProgress] = useState(0);
@@ -35,6 +36,111 @@ export function CaseStudyHero({ logo, title }) {
     <div className="cs-hero">
       <img src={logo} alt="" className="cs-hero-logo" aria-hidden="true" />
       <p className="cs-hero-title">{title}</p>
+    </div>
+  );
+}
+
+export function CaseStudyHeader({
+  name,
+  type,
+  paragraphs,
+  role,
+  team,
+  timeline,
+  skills,
+}) {
+  return (
+    <header className="cs-header">
+      <div className="cs-overview">
+        <div>
+          <h1 className="cs-overview-name">{name}</h1>
+          <p className="cs-overview-type">{type}</p>
+        </div>
+        <div className="cs-overview-text">
+          {paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+          ))}
+        </div>
+      </div>
+
+      <dl className="cs-meta">
+        <div>
+          <dt>Role</dt>
+          <dd>{role}</dd>
+        </div>
+        <div className="cs-meta-fields">
+          <div>
+            <dt>Team</dt>
+            <dd>
+              {team.map((line) => (
+                <span key={line}>{line}</span>
+              ))}
+            </dd>
+          </div>
+          <div>
+            <dt>Timeline</dt>
+            <dd>
+              {timeline.map((line) => (
+                <span key={line}>{line}</span>
+              ))}
+            </dd>
+          </div>
+          <div>
+            <dt>Skills/Tools</dt>
+            <dd>
+              {skills.map((line) => (
+                <span key={line}>{line}</span>
+              ))}
+            </dd>
+          </div>
+        </div>
+      </dl>
+    </header>
+  );
+}
+
+export function CaseStudyLayout({
+  ariaLabel,
+  logo,
+  heroTitle,
+  overviewName,
+  overviewType,
+  overviewParagraphs,
+  role,
+  team,
+  timeline,
+  skills,
+  children,
+}) {
+  const scrollProgress = useScrollProgress();
+
+  return (
+    <div className="cs" aria-label={ariaLabel}>
+      <div
+        className="cs-scroll-progress"
+        style={{ width: `${scrollProgress}%` }}
+        aria-hidden="true"
+      />
+
+      <CaseStudyBackLink />
+
+      <CaseStudyHero logo={logo} title={heroTitle} />
+
+      <article className="cs-container">
+        <CaseStudyHeader
+          name={overviewName}
+          type={overviewType}
+          paragraphs={overviewParagraphs}
+          role={role}
+          team={team}
+          timeline={timeline}
+          skills={skills}
+        />
+
+        <div className="cs-body">{children}</div>
+      </article>
+
+      <CaseStudyBackToTop />
     </div>
   );
 }

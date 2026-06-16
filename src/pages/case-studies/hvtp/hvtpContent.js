@@ -1,5 +1,4 @@
 import logo from './images/hvtp-logo.png';
-import finalVideo from './images/hvtp-final.mp4';
 
 import uxrAffinityTop from './images/hvtp-uxr.png';
 import uxrAffinityBottom from './images/hvtp-uxr2.png';
@@ -20,7 +19,7 @@ import hifiFilter from './images/Horizontal Cards-hifi-Choose Filter.png';
 
 export const hvtpAssets = {
   logo,
-  finalVideo,
+  finalVideo: '/videos/hvtp-final.mp4',
 
   uxrAffinityTop,
   uxrAffinityBottom,
@@ -64,7 +63,6 @@ export const hvtpCopy = {
     ],
   },
   finalPrototype: {
-    eyebrow: 'Final Prototype',
     title: 'A Custom Inventory Platform',
   },
   userResearch: {

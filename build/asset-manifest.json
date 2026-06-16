@@ -1,9 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.9004ac85.css",
-    "main.js": "/static/js/main.9ed6a15c.js",
-    "static/media/wk-final-prototype.mp4": "/static/media/wk-final-prototype.4ce29582246e76da45c2.mp4",
-    "static/media/hvtp-final.mp4": "/static/media/hvtp-final.e4ee932953978b9b44b9.mp4",
+    "main.css": "/static/css/main.d0b17127.css",
+    "main.js": "/static/js/main.6d50a5e7.js",
     "static/media/hvtp-info-arch.jpg": "/static/media/hvtp-info-arch.5994f60a7dc19ca8a19a.jpg",
     "static/media/hvtp-lofi-grid.png": "/static/media/hvtp-lofi-grid.91a2e93a568caa118a8c.png",
     "static/media/hvtp-lofi-card.png": "/static/media/hvtp-lofi-card.654637220241d13b1045.png",
@@ -16,6 +14,7 @@
     "static/media/hvtp-features.png": "/static/media/hvtp-features.eedc5c1bb89e7a654748.png",
     "static/media/wk-pages.png": "/static/media/wk-pages.0bab81ecd2d96c92cd5a.png",
     "static/media/wk-hifi-3.png": "/static/media/wk-hifi-3.57f967e9f1c376c38e01.png",
+    "static/media/wk-midfi-1.png": "/static/media/wk-midfi-1.25e6d7d98b37a2ad0faf.png",
     "static/media/wk-hifi-1.png": "/static/media/wk-hifi-1.16c3fa114ac516231e85.png",
     "static/media/Table View-hifi-Default.png": "/static/media/Table View-hifi-Default.af70b742c1086b28c3a3.png",
     "static/media/FiltersOption-midfi.png": "/static/media/FiltersOption-midfi.97a45dc46cdba4e593dc.png",
@@ -24,15 +23,17 @@
     "static/media/wk-lofi-1.png": "/static/media/wk-lofi-1.66d4a544ac492d3dc082.png",
     "static/media/wk-hifi-2.png": "/static/media/wk-hifi-2.f169fba0ba8440dc4e1c.png",
     "static/media/Vertical Cards-midfi.png": "/static/media/Vertical Cards-midfi.44a4d540fd5e54423f15.png",
+    "static/media/wk-midfi-4.png": "/static/media/wk-midfi-4.da555b55291accf62c4d.png",
+    "static/media/wk-midfi-2.png": "/static/media/wk-midfi-2.7306edf2a37c22a7a9ee.png",
     "static/media/wk-midfi-3.png": "/static/media/wk-midfi-3.65cabfdc4666be5dd8b9.png",
     "static/media/wk.png": "/static/media/wk.b11f2a69925999983f09.png",
     "static/media/wk-logo.svg": "/static/media/wk-logo.fecbb79d09b6452103868e023237c7a7.svg",
     "index.html": "/index.html",
-    "main.9004ac85.css.map": "/static/css/main.9004ac85.css.map",
-    "main.9ed6a15c.js.map": "/static/js/main.9ed6a15c.js.map"
+    "main.d0b17127.css.map": "/static/css/main.d0b17127.css.map",
+    "main.6d50a5e7.js.map": "/static/js/main.6d50a5e7.js.map"
   },
   "entrypoints": [
-    "static/css/main.9004ac85.css",
-    "static/js/main.9ed6a15c.js"
+    "static/css/main.d0b17127.css",
+    "static/js/main.6d50a5e7.js"
   ]
 }

@@ -1,79 +1,25 @@
 import {
-  CaseStudyBackLink,
-  CaseStudyBackToTop,
   CaseStudyFigure,
-  CaseStudyHero,
+  CaseStudyLayout,
   CaseStudySection,
   CaseStudyVideo,
-  useScrollProgress,
 } from '../caseStudyComponents';
 import { hvtpAssets, hvtpCopy, hvtpMeta } from './hvtpContent';
-import '../caseStudyShared.css';
 
 export default function HvtpCaseStudy() {
-  const scrollProgress = useScrollProgress();
-
   return (
-    <div className="cs" aria-label={`${hvtpMeta.title} case study`}>
-      <div
-        className="cs-scroll-progress"
-        style={{ width: `${scrollProgress}%` }}
-        aria-hidden="true"
-      />
-
-      <CaseStudyBackLink />
-
-      <CaseStudyHero logo={hvtpAssets.logo} title={hvtpMeta.title} />
-
-      <article className="cs-container">
-        <header className="cs-header">
-          <div className="cs-overview">
-            <div>
-              <h1 className="cs-overview-name">{hvtpMeta.shortTitle}</h1>
-              <p className="cs-overview-type">{hvtpMeta.subtitle}</p>
-            </div>
-            <div className="cs-overview-text">
-              {hvtpMeta.overview.map((p) => (
-                <p key={p.slice(0, 22)}>{p}</p>
-              ))}
-            </div>
-          </div>
-
-          <dl className="cs-meta">
-            <div>
-              <dt>Role</dt>
-              <dd>{hvtpMeta.role}</dd>
-            </div>
-            <div className="cs-meta-fields">
-              <div>
-                <dt>Team</dt>
-                <dd>
-                  {hvtpMeta.team.map((line) => (
-                    <span key={line}>{line}</span>
-                  ))}
-                </dd>
-              </div>
-              <div>
-                <dt>Timeline</dt>
-                <dd>
-                  {hvtpMeta.timeline.map((line) => (
-                    <span key={line}>{line}</span>
-                  ))}
-                </dd>
-              </div>
-              <div>
-                <dt>Skills/Tools</dt>
-                <dd>
-                  {hvtpMeta.skills.map((line) => (
-                    <span key={line}>{line}</span>
-                  ))}
-                </dd>
-              </div>
-            </div>
-          </dl>
-        </header>
-
-        <div className="cs-body">
+    <CaseStudyLayout
+      ariaLabel={`${hvtpMeta.title} case study`}
+      logo={hvtpAssets.logo}
+      heroTitle={hvtpMeta.title}
+      overviewName={hvtpMeta.shortTitle}
+      overviewType={hvtpMeta.subtitle}
+      overviewParagraphs={hvtpMeta.overview}
+      role={hvtpMeta.role}
+      team={hvtpMeta.team}
+      timeline={hvtpMeta.timeline}
+      skills={hvtpMeta.skills}
+    >
           <CaseStudySection label="Context">
             <h2 className="cs-heading">{hvtpCopy.context.title}</h2>
             <div className="cs-prose">
@@ -84,7 +30,6 @@ export default function HvtpCaseStudy() {
           </CaseStudySection>
 
           <CaseStudySection label="Final Prototype">
-            <p className="cs-eyebrow">{hvtpCopy.finalPrototype.eyebrow}</p>
             <h2 className="cs-heading">{hvtpCopy.finalPrototype.title}</h2>
             <CaseStudyVideo
               src={hvtpAssets.finalVideo}
@@ -274,10 +219,6 @@ export default function HvtpCaseStudy() {
               ))}
             </div>
           </CaseStudySection>
-        </div>
-      </article>
-
-      <CaseStudyBackToTop />
-    </div>
+    </CaseStudyLayout>
   );
 }

@@ -1,7 +1,8 @@
+import { hasCaseStudy } from '../pages/case-studies/caseStudyRoutes';
+
 export const projects = [
   {
     slug: 'wolters-kluwer',
-    hasCaseStudy: true,
     title: 'Wolters Kluwer',
     tags: ['CONTRACT', 'WEBSITE', 'DESIGN'],
     thumbnail: '/videos/wolters-thumb.mp4',
@@ -14,7 +15,6 @@ export const projects = [
   },
   {
     slug: 'hudson-valley-textile',
-    hasCaseStudy: true,
     title: 'Hudson Valley Textile',
     tags: ['NON-PROFIT', 'WEBSITE', 'DESIGN'],
     thumbnail: '/videos/hvtp-thumb.mp4',
@@ -26,7 +26,6 @@ export const projects = [
   },
   {
     slug: 'connectu',
-    hasCaseStudy: false,
     title: 'ConnectU',
     tags: ['CONCEPT', 'MOBILE APP', 'DESIGN'],
     thumbnail: '/images/work/connectu-thumb.svg',
@@ -38,6 +37,6 @@ export const projects = [
   },
 ];
 
-export function getProjectBySlug(slug) {
-  return projects.find((p) => p.slug === slug);
+export function projectHasCaseStudy(project) {
+  return hasCaseStudy(project.slug);
 }

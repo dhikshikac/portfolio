@@ -15,7 +15,31 @@
   --accent-yellow: #f5c842;
   --accent-gold: #c8a84b;
   --accent-purple: #c8b8ff;
-  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-subtle: #ffffff1a;
+
+  /* A small set of shared surfaces */
+  --surface-frame: #1e3a5f;
+  --surface-frame-accent: #3f6ea8;
+  --surface-light: #e7eaee;
+  --surface-white: #ffffff;
+  --surface-neutral: #d9d9d9;
+  --surface-placeholder: #d4d4d4;
+
+  /* Light-surface text */
+  --text-on-light: #1a1a1a;
+
+  /* One-off accent (used by labels) */
+  --accent-peach: #f6c177;
+
+  /* Overlays */
+  --overlay: #0d1c2be6;
+  --overlay-soft: #0d1b2a80;
+  --overlay-ink: #1e1c18e6;
+
+  /* Shadows */
+  --shadow-soft: 0 8px 24px #0000004d;
+  --shadow-lift: 0 10px 32px #00000059;
+  --shadow-glow-pink: 0 4px 16px #ff6b9d4d;
   --font-mono: 'Space Mono', 'Courier New', monospace;
   --transition: 200ms ease;
   --page-max: 1200px;

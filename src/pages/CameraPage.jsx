@@ -59,10 +59,20 @@ export default function CameraPage() {
 
           <div className="camera-hero__camera-wrap">
             <div className="camera-hero__screen-placeholder" aria-hidden="true">
-              <img src="/images/camera/digi-me.jpg" alt="" />
+              <img
+                src="/images/camera/digi-me.jpg"
+                alt=""
+                className="camera-hero__screen-photo"
+              />
             </div>
             <img
-              src="/images/camera/camera-frame.png"
+              src="/images/camera/star-12.png"
+              alt=""
+              aria-hidden="true"
+              className="camera-hero__star"
+            />
+            <img
+              src="/images/camera/camera-frame-no-star.png"
               alt="Canon PowerShot ELPH 180 digital camera"
               className="camera-hero__camera"
             />

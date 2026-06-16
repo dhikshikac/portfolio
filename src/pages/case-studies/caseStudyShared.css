@@ -4,15 +4,15 @@
   --cs-label-col: minmax(100px, 18%);
   --cs-content-col: minmax(0, 1fr);
   --cs-col-gap: clamp(24px, 5vw, 64px);
-  --cs-hero-bg: #0f2a45;
-  --cs-hero-border: #0a1c2e;
-  --cs-card-bg: rgba(21, 37, 53, 0.35);
-  --cs-card-border: rgba(100, 140, 180, 0.35);
+  --cs-hero-bg: var(--bg-card);
+  --cs-hero-border: var(--surface-frame);
+  --cs-card-bg: #15253559;
+  --cs-card-border: #648cb459;
   --cs-card-heading: var(--text-primary);
   --cs-card-body: var(--text-muted);
 
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   letter-spacing: 0.01em;
 }
@@ -80,11 +80,11 @@
 }
 
 .cs-hero-title {
-  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-size: clamp(1.05rem, 2.5vw, 1.6rem);
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--surface-white);
   line-height: 1;
 }
 
@@ -105,7 +105,7 @@
 }
 
 .cs-overview-name {
-  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
   font-weight: 600;
   line-height: 1.35;
   margin-bottom: 6px;
@@ -120,7 +120,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-primary);
   line-height: 1.75;
 }
@@ -177,6 +177,7 @@
 .cs-section-label {
   position: sticky;
   top: calc(var(--nav-height) + 24px);
+  font-family: var(--font-mono);
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-muted);
@@ -194,7 +195,8 @@
 /* ── Typography ── */
 
 .cs-heading {
-  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  font-family: var(--font-mono);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
   font-weight: 600;
   line-height: 1.35;
   color: var(--text-primary);
@@ -205,23 +207,17 @@
   margin-top: 12px;
 }
 
-.cs-eyebrow {
-  font-size: 0.95rem;
-  color: var(--text-primary);
-  margin-bottom: -12px;
-}
-
 .cs-prose {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-primary);
   line-height: 1.75;
 }
 
 .cs-subheading {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-primary);
   line-height: 1.65;
@@ -233,44 +229,53 @@
   margin: 0;
   padding: 0;
   background: transparent;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
+  max-width: 980px;
+  margin-inline: auto;
 }
 
 .cs-figure img,
 .cs-figure video {
   width: 100%;
   display: block;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .cs-figure--board {
-  background: #fff;
-  padding: clamp(14px, 2.5vw, 24px);
-  border-radius: 12px;
+  background: var(--surface-white);
+  padding: clamp(6px, 1vw, 10px);
+  border-radius: 4px;
+  max-width: 980px;
+  margin-inline: auto;
 }
 
-.cs-figure--board img {
-  border-radius: 6px;
+.cs-figure--board img,
+.cs-figure--board video {
+  border-radius: 4px;
 }
 
 .cs-figure--video video {
   background: #000;
+  border-radius: 4px;
 }
 
 .cs-figure--flow img {
   width: auto;
   max-width: 100%;
+  border-radius: 4px;
 }
 
 .cs-figure--framed img {
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 .cs-figure-stack {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  max-width: 980px;
+  margin-inline: auto;
 }
 
 /* ── Image rows ── */
@@ -279,6 +284,8 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
+  max-width: 1100px;
+  margin-inline: auto;
 }
 
 .cs-image-row--weighted {
@@ -293,13 +300,20 @@
   grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
   gap: 20px;
   align-items: start;
+  max-width: 1100px;
+  margin-inline: auto;
 }
 
 .cs-media-frame {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: clamp(14px, 2.5vw, 24px);
+  background: var(--surface-white);
+  border-radius: 4px;
+  padding: clamp(6px, 1vw, 10px);
   overflow: hidden;
+}
+
+.cs-media-frame img,
+.cs-media-frame video {
+  border-radius: 4px;
 }
 
 .cs-aside-split {
@@ -307,6 +321,8 @@
   grid-template-columns: minmax(0, 2fr) minmax(200px, 1fr);
   gap: 20px;
   align-items: start;
+  max-width: 1100px;
+  margin-inline: auto;
 }
 
 /* ── Callouts ── */
@@ -318,7 +334,7 @@
 }
 
 .cs-callout {
-  background: rgba(30, 28, 24, 0.9);
+  background: var(--overlay-ink);
   border: 1px solid var(--accent-gold);
   border-radius: 10px;
   padding: 22px 20px;
@@ -394,7 +410,7 @@
 }
 
 .cs-card p {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--cs-card-body);
   line-height: 1.65;
 }
@@ -533,7 +549,7 @@
   transition:
     opacity var(--transition),
     visibility var(--transition);
-  box-shadow: 0 4px 16px #ff6b9d4d;
+  box-shadow: var(--shadow-glow-pink);
 }
 
 .cs-back-to-top--visible {
