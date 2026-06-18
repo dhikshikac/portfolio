@@ -5,26 +5,31 @@ const cameraPhotos = [
   {
     src: '/images/camera/foodtruck.jpg',
     alt: 'Food truck',
+    description: '',
     aspectRatio: ASPECT_RATIO_H,
   },
   {
     src: '/images/camera/orni.jpeg',
     alt: 'Ornithology outing',
+    description: '',
     aspectRatio: ASPECT_RATIO_V,
   },
   {
     src: '/images/camera/prom.jpeg',
     alt: 'Prom night',
+    description: '',
     aspectRatio: ASPECT_RATIO_H,
   },
   {
     src: '/images/camera/city.jpeg',
     alt: 'City skyline',
+    description: '',
     aspectRatio: ASPECT_RATIO_V,
   },
   {
     src: '/images/camera/firepit.jpg',
     alt: 'Fire pit evening',
+    description: '',
     aspectRatio: ASPECT_RATIO_H,
   },
   {
@@ -72,6 +77,7 @@ const cameraPhotos = [
   {
     src: '/images/camera/pj-tea.jpeg',
     alt: 'Tea Shop',
+    description: '',
     aspectRatio: ASPECT_RATIO_V,
   },
 ];
