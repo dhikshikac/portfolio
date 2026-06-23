@@ -28,7 +28,7 @@ export const projects = [
     slug: 'connectu',
     title: 'ConnectU',
     tags: ['CONCEPT', 'MOBILE APP', 'DESIGN'],
-    thumbnail: '/images/work/connectu-thumb.svg',
+    thumbnail: '/videos/connectU-thumb.mp4',
     description: 'Designed a concept app for Cornell freshmen to discover clubs and communities.',
     role: 'Product Designer',
     team: '2 Designers',
