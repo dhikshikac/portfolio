@@ -10,9 +10,11 @@ function isVideoThumbnail(src) {
 
 export default function ProjectCard({ project }) {
   const showCaseStudy = projectHasCaseStudy(project);
+  const showExternalLink = Boolean(project.externalUrl);
+  const isClickable = showCaseStudy || showExternalLink;
   const useVideo = isVideoThumbnail(project.thumbnail);
   const cardClassName = `project-card${
-    showCaseStudy ? ' project-card--has-case-study' : ''
+    isClickable ? ' project-card--has-case-study' : ''
   }`;
 
   const card = (
@@ -68,13 +70,22 @@ export default function ProjectCard({ project }) {
 
   return (
     <ViewMoreHint
-      label={showCaseStudy ? 'VIEW' : 'COMING SOON'}
-      variant={showCaseStudy ? 'default' : 'coming-soon'}
+      label={isClickable ? 'VIEW' : 'COMING SOON'}
+      variant={isClickable ? 'default' : 'coming-soon'}
     >
       {showCaseStudy ? (
         <Link to={`/work/${project.slug}`} className="project-card__link">
           {card}
         </Link>
+      ) : showExternalLink ? (
+        <a
+          href={project.externalUrl}
+          className="project-card__link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {card}
+        </a>
       ) : (
         card
       )}

@@ -35,6 +35,18 @@ export const projects = [
     timeframe: '1 Semester , October – December 2025',
     context: 'Design Consulting @ Cornell',
   },
+  {
+    slug: 'verdant',
+    title: 'Verdant',
+    tags: ['CONCEPT', 'MOBILE APP', 'DESIGN/DEV'],
+    thumbnail: '/images/thumbnails/verdant-thumb.png',
+    description: 'Designed and developed a user-centered iOS sustainability app in Swift from concept to deployment.',
+    role: 'Designer, Developer',
+    team: '2 Designers, 1 Developer',
+    timeframe: '5 Days , June 2024',
+    context: 'Kode With Klossy App Development Bootcamp',
+    externalUrl: 'https://github.com/dhikshikac/Verdant',
+  },
 ];
 
 export function projectHasCaseStudy(project) {
