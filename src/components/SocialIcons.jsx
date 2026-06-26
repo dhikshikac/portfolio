@@ -4,7 +4,7 @@ const LINKS = {
   linkedin: 'https://www.linkedin.com/in/dhikshika-cherivirala/',
   github: 'https://github.com/dhikshikac',
   email: 'mailto:dhikshika.cherivirala@gmail.com',
-  resume: 'https://drive.google.com/file/d/1yP3OELgtL4TXj09cWDGiEkjyxZIQPzy7/view?usp=sharing',
+  resume: 'https://drive.google.com/file/d/1yJ01fCLhWqDKexab-v_iCCJAPCl25mcr/view',
 };
 
 const ICONS = {
