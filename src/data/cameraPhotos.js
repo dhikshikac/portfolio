@@ -80,6 +80,12 @@ const cameraPhotos = [
     description: '',
     aspectRatio: ASPECT_RATIO_V,
   },
+  {
+    src: '/images/camera/ald.jpeg',
+    alt: 'Aime Leon Dore Store',
+    description: '',
+    aspectRatio: ASPECT_RATIO_V,
+  },
 ];
 
 export default cameraPhotos;
