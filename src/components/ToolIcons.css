@@ -1,0 +1,99 @@
+.tool-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Beat ViewMoreHint's cursor: none so the real pointer is back over tools */
+.view-more-hint__trigger .tool-icons,
+.view-more-hint__trigger .tool-icons * {
+  cursor: default !important;
+}
+
+.tool-icons__item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: color-mix(in srgb, var(--bg-navy) 72%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  opacity: 0.92;
+  transition:
+    opacity var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    background var(--transition);
+}
+
+/* Extra invisible hit area so hover isn't pixel-perfect */
+.tool-icons__item::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+}
+
+.tool-icons__item:hover,
+.tool-icons__item:focus-visible {
+  opacity: 1;
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
+  background: color-mix(in srgb, var(--bg-navy) 88%, transparent);
+}
+
+.tool-icons__icon {
+  width: 13px;
+  height: 13px;
+  display: block;
+  pointer-events: none;
+}
+
+.tool-icons__tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(4px);
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: var(--bg-navy);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease,
+    visibility 120ms ease;
+  z-index: 3;
+}
+
+.tool-icons__item:hover .tool-icons__tooltip,
+.tool-icons__item:focus-visible .tool-icons__tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-icons__item {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--bg-navy);
+  }
+
+  .tool-icons__tooltip {
+    transition: none;
+  }
+}

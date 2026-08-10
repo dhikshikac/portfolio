@@ -2,6 +2,34 @@ import { hasCaseStudy } from '../pages/case-studies/caseStudyRoutes';
 
 export const projects = [
   {
+    slug: 'paper-searcher',
+    title: 'PaperSearcher',
+    tags: ['PROJECT', 'WEBSITE', 'DESIGN/DEV'],
+    thumbnail: '/videos/paperSearcher-thumb.mp4',
+    description:
+      'An AI-powered academic research assistant that helps users discover, save, and organize scholarly papers.',
+    role: 'Designer & Developer',
+    team: '1 Designer, 4 Developers',
+    timeframe: 'Ongoing, June 2026 – Present',
+    tools: ['Figma', 'React', 'FastAPI'],
+    context: 'Personal Project',
+    externalUrl: 'https://github.com/SuhaniA112/research',
+  },
+  {
+    slug: 'ascent-pharma',
+    title: 'Ascent Pharmaceuticals Internship',
+    tags: ['INTERNSHIP', 'DESKTOP APP', 'DEV'],
+    thumbnail: '/videos/ascentPharm-thumb.mp4',
+    description:
+      'Built a centralized desktop application for tracking employee-issued electronics and organizational assets across departments.',
+    role: 'Developer',
+    team: '1 Project Lead, 2 Developers',
+    timeframe: '3 Months, June – August 2026',
+    tools: ['Python', 'PyQt6', 'SQLite'],
+    context: 'Software Engineering Internship @ Ascent Pharmaceuticals',
+    externalUrl: 'https://github.com/dhikshikac/Ascent-Inventory',
+  },
+  {
     slug: 'wolters-kluwer',
     title: 'Wolters Kluwer',
     tags: ['CONTRACT', 'WEBSITE', 'DESIGN'],
@@ -11,6 +39,7 @@ export const projects = [
     role: 'Product Designer',
     team: '2 Project Managers, 6 Product Designers',
     timeframe: '1 Semester, January – May 2026',
+    tools: ['Figma'], 
     context: 'Design Consulting @ Cornell',
   },
   {
@@ -22,6 +51,7 @@ export const projects = [
     role: 'Product Designer',
     team: '1 Product Manager, 1 Technical Lead, 3 Product Designers',
     timeframe: '1 Semester , January – May 2026',
+    tools: ['Figma'],
     context: 'Hack 4 Impact @ Cornell',
   },
   {
@@ -33,6 +63,7 @@ export const projects = [
     role: 'Product Designer',
     team: '2 Designers',
     timeframe: '1 Semester , October – December 2025',
+    tools: ['Figma'],
     context: 'Design Consulting @ Cornell',
   },
   {
@@ -41,10 +72,11 @@ export const projects = [
     tags: ['CONCEPT', 'MOBILE APP', 'DESIGN/DEV'],
     thumbnail: '/images/thumbnails/verdant-thumb.png',
     description: 'Designed and developed a user-centered iOS sustainability app in Swift from concept to deployment.',
-    role: 'Designer, Developer',
+    role: 'Designer & Developer',
     team: '2 Designers, 1 Developer',
     timeframe: '5 Days , June 2024',
     context: 'Kode With Klossy App Development Bootcamp',
+    tools: ['Figma', 'Swift'],
     externalUrl: 'https://github.com/dhikshikac/Verdant',
   },
 ];

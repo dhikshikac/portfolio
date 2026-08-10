@@ -20,14 +20,33 @@ export default function ViewMoreHint({
     setHoverCapable(canUseHoverHint());
   }, []);
 
-  const onMouseMove = useCallback((event) => {
-    setCoords({ x: event.clientX, y: event.clientY });
+  const isHintSuppressed = useCallback((event) => {
+    return Boolean(event.target.closest?.('[data-no-view-hint]'));
   }, []);
 
-  const onMouseEnter = useCallback((event) => {
-    setCoords({ x: event.clientX, y: event.clientY });
-    setActive(true);
-  }, []);
+  const onMouseMove = useCallback(
+    (event) => {
+      if (isHintSuppressed(event)) {
+        setActive(false);
+        return;
+      }
+      setCoords({ x: event.clientX, y: event.clientY });
+      setActive(true);
+    },
+    [isHintSuppressed],
+  );
+
+  const onMouseEnter = useCallback(
+    (event) => {
+      if (isHintSuppressed(event)) {
+        setActive(false);
+        return;
+      }
+      setCoords({ x: event.clientX, y: event.clientY });
+      setActive(true);
+    },
+    [isHintSuppressed],
+  );
 
   const onMouseLeave = useCallback(() => {
     setActive(false);

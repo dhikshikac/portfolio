@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { projectHasCaseStudy } from '../data/projects';
 import TagPill from './TagPill';
+import ToolIcons from './ToolIcons';
 import ViewMoreHint from './ViewMoreHint';
 import './ProjectCard.css';
 
@@ -20,23 +21,28 @@ export default function ProjectCard({ project }) {
   const card = (
     <article className={cardClassName}>
       <div className="project-card__image-wrap">
-        {useVideo ? (
-          <video
-            src={project.thumbnail}
-            className="project-card__image"
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label={`${project.title} project preview`}
-          />
-        ) : (
-          <img
-            src={project.thumbnail}
-            alt={`${project.title} project thumbnail`}
-            className="project-card__image"
-          />
-        )}
+        <div className="project-card__media">
+          {useVideo ? (
+            <video
+              src={project.thumbnail}
+              className="project-card__image"
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label={`${project.title} project preview`}
+            />
+          ) : (
+            <img
+              src={project.thumbnail}
+              alt={`${project.title} project thumbnail`}
+              className="project-card__image"
+            />
+          )}
+        </div>
+        <div className="project-card__tools">
+          <ToolIcons tools={project.tools} />
+        </div>
       </div>
       <div className="project-card__body">
         <div className="project-card__header">
