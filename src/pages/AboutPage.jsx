@@ -7,33 +7,33 @@ const COMMUNITIES = [
   {
     title: 'HACK 4 IMPACT @ CORNELL',
     role: 'Design New Member Instructor & Designer',
-    image: '/images/about/h4i.jpeg',
+    image: '/images/about/h4i.webp',
     rotate: 0,
     offsetY: 0,
   },
   {
     title: 'DESIGN CONSULTING @ CORNELL',
     role: 'Product Design Consultant',
-    image: '/images/about/dcc.jpeg',
+    image: '/images/about/dcc.webp',
     rotate: 4.329,
     offsetY: -32,
   },
   {
     title: 'ART ACROSS AGES',
     role: 'Co-Founder & Ex Executive Director',
-    image: '/images/about/aaa.jpeg',
+    image: '/images/about/aaa.webp',
     rotate: -3.451,
     offsetY: 0,
   },
 ];
 
 const HOBBY_FRAMES = [
-  { id: 'cafe-1', src: '/images/about/cafehopping.jpg', alt: 'Dhikshika in a cafe' },
-  { id: 'cafe-2', src: '/images/about/matcha.jpg', alt: 'Matcha' },
-  { id: 'cafe-3', src: '/images/about/creampuffs.jpeg', alt: 'Giant Cream puffs' },
-  { id: 'painting', src: '/images/about/painting.jpg', alt: 'Painting of cats' },
-  { id: 'drawing', src: '/images/about/drawing.jpeg', alt: 'Lighthouse drawing' },
-  { id: 'baking', src: '/images/about/cookies.jpeg', alt: 'Chocolate chip cookies' },
+  { id: 'cafe-1', src: '/images/about/cafehopping.webp', alt: 'Dhikshika in a cafe' },
+  { id: 'cafe-2', src: '/images/about/matcha.webp', alt: 'Matcha' },
+  { id: 'cafe-3', src: '/images/about/creampuffs.webp', alt: 'Giant Cream puffs' },
+  { id: 'painting', src: '/images/about/painting.webp', alt: 'Painting of cats' },
+  { id: 'drawing', src: '/images/about/drawing.webp', alt: 'Lighthouse drawing' },
+  { id: 'baking', src: '/images/about/cookies.webp', alt: 'Chocolate chip cookies' },
 ];
 
 const HOBBY_LABELS = [
@@ -72,9 +72,11 @@ export default function AboutPage() {
           <div className="about-hero__frame">
             <div className="about-hero__portrait-wrap">
               <img
-                src="/images/about/about.jpg"
+                src="/images/about/about.webp"
                 alt="Dhikshika sitting on grass at sunset"
                 className="about-hero__portrait"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
 
@@ -125,7 +127,12 @@ export default function AboutPage() {
               />
               <h3 className="about-community-card__title">{community.title}</h3>
               <div className="about-community-card__image-wrap">
-                <img src={community.image} alt={community.title} />
+                <img
+                  src={community.image}
+                  alt={community.title}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <p className="about-community-card__role">{community.role}</p>
             </article>
@@ -141,7 +148,12 @@ export default function AboutPage() {
         <div className="about-hobbies__collage">
           {HOBBY_FRAMES.map((frame) => (
             <figure key={frame.id} className={`about-hobby-frame about-hobby-frame--${frame.id}`}>
-              <img src={frame.src} alt={frame.alt} />
+              <img
+                src={frame.src}
+                alt={frame.alt}
+                loading="lazy"
+                decoding="async"
+              />
             </figure>
           ))}
 

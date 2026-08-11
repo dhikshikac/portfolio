@@ -5,14 +5,14 @@ import './CameraPage.css';
 const POLAROIDS = [
   {
     alt: 'Dhikshika at a cafe',
-    src: '/images/camera/digi2.jpg',
+    src: '/images/camera/digi2.webp',
     className: 'camera-hero__frame--small',
     rotation: -3.774,
     zIndex: 6,
   },
   {
     alt: 'Dhikshika portrait',
-    src: '/images/camera/digi.jpg',
+    src: '/images/camera/digi.webp',
     className: 'camera-hero__frame--large',
     rotation: 1.556,
     zIndex: 7,
@@ -48,6 +48,7 @@ export default function CameraPage() {
                 src={frame.src}
                 alt={frame.alt}
                 className="camera-hero__frame-photo"
+                decoding="async"
               />
               {frame.label && (
                 <Label as="p" className="camera-hero__label" delay="camera" size="sm">
@@ -60,9 +61,10 @@ export default function CameraPage() {
           <div className="camera-hero__camera-wrap">
             <div className="camera-hero__screen-placeholder" aria-hidden="true">
               <img
-                src="/images/camera/digi-me.jpg"
+                src="/images/camera/digi-me.webp"
                 alt=""
                 className="camera-hero__screen-photo"
+                decoding="async"
               />
             </div>
             <img

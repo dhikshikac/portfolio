@@ -6,6 +6,7 @@ export const projects = [
     title: 'PaperSearcher',
     tags: ['PROJECT', 'WEBSITE', 'DESIGN/DEV'],
     thumbnail: '/videos/paperSearcher-thumb.mp4',
+    poster: '/images/posters/paperSearcher-thumb.webp',
     description:
       'An AI-powered academic research assistant that helps users discover, save, and organize scholarly papers.',
     role: 'Designer & Developer',
@@ -20,6 +21,7 @@ export const projects = [
     title: 'Ascent Pharmaceuticals Internship',
     tags: ['INTERNSHIP', 'DESKTOP APP', 'DEV'],
     thumbnail: '/videos/ascentPharm-thumb.mp4',
+    poster: '/images/posters/ascentPharm-thumb.webp',
     description:
       'Built a centralized desktop application for tracking employee-issued electronics and organizational assets across departments.',
     role: 'Developer',
@@ -34,6 +36,7 @@ export const projects = [
     title: 'Wolters Kluwer',
     tags: ['CONTRACT', 'WEBSITE', 'DESIGN'],
     thumbnail: '/videos/wolters-thumb.mp4',
+    poster: '/images/posters/wolters-thumb.webp',
     description:
       'Designed a GenAI research tool for a global professional information company.',
     role: 'Product Designer',
@@ -47,6 +50,7 @@ export const projects = [
     title: 'Hudson Valley Textile',
     tags: ['NON-PROFIT', 'WEBSITE', 'DESIGN'],
     thumbnail: '/videos/hvtp-thumb.mp4',
+    poster: '/images/posters/hvtp-thumb.webp',
     description: 'Designed an inventory platform for a sustainable regional wool supply chain npo.',
     role: 'Product Designer',
     team: '1 Product Manager, 1 Technical Lead, 3 Product Designers',
@@ -59,6 +63,7 @@ export const projects = [
     title: 'ConnectU',
     tags: ['CONCEPT', 'MOBILE APP', 'DESIGN'],
     thumbnail: '/videos/connectU-thumb.mp4',
+    poster: '/images/posters/connectU-thumb.webp',
     description: 'Designed a concept app for Cornell freshmen to discover clubs and communities.',
     role: 'Product Designer',
     team: '2 Designers',
@@ -70,7 +75,7 @@ export const projects = [
     slug: 'verdant',
     title: 'Verdant',
     tags: ['CONCEPT', 'MOBILE APP', 'DESIGN/DEV'],
-    thumbnail: '/images/thumbnails/verdant-thumb.png',
+    thumbnail: '/images/thumbnails/verdant-thumb.webp',
     description: 'Designed and developed a user-centered iOS sustainability app in Swift from concept to deployment.',
     role: 'Designer & Developer',
     team: '2 Designers, 1 Developer',

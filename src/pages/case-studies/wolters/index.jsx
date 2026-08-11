@@ -154,7 +154,7 @@ export default function WoltersCaseStudy() {
 
         <div className="cs-image-row cs-image-row--weighted">
           <CaseStudyFigure
-            src={images.wkMidfi1}
+            src={images.wkMidfi4}
             alt={midFidelity.homePage.fullAlt}
             className="cs-figure--board"
           />
@@ -190,7 +190,7 @@ export default function WoltersCaseStudy() {
         </div>
 
         <CaseStudyFigure
-          src={images.wkMidfi4}
+          src={images.wkMidfi1}
           alt={midFidelity.promptingPage.alt}
           className="cs-figure--board"
         />
