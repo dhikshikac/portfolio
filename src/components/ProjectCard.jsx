@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { projectHasCaseStudy } from '../data/projects';
+import LazyVideo from './LazyVideo';
 import TagPill from './TagPill';
 import ToolIcons from './ToolIcons';
 import ViewMoreHint from './ViewMoreHint';
@@ -23,13 +24,10 @@ export default function ProjectCard({ project }) {
       <div className="project-card__image-wrap">
         <div className="project-card__media">
           {useVideo ? (
-            <video
+            <LazyVideo
               src={project.thumbnail}
+              poster={project.poster}
               className="project-card__image"
-              autoPlay
-              loop
-              muted
-              playsInline
               aria-label={`${project.title} project preview`}
             />
           ) : (
@@ -37,6 +35,8 @@ export default function ProjectCard({ project }) {
               src={project.thumbnail}
               alt={`${project.title} project thumbnail`}
               className="project-card__image"
+              loading="lazy"
+              decoding="async"
             />
           )}
         </div>

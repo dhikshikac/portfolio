@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import LazyVideo from '../../components/LazyVideo';
 import './caseStudyShared.css';
+
+function posterFromVideoSrc(src) {
+  if (!src) return undefined;
+  const file = src.split('/').pop() || '';
+  const base = file.replace(/\.(mp4|webm|mov)(\?.*)?$/i, '');
+  return base ? `/images/posters/${base}.webp` : undefined;
+}
 
 export function useScrollProgress() {
   const [progress, setProgress] = useState(0);
@@ -157,15 +165,20 @@ export function CaseStudySection({ label, children }) {
 export function CaseStudyFigure({ src, alt, className = '' }) {
   return (
     <figure className={`cs-figure ${className}`.trim()}>
-      <img src={src} alt={alt} loading="lazy" />
+      <img src={src} alt={alt} loading="lazy" decoding="async" />
     </figure>
   );
 }
 
-export function CaseStudyVideo({ src, label }) {
+export function CaseStudyVideo({ src, label, poster }) {
   return (
     <figure className="cs-figure cs-figure--video">
-      <video src={src} autoPlay muted loop playsInline controls aria-label={label} />
+      <LazyVideo
+        src={src}
+        poster={poster || posterFromVideoSrc(src)}
+        controls
+        aria-label={label}
+      />
     </figure>
   );
 }

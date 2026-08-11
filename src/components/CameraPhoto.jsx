@@ -18,7 +18,7 @@ export default function CameraPhoto({ photo, revealDelay = 0 }) {
         }`}
         style={{ aspectRatio: photo.aspectRatio }}
       >
-        <img src={photo.src} alt={photo.alt} loading="lazy" />
+        <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
         {hasDescription && (
           <figcaption className="camera-photo__caption">{caption}</figcaption>
         )}
