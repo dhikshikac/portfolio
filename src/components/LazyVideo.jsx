@@ -15,18 +15,27 @@ export default function LazyVideo({
   playsInline = true,
   controls = false,
   rootMargin = '200px 0px',
+  enabled = true,
+  onSettled,
 }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return undefined;
+    if (!video || !enabled) return undefined;
 
     const reducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches;
 
     let isVisible = false;
+    let settled = false;
+
+    const settleOnce = () => {
+      if (settled) return;
+      settled = true;
+      onSettled?.();
+    };
 
     const playSafe = () => {
       if (!autoPlay || reducedMotion || !isVisible) return;
@@ -49,13 +58,19 @@ export default function LazyVideo({
       }
     };
 
-    // Reduced motion: keep poster only, never autoplay/download.
     if (reducedMotion) {
+      settleOnce();
       return undefined;
     }
 
-    const onCanPlay = () => playSafe();
+    const onCanPlay = () => {
+      playSafe();
+      settleOnce();
+    };
+    const onError = () => settleOnce();
+
     video.addEventListener('canplay', onCanPlay);
+    video.addEventListener('error', onError);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -73,10 +88,11 @@ export default function LazyVideo({
     observer.observe(video);
     return () => {
       video.removeEventListener('canplay', onCanPlay);
+      video.removeEventListener('error', onError);
       observer.disconnect();
       pauseSafe();
     };
-  }, [autoPlay, rootMargin, src]);
+  }, [autoPlay, enabled, onSettled, rootMargin, src]);
 
   return (
     <video

@@ -1,7 +1,31 @@
-import { useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  ImageLoadSequenceProvider,
+  SequentialImage,
+  useImageLoadSequence,
+  useNoteImageTier,
+} from '../../components/ImageLoadSequence';
 import LazyVideo from '../../components/LazyVideo';
 import './caseStudyShared.css';
+
+const CaseStudySectionTierContext = createContext(1);
+const CaseStudySectionTierAllocatorContext = createContext(() => 1);
+
+function useAllocateSectionTier() {
+  const allocateTier = useContext(CaseStudySectionTierAllocatorContext);
+  const tierRef = useRef(null);
+
+  if (tierRef.current === null) {
+    tierRef.current = allocateTier();
+  }
+
+  return tierRef.current;
+}
+
+function useCaseStudySectionTier() {
+  return useContext(CaseStudySectionTierContext);
+}
 
 function posterFromVideoSrc(src) {
   if (!src) return undefined;
@@ -10,7 +34,7 @@ function posterFromVideoSrc(src) {
   return base ? `/images/posters/${base}.webp` : undefined;
 }
 
-export function useScrollProgress() {
+function useScrollProgress() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -42,7 +66,14 @@ export function CaseStudyBackLink() {
 export function CaseStudyHero({ logo, title }) {
   return (
     <div className="cs-hero">
-      <img src={logo} alt="" className="cs-hero-logo" aria-hidden="true" />
+      <SequentialImage
+        tier={0}
+        src={logo}
+        alt=""
+        className="cs-hero-logo"
+        aria-hidden="true"
+        fetchPriority="high"
+      />
       <p className="cs-hero-title">{title}</p>
     </div>
   );
@@ -121,56 +152,76 @@ export function CaseStudyLayout({
   children,
 }) {
   const scrollProgress = useScrollProgress();
+  const sectionTierRef = useRef(1);
+  const allocateSectionTier = useCallback(() => {
+    const tier = sectionTierRef.current;
+    sectionTierRef.current += 1;
+    return tier;
+  }, []);
 
   return (
-    <div className="cs" aria-label={ariaLabel}>
-      <div
-        className="cs-scroll-progress"
-        style={{ width: `${scrollProgress}%` }}
-        aria-hidden="true"
-      />
+    <ImageLoadSequenceProvider>
+      <CaseStudySectionTierAllocatorContext.Provider value={allocateSectionTier}>
+        <div className="cs" aria-label={ariaLabel}>
+          <div
+            className="cs-scroll-progress"
+            style={{ width: `${scrollProgress}%` }}
+            aria-hidden="true"
+          />
 
-      <CaseStudyBackLink />
+          <CaseStudyBackLink />
 
-      <CaseStudyHero logo={logo} title={heroTitle} />
+          <CaseStudyHero logo={logo} title={heroTitle} />
 
-      <article className="cs-container">
-        <CaseStudyHeader
-          name={overviewName}
-          type={overviewType}
-          paragraphs={overviewParagraphs}
-          role={role}
-          team={team}
-          timeline={timeline}
-          skills={skills}
-        />
+          <article className="cs-container">
+            <CaseStudyHeader
+              name={overviewName}
+              type={overviewType}
+              paragraphs={overviewParagraphs}
+              role={role}
+              team={team}
+              timeline={timeline}
+              skills={skills}
+            />
 
-        <div className="cs-body">{children}</div>
-      </article>
+            <div className="cs-body">{children}</div>
+          </article>
 
-      <CaseStudyBackToTop />
-    </div>
+          <CaseStudyBackToTop />
+        </div>
+      </CaseStudySectionTierAllocatorContext.Provider>
+    </ImageLoadSequenceProvider>
   );
 }
 
 export function CaseStudySection({ label, children }) {
+  const tier = useAllocateSectionTier();
+  useNoteImageTier(tier);
+
   return (
-    <section className="cs-section">
-      <p className="cs-section-label">{label}</p>
-      <div className="cs-section-content">{children}</div>
-    </section>
+    <CaseStudySectionTierContext.Provider value={tier}>
+      <section className="cs-section">
+        <p className="cs-section-label">{label}</p>
+        <div className="cs-section-content">{children}</div>
+      </section>
+    </CaseStudySectionTierContext.Provider>
   );
 }
 
 export function CaseStudyFigure({ src, alt, className = '' }) {
+  const tier = useCaseStudySectionTier();
+
   return (
     <figure className={`cs-figure ${className}`.trim()}>
-      <img src={src} alt={alt} loading="lazy" decoding="async" />
+      <SequentialImage tier={tier} src={src} alt={alt} />
     </figure>
   );
 }
 
 export function CaseStudyVideo({ src, label, poster }) {
+  const tier = useCaseStudySectionTier();
+  const { active, markSettled } = useImageLoadSequence(tier);
+
   return (
     <figure className="cs-figure cs-figure--video">
       <LazyVideo
@@ -178,6 +229,8 @@ export function CaseStudyVideo({ src, label, poster }) {
         poster={poster || posterFromVideoSrc(src)}
         controls
         aria-label={label}
+        enabled={active}
+        onSettled={markSettled}
       />
     </figure>
   );

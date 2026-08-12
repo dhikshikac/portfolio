@@ -1,4 +1,8 @@
 import CameraPhotoGrid from '../components/CameraPhotoGrid';
+import {
+  ImageLoadSequenceProvider,
+  SequentialImage,
+} from '../components/ImageLoadSequence';
 import Label from '../components/Label';
 import './CameraPage.css';
 
@@ -22,6 +26,7 @@ const POLAROIDS = [
 
 export default function CameraPage() {
   return (
+    <ImageLoadSequenceProvider>
     <div className="camera-page">
       <section className="camera-hero" aria-labelledby="camera-hero-title">
         <div className="camera-hero__canvas">
@@ -44,11 +49,12 @@ export default function CameraPage() {
                 zIndex: frame.zIndex,
               }}
             >
-              <img
+              <SequentialImage
+                tier={0}
                 src={frame.src}
                 alt={frame.alt}
                 className="camera-hero__frame-photo"
-                decoding="async"
+                fetchPriority={frame.className.includes('large') ? 'high' : undefined}
               />
               {frame.label && (
                 <Label as="p" className="camera-hero__label" delay="camera" size="sm">
@@ -60,20 +66,22 @@ export default function CameraPage() {
 
           <div className="camera-hero__camera-wrap">
             <div className="camera-hero__screen-placeholder" aria-hidden="true">
-              <img
+              <SequentialImage
+                tier={0}
                 src="/images/camera/digi-me.webp"
                 alt=""
                 className="camera-hero__screen-photo"
-                decoding="async"
               />
             </div>
-            <img
+            <SequentialImage
+              tier={0}
               src="/images/camera/star-12.png"
               alt=""
               aria-hidden="true"
               className="camera-hero__star"
             />
-            <img
+            <SequentialImage
+              tier={0}
               src="/images/camera/camera-frame-no-star.png"
               alt="Canon PowerShot ELPH 180 digital camera"
               className="camera-hero__camera"
@@ -84,5 +92,6 @@ export default function CameraPage() {
 
       <CameraPhotoGrid />
     </div>
+    </ImageLoadSequenceProvider>
   );
 }

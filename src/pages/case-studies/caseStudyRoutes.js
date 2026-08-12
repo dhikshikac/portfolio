@@ -2,7 +2,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import HvtpCaseStudy from './hvtp/index';
 import WoltersKluwerCaseStudy from './wolters/index';
 
-export const caseStudies = {
+const caseStudies = {
   'wolters-kluwer': WoltersKluwerCaseStudy,
   'hudson-valley-textile': HvtpCaseStudy,
 };

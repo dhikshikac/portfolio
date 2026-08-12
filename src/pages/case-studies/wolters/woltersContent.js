@@ -32,7 +32,6 @@ export const images = {
 export const woltersMeta = {
   title: 'Wolters Kluwer',
   subtitle: 'Web Application',
-  tags: ['CONTRACT', 'WEBSITE', 'DESIGN'],
   overview: [
     'Wolters Kluwer is a global leader in professional information, software, and services, providing trusted tools and insights that help professionals make informed, high-stakes decisions.',
     'Their products are used in 180+ countries, supporting 93% of Fortune 500 companies and serving 2M+ clinicians.',

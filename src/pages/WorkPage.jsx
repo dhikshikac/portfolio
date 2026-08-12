@@ -2,16 +2,29 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import WorkHeroSky from '../components/WorkHeroSky';
 import ProjectCard from '../components/ProjectCard';
 import SocialIcons from '../components/SocialIcons';
-import { projects } from '../data/projects';
+import { filterProjectsByType, projects } from '../data/projects';
 import './WorkPage.css';
+
+const PROJECT_FILTERS = [
+  { id: 'all', label: 'All' },
+  { id: 'design', label: 'Design' },
+  { id: 'dev', label: 'Dev' },
+];
 
 export default function WorkPage() {
   const gridRef = useRef(null);
   const [constellationOpacity, setConstellationOpacity] = useState(1);
+  const [filter, setFilter] = useState('all');
+
+  const filteredProjects = useMemo(
+    () => filterProjectsByType(projects, filter),
+    [filter],
+  );
+
   const [leftColumnProjects, rightColumnProjects] = useMemo(() => [
-    projects.filter((_, index) => index % 2 === 0),
-    projects.filter((_, index) => index % 2 === 1),
-  ], []);
+    filteredProjects.filter((_, index) => index % 2 === 0),
+    filteredProjects.filter((_, index) => index % 2 === 1),
+  ], [filteredProjects]);
 
   useEffect(() => {
     const updateConstellationOpacity = () => {
@@ -64,6 +77,23 @@ export default function WorkPage() {
         </section>
 
         <section ref={gridRef} className="work-grid" aria-label="Projects">
+          <div className="work-filter" role="tablist" aria-label="Filter projects">
+            {PROJECT_FILTERS.map(({ id, label }) => (
+              <button
+                key={id}
+                type="button"
+                role="tab"
+                aria-selected={filter === id}
+                className={`work-filter__option${
+                  filter === id ? ' work-filter__option--active' : ''
+                }`}
+                onClick={() => setFilter(id)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+
           <div className="work-grid__columns">
             <div className="work-grid__column">
               {leftColumnProjects.map((project) => (
@@ -77,7 +107,7 @@ export default function WorkPage() {
             </div>
           </div>
           <div className="work-grid__stack">
-            {projects.map((project) => (
+            {filteredProjects.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
