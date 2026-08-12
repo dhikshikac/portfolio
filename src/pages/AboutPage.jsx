@@ -1,4 +1,8 @@
 import { Link } from 'react-router-dom';
+import {
+  ImageLoadSequenceProvider,
+  SequentialImage,
+} from '../components/ImageLoadSequence';
 import Label from '../components/Label';
 import SocialIcons from '../components/SocialIcons';
 import './AboutPage.css';
@@ -45,6 +49,7 @@ const HOBBY_LABELS = [
 
 export default function AboutPage() {
   return (
+    <ImageLoadSequenceProvider>
     <div className="about-page">
       <section className="about-hero">
         <div className="about-hero__left">
@@ -71,16 +76,17 @@ export default function AboutPage() {
         <div className="about-hero__right">
           <div className="about-hero__frame">
             <div className="about-hero__portrait-wrap">
-              <img
+              <SequentialImage
+                tier={0}
                 src="/images/about/about.webp"
                 alt="Dhikshika sitting on grass at sunset"
                 className="about-hero__portrait"
                 fetchPriority="high"
-                decoding="async"
               />
             </div>
 
-            <img
+            <SequentialImage
+              tier={0}
               src="/images/about/about-frame.png"
               alt=""
               className="about-hero__frame-overlay"
@@ -119,7 +125,8 @@ export default function AboutPage() {
                 '--card-offset': `${community.offsetY}px`,
               }}
             >
-              <img
+              <SequentialImage
+                tier={1}
                 src="/images/about/community-star.png"
                 alt=""
                 className="about-community-card__star"
@@ -127,11 +134,10 @@ export default function AboutPage() {
               />
               <h3 className="about-community-card__title">{community.title}</h3>
               <div className="about-community-card__image-wrap">
-                <img
+                <SequentialImage
+                  tier={1}
                   src={community.image}
                   alt={community.title}
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
               <p className="about-community-card__role">{community.role}</p>
@@ -148,12 +154,7 @@ export default function AboutPage() {
         <div className="about-hobbies__collage">
           {HOBBY_FRAMES.map((frame) => (
             <figure key={frame.id} className={`about-hobby-frame about-hobby-frame--${frame.id}`}>
-              <img
-                src={frame.src}
-                alt={frame.alt}
-                loading="lazy"
-                decoding="async"
-              />
+              <SequentialImage tier={2} src={frame.src} alt={frame.alt} />
             </figure>
           ))}
 
@@ -178,5 +179,6 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
+    </ImageLoadSequenceProvider>
   );
 }

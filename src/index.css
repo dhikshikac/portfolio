@@ -12,7 +12,6 @@
   --text-primary: #e8edf2;
   --text-muted: #8a9bb0;
   --accent-pink: #ff6b9d;
-  --accent-yellow: #f5c842;
   --accent-gold: #c8a84b;
   --accent-purple: #c8b8ff;
   --border-subtle: #ffffff1a;
@@ -43,7 +42,7 @@
   --font-mono: 'Space Mono', 'Courier New', monospace;
   --transition: 200ms ease;
   --page-max: 1200px;
-  --nav-height: 64px;
+  --nav-height: 96px;
 }
 
 html {

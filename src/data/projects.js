@@ -13,12 +13,11 @@ export const projects = [
     team: '1 Designer, 4 Developers',
     timeframe: 'Ongoing, June 2026 – Present',
     tools: ['Figma', 'React', 'FastAPI'],
-    context: 'Personal Project',
     externalUrl: 'https://github.com/SuhaniA112/research',
   },
   {
     slug: 'ascent-pharma',
-    title: 'Ascent Pharmaceuticals Internship',
+    title: 'Ascent Pharmaceuticals',
     tags: ['INTERNSHIP', 'DESKTOP APP', 'DEV'],
     thumbnail: '/videos/ascentPharm-thumb.mp4',
     poster: '/images/posters/ascentPharm-thumb.webp',
@@ -28,7 +27,6 @@ export const projects = [
     team: '1 Project Lead, 2 Developers',
     timeframe: '3 Months, June – August 2026',
     tools: ['Python', 'PyQt6', 'SQLite'],
-    context: 'Software Engineering Internship @ Ascent Pharmaceuticals',
     externalUrl: 'https://github.com/dhikshikac/Ascent-Inventory',
   },
   {
@@ -43,7 +41,6 @@ export const projects = [
     team: '2 Project Managers, 6 Product Designers',
     timeframe: '1 Semester, January – May 2026',
     tools: ['Figma'], 
-    context: 'Design Consulting @ Cornell',
   },
   {
     slug: 'hudson-valley-textile',
@@ -56,7 +53,6 @@ export const projects = [
     team: '1 Product Manager, 1 Technical Lead, 3 Product Designers',
     timeframe: '1 Semester , January – May 2026',
     tools: ['Figma'],
-    context: 'Hack 4 Impact @ Cornell',
   },
   {
     slug: 'connectu',
@@ -69,7 +65,6 @@ export const projects = [
     team: '2 Designers',
     timeframe: '1 Semester , October – December 2025',
     tools: ['Figma'],
-    context: 'Design Consulting @ Cornell',
   },
   {
     slug: 'verdant',
@@ -80,7 +75,6 @@ export const projects = [
     role: 'Designer & Developer',
     team: '2 Designers, 1 Developer',
     timeframe: '5 Days , June 2024',
-    context: 'Kode With Klossy App Development Bootcamp',
     tools: ['Figma', 'Swift'],
     externalUrl: 'https://github.com/dhikshikac/Verdant',
   },
@@ -88,4 +82,17 @@ export const projects = [
 
 export function projectHasCaseStudy(project) {
   return hasCaseStudy(project.slug);
+}
+
+export function filterProjectsByType(projectList, filter) {
+  if (filter === 'all') return projectList;
+
+  return projectList.filter((project) => {
+    const isDesign = project.tags.some((tag) => tag.includes('DESIGN'));
+    const isDev = project.tags.some((tag) => tag.includes('DEV'));
+
+    if (filter === 'design') return isDesign;
+    if (filter === 'dev') return isDev;
+    return true;
+  });
 }

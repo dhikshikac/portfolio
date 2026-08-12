@@ -1,10 +1,22 @@
+import { useLayoutEffect, useRef } from 'react';
 import useInView from '../hooks/useInView';
+import { useImageLoadSequence } from './ImageLoadSequence';
 import './CameraPhotoGrid.css';
 
-export default function CameraPhoto({ photo, revealDelay = 0 }) {
+export default function CameraPhoto({ photo, revealDelay = 0, tier = 1 }) {
+  const imgRef = useRef(null);
   const [ref, inView] = useInView();
+  const { active, markSettled } = useImageLoadSequence(tier, inView);
   const caption = photo.description ?? photo.alt;
   const hasDescription = Boolean(caption);
+
+  useLayoutEffect(() => {
+    if (!active) return;
+    const img = imgRef.current;
+    if (img?.complete) {
+      markSettled();
+    }
+  }, [active, markSettled, photo.src]);
 
   return (
     <figure
@@ -18,7 +30,14 @@ export default function CameraPhoto({ photo, revealDelay = 0 }) {
         }`}
         style={{ aspectRatio: photo.aspectRatio }}
       >
-        <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+        <img
+          ref={imgRef}
+          src={active ? photo.src : undefined}
+          alt={photo.alt}
+          decoding="async"
+          onLoad={markSettled}
+          onError={markSettled}
+        />
         {hasDescription && (
           <figcaption className="camera-photo__caption">{caption}</figcaption>
         )}

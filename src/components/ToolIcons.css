@@ -7,12 +7,6 @@
   list-style: none;
 }
 
-/* Beat ViewMoreHint's cursor: none so the real pointer is back over tools */
-.view-more-hint__trigger .tool-icons,
-.view-more-hint__trigger .tool-icons * {
-  cursor: default !important;
-}
-
 .tool-icons__item {
   position: relative;
   display: inline-flex;

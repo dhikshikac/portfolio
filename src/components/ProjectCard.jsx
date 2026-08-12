@@ -15,9 +15,7 @@ export default function ProjectCard({ project }) {
   const showExternalLink = Boolean(project.externalUrl);
   const isClickable = showCaseStudy || showExternalLink;
   const useVideo = isVideoThumbnail(project.thumbnail);
-  const cardClassName = `project-card${
-    isClickable ? ' project-card--has-case-study' : ''
-  }`;
+  const cardClassName = 'project-card';
 
   const card = (
     <article className={cardClassName}>
