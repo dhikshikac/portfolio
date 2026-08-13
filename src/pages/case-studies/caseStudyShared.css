@@ -11,7 +11,7 @@
   --cs-card-heading: var(--text-primary);
   --cs-card-body: var(--text-muted);
 
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 0.95rem;
   line-height: 1.7;
   letter-spacing: 0.01em;

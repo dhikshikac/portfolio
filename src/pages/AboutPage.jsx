@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ImageLoadSequenceProvider,
@@ -6,6 +7,11 @@ import {
 import Label from '../components/Label';
 import SocialIcons from '../components/SocialIcons';
 import './AboutPage.css';
+
+const ABOUT_HERO_SRC = '/images/about/about-800.webp';
+const ABOUT_HERO_SRCSET =
+  '/images/about/about-480.webp 480w, /images/about/about-800.webp 800w, /images/about/about.webp 1200w';
+const ABOUT_HERO_SIZES = '(max-width: 768px) 90vw, 288px';
 
 const COMMUNITIES = [
   {
@@ -48,6 +54,26 @@ const HOBBY_LABELS = [
 ];
 
 export default function AboutPage() {
+  useEffect(() => {
+    const href = ABOUT_HERO_SRC;
+    if (document.querySelector(`link[rel="preload"][href="${href}"]`)) {
+      return undefined;
+    }
+
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = href;
+    link.imageSrcset = ABOUT_HERO_SRCSET;
+    link.imageSizes = ABOUT_HERO_SIZES;
+    link.fetchPriority = 'high';
+    document.head.appendChild(link);
+
+    return () => {
+      link.remove();
+    };
+  }, []);
+
   return (
     <ImageLoadSequenceProvider>
     <div className="about-page">
@@ -78,7 +104,9 @@ export default function AboutPage() {
             <div className="about-hero__portrait-wrap">
               <SequentialImage
                 tier={0}
-                src="/images/about/about.webp"
+                src={ABOUT_HERO_SRC}
+                srcSet={ABOUT_HERO_SRCSET}
+                sizes={ABOUT_HERO_SIZES}
                 alt="Dhikshika sitting on grass at sunset"
                 className="about-hero__portrait"
                 fetchPriority="high"
