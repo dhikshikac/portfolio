@@ -16,9 +16,17 @@ export default function LazyVideo({
   controls = false,
   rootMargin = '200px 0px',
   enabled = true,
+  playbackRate = 1,
   onSettled,
 }) {
   const videoRef = useRef(null);
+
+  // Re-applied on load as well as here: the element resets its rate to 1
+  // whenever a new source finishes loading.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) video.playbackRate = playbackRate;
+  }, [playbackRate]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -37,8 +45,13 @@ export default function LazyVideo({
       onSettled?.();
     };
 
+    const applyRate = () => {
+      if (video.playbackRate !== playbackRate) video.playbackRate = playbackRate;
+    };
+
     const playSafe = () => {
       if (!autoPlay || reducedMotion || !isVisible) return;
+      applyRate();
       const playPromise = video.play();
       if (playPromise?.catch) {
         playPromise.catch(() => {});
@@ -64,12 +77,15 @@ export default function LazyVideo({
     }
 
     const onCanPlay = () => {
+      applyRate();
       playSafe();
       settleOnce();
     };
+    const onLoadedMetadata = () => applyRate();
     const onError = () => settleOnce();
 
     video.addEventListener('canplay', onCanPlay);
+    video.addEventListener('loadedmetadata', onLoadedMetadata);
     video.addEventListener('error', onError);
 
     const observer = new IntersectionObserver(
@@ -88,11 +104,12 @@ export default function LazyVideo({
     observer.observe(video);
     return () => {
       video.removeEventListener('canplay', onCanPlay);
+      video.removeEventListener('loadedmetadata', onLoadedMetadata);
       video.removeEventListener('error', onError);
       observer.disconnect();
       pauseSafe();
     };
-  }, [autoPlay, enabled, onSettled, rootMargin, src]);
+  }, [autoPlay, enabled, onSettled, playbackRate, rootMargin, src]);
 
   return (
     <video

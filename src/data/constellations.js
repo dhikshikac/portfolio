@@ -30,7 +30,6 @@ export const CONSTELLATIONS = {
       { x: 1433.0, y: 363.1 },
       { x: 1440.2, y: 309.0 },
       { x: 1417.9, y: 334.6 },
-      { x: 1433.0, y: 363.1 },
       { x: 1345.7, y: 546.9 },
       { x: 1533.4, y: 540.3 },
       { x: 1633.8, y: 537.7 },
@@ -40,10 +39,13 @@ export const CONSTELLATIONS = {
       { x: 1683.1, y: 585.4 },
       { x: 1726.1, y: 588.7 },
     ],
+    /* The head triangle used to close onto a second node sitting at exactly
+       node 3's coordinates, so that segment and star were drawn twice (and
+       drew twice on hover, at 240ms then 480ms). Same shape, no overlap. */
     edges: [
-      [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 4],
-      [0, 7], [7, 8], [8, 9], [9, 12],
-      [12, 10], [10, 11], [11, 14], [14, 13], [13, 12],
+      [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 3],
+      [0, 6], [6, 7], [7, 8], [8, 11],
+      [11, 9], [9, 10], [10, 13], [13, 12], [12, 11],
     ],
   },
   delphinus: {

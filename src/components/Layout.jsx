@@ -9,7 +9,9 @@ import './Layout.css';
 export default function Layout() {
   const location = useLocation();
   const showAmbientSky =
-    location.pathname === '/about' || location.pathname === '/camera';
+    location.pathname === '/about' ||
+    location.pathname === '/camera' ||
+    location.pathname.startsWith('/work/');
 
   useEffect(() => {
     window.scrollTo(0, 0);

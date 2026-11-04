@@ -2,7 +2,12 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import WorkHeroSky from '../components/WorkHeroSky';
 import ProjectCard from '../components/ProjectCard';
 import SocialIcons from '../components/SocialIcons';
-import { filterProjectsByType, projects } from '../data/projects';
+import {
+  filterProjectsByType,
+  pinnedProjects,
+  projects,
+  unpinnedProjects,
+} from '../data/projects';
 import './WorkPage.css';
 
 const PROJECT_FILTERS = [
@@ -16,8 +21,12 @@ export default function WorkPage() {
   const [constellationOpacity, setConstellationOpacity] = useState(1);
   const [filter, setFilter] = useState('all');
 
+  // Unfiltered, the grid skips the two pinned above it so nothing repeats.
+  // Under a tag the pinned section is hidden, so they rejoin the grid —
+  // otherwise "Design" would silently omit two of the design projects.
   const filteredProjects = useMemo(
-    () => filterProjectsByType(projects, filter),
+    () =>
+      filterProjectsByType(filter === 'all' ? unpinnedProjects : projects, filter),
     [filter],
   );
 
@@ -64,15 +73,20 @@ export default function WorkPage() {
       <div className="work-page__content">
         <section className="work-hero">
           <div className="work-hero__text">
-            <h1 className="work-hero__title">DHIKSHIKA CHERIVIRALA</h1>
-            <p className="work-hero__subtitle">
-              Designing, developing, and delivering solutions that make an impact.
-            </p>
-            <p className="work-hero__bio">
-              A CS student @ Cornell exploring the intersection of software
-              engineering, product design, and social impact. ✦
-            </p>
-            <SocialIcons />
+            <p className="work-hero__kicker">CS @ CORNELL UNIVERSITY</p>
+            {/* Inline span so the hit area hugs each line of text rather than
+                reserving the full block rectangle, which would cover the
+                constellations sitting to the right of the shorter lines. */}
+            <h1 className="work-hero__title">
+              <span>
+                Designing, developing, and delivering solutions that make an{' '}
+                <em>impact.</em>
+              </span>
+            </h1>
+            {/* Inline under the tagline, each drifting on its own cycle. */}
+            <div className="work-hero__social">
+              <SocialIcons />
+            </div>
           </div>
         </section>
 
@@ -93,6 +107,28 @@ export default function WorkPage() {
               </button>
             ))}
           </div>
+
+          {/* Only shown unfiltered — under a tag the grid should be exactly
+              the projects matching it, with nothing pinned above. */}
+          {filter === 'all' && (
+            <section className="work-pinned" aria-label="Pinned case studies">
+              <div className="work-pinned__header">
+                <h2 className="work-pinned__title">
+                  <span className="work-pinned__star" aria-hidden="true">
+                    ✦
+                  </span>
+                  Pinned
+                </h2>
+              </div>
+              <div className="work-pinned__grid">
+                {pinnedProjects.map((project) => (
+                  <div key={project.slug} className="work-pinned__item">
+                    <ProjectCard project={project} />
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           <div className="work-grid__columns">
             <div className="work-grid__column">

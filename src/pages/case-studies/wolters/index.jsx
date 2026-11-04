@@ -18,6 +18,7 @@ export default function WoltersCaseStudy() {
   return (
     <CaseStudyLayout
       logo={images.wkLogo}
+      cover={images.hero}
       heroTitle="Wolters Kluwer"
       overviewName={woltersMeta.title}
       overviewType={woltersMeta.subtitle}

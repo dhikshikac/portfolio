@@ -84,6 +84,18 @@ export function projectHasCaseStudy(project) {
   return hasCaseStudy(project.slug);
 }
 
+/** Written-up case studies, surfaced on their own above the grid. */
+export const PINNED_SLUGS = ['hudson-valley-textile', 'wolters-kluwer'];
+
+export const pinnedProjects = PINNED_SLUGS.map((slug) =>
+  projects.find((project) => project.slug === slug),
+).filter(Boolean);
+
+/** The grid lists everything that is not already pinned, so nothing repeats. */
+export const unpinnedProjects = projects.filter(
+  (project) => !PINNED_SLUGS.includes(project.slug),
+);
+
 export function filterProjectsByType(projectList, filter) {
   if (filter === 'all') return projectList;
 

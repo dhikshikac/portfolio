@@ -38,6 +38,7 @@
 }
 
 .project-card__media {
+  position: relative;
   overflow: hidden;
   border-radius: 14px;
   aspect-ratio: 16 / 10;
@@ -45,9 +46,12 @@
 }
 
 .project-card__image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
   transition: transform var(--transition);
 }
@@ -83,13 +87,17 @@
   gap: 12px;
   min-height: 2.6rem;
   margin-bottom: 10px;
-  flex-wrap: wrap;
 }
 
 .project-card__title {
   font-size: 0.95rem;
   font-weight: 400;
   color: var(--text-primary);
+  /* Long titles wrap within their own column instead of bumping the tags
+     down to a second row, which would make the card taller than its peers. */
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .project-card__tags {
@@ -179,6 +187,17 @@
 
   .project-card__media {
     border-radius: 12px;
+  }
+
+  /* Narrow cards can't fit title and tags side by side — the title would be
+     squeezed to a sliver and break mid-word. Stack them instead. */
+  .project-card__header {
+    flex-wrap: wrap;
+    min-height: 0;
+  }
+
+  .project-card__title {
+    flex: 1 1 100%;
   }
 
   .project-card__image-wrap {
