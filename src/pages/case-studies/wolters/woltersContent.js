@@ -11,8 +11,11 @@ import wkMidfi3 from './images/wk-midfi-3.png';
 import wkMidfi4 from './images/wk-midfi-4.png';
 import wkFlow from './images/wk.png';
 import wkLogo from './images/wk-logo.svg';
+// Hi-fi filtered-search state, lifted from the prototype walkthrough.
+import wkHero from './images/wk-hero.png';
 
 export const images = {
+  hero: wkHero,
   competitorAnalysis,
   wkPages,
   wkLofi1,

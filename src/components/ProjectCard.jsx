@@ -10,6 +10,23 @@ function isVideoThumbnail(src) {
   return /\.(mp4|webm|mov)(\?.*)?$/i.test(src);
 }
 
+function isGithubUrl(url) {
+  try {
+    return /(^|\.)github\.com$/i.test(new URL(url).hostname);
+  } catch {
+    return false;
+  }
+}
+
+/** Label shown in the cursor hint, describing where the card actually goes. */
+function hintLabel(project, showCaseStudy) {
+  if (showCaseStudy) return 'VIEW CASE STUDY';
+  if (!project.externalUrl) return 'COMING SOON';
+  if (project.externalLabel) return project.externalLabel;
+  if (isGithubUrl(project.externalUrl)) return 'GITHUB';
+  return 'VIEW PROJECT';
+}
+
 export default function ProjectCard({ project }) {
   const showCaseStudy = projectHasCaseStudy(project);
   const showExternalLink = Boolean(project.externalUrl);
@@ -27,6 +44,7 @@ export default function ProjectCard({ project }) {
               poster={project.poster}
               className="project-card__image"
               aria-label={`${project.title} project preview`}
+              playbackRate={project.thumbnailPlaybackRate ?? 1}
             />
           ) : (
             <img
@@ -74,7 +92,7 @@ export default function ProjectCard({ project }) {
 
   return (
     <ViewMoreHint
-      label={isClickable ? 'VIEW' : 'COMING SOON'}
+      label={hintLabel(project, showCaseStudy)}
       variant={isClickable ? 'default' : 'coming-soon'}
     >
       {showCaseStudy ? (

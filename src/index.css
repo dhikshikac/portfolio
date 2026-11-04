@@ -40,6 +40,10 @@
   --shadow-lift: 0 10px 32px #00000059;
   --shadow-glow-pink: 0 4px 16px #ff6b9d4d;
   --font-mono: 'Space Mono', 'Courier New', monospace;
+  /* Hero display pair: tight neutral sans for the statement, high-contrast
+     serif italic for the one accent word. Mono stays on nav/labels. */
+  --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
+  --font-accent: 'Instrument Serif', Georgia, serif;
   --transition: 200ms ease;
   --page-max: 1200px;
   --nav-height: 96px;

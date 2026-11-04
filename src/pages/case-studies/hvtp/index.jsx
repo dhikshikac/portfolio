@@ -11,6 +11,7 @@ export default function HvtpCaseStudy() {
     <CaseStudyLayout
       ariaLabel={`${hvtpMeta.title} case study`}
       logo={hvtpAssets.logo}
+      cover="/images/posters/hvtp-thumb.webp"
       heroTitle={hvtpMeta.title}
       overviewName={hvtpMeta.shortTitle}
       overviewType={hvtpMeta.subtitle}
