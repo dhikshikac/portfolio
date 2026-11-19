@@ -5,12 +5,12 @@ import Footer from './Footer';
 import AmbientSky from './AmbientSky';
 import PageTransition from './PageTransition';
 import './Layout.css';
+import '../themes.css';
 
 export default function Layout() {
   const location = useLocation();
   const showAmbientSky =
     location.pathname === '/about' ||
-    location.pathname === '/camera' ||
     location.pathname.startsWith('/work/');
 
   useEffect(() => {

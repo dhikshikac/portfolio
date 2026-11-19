@@ -6,6 +6,26 @@
   --cs-col-gap: clamp(24px, 5vw, 64px);
   --cs-card-bg: #15253559;
   --cs-card-border: #648cb459;
+
+  /* Glass: a tinted pane, a diagonal sheen, a bright top edge, and a blur
+     of whatever sits behind it. Themes override these tokens. */
+  --glass-tint: rgba(21, 37, 53, 0.4);
+  --glass-tint-strong: rgba(21, 37, 53, 0.66);
+  --glass-sheen: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(255, 255, 255, 0.02) 38%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-highlight: rgba(255, 255, 255, 0.16);
+  --glass-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+  --glass-blur: blur(20px) saturate(150%);
+  --glass-callout-tint: rgba(30, 28, 24, 0.45);
+  --glass-callout-border: rgba(200, 168, 75, 0.6);
+  --glass-nav-border: rgba(255, 107, 157, 0.55);
+  --glass-nav-glow: 0 0 18px rgba(255, 107, 157, 0.18);
   --cs-card-heading: var(--text-primary);
   --cs-card-body: var(--text-muted);
 
@@ -70,12 +90,14 @@
   z-index: 2;
   margin-bottom: clamp(40px, 6vw, 72px);
   padding: clamp(32px, 4vw, 48px);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--glass-border);
   border-radius: 24px;
-  background: rgba(21, 37, 53, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: var(--shadow-lift);
+  background: var(--glass-sheen), var(--glass-tint-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    var(--glass-shadow);
 }
 
 .cs-overview {
@@ -155,15 +177,14 @@
   position: relative;
   scroll-margin-top: calc(var(--nav-height) + 24px);
   padding: clamp(32px, 4.5vw, 56px) clamp(20px, 3vw, 44px);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--glass-border);
   border-radius: 20px;
-  background: linear-gradient(
-    180deg,
-    rgba(21, 37, 53, 0.72) 0%,
-    rgba(13, 27, 42, 0.58) 100%
-  );
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: var(--glass-sheen), var(--glass-tint);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    var(--glass-shadow);
 }
 
 .cs-section-head {
@@ -221,14 +242,15 @@
   max-height: calc(100vh - var(--nav-height) - 96px);
   overflow-y: auto;
   padding: 18px 16px;
-  border: 1px solid var(--accent-pink);
+  border: 1px solid var(--glass-nav-border);
   border-radius: 16px;
-  background: rgba(13, 27, 42, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--glass-sheen), var(--glass-tint-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   box-shadow:
-    var(--shadow-soft),
-    0 0 18px rgba(255, 107, 157, 0.22);
+    inset 0 1px 0 var(--glass-highlight),
+    var(--glass-shadow),
+    var(--glass-nav-glow);
 }
 
 .cs-sidenav-title {
@@ -294,7 +316,25 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* Tighter gutter: same floating nav, a bit narrower */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .cs-sidenav {
+    display: block;
+    width: 164px;
+    padding: 14px 10px;
+  }
+
+  .cs-sidenav-link {
+    padding: 6px 8px;
+    font-size: 0.64rem;
+  }
+
+  .cs {
+    padding-left: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 1024px) {
   .cs-sidenav {
     animation: cs-sidenav-float 3s ease-in-out infinite;
   }
@@ -446,10 +486,13 @@
 }
 
 .cs-callout {
-  background: var(--overlay-ink);
-  border: 1px solid var(--accent-gold);
+  border: 1px solid var(--glass-callout-border);
   border-radius: 10px;
   padding: 22px 20px;
+  background: var(--glass-sheen), var(--glass-callout-tint);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
 }
 
 .cs-callout p {
@@ -513,12 +556,13 @@
 }
 
 .cs-card {
-  background: var(--cs-card-bg);
   border: 1px solid var(--cs-card-border);
   border-radius: 12px;
   padding: 24px 22px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: var(--glass-sheen), var(--cs-card-bg);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
 }
 
 .cs-card p {
@@ -550,18 +594,18 @@
 }
 
 .cs-card--neutral {
-  --cs-card-bg: rgba(21, 37, 53, 0.35);
-  --cs-card-border: rgba(100, 140, 180, 0.35);
+  --cs-card-bg: rgba(21, 37, 53, 0.3);
+  --cs-card-border: rgba(160, 190, 225, 0.22);
 }
 
 .cs-card--blue {
-  --cs-card-bg: rgba(40, 80, 130, 0.28);
-  --cs-card-border: rgba(100, 140, 180, 0.4);
+  --cs-card-bg: rgba(40, 80, 130, 0.26);
+  --cs-card-border: rgba(130, 170, 220, 0.3);
 }
 
 .cs-card--gray {
-  --cs-card-bg: rgba(90, 100, 110, 0.28);
-  --cs-card-border: rgba(140, 150, 160, 0.32);
+  --cs-card-bg: rgba(90, 100, 110, 0.24);
+  --cs-card-border: rgba(180, 190, 200, 0.24);
 }
 
 /* ── Responsive ── */

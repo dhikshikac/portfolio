@@ -141,12 +141,6 @@
   height: 24px;
 }
 
-.about-hero__contact .social-icons__resume {
-  padding: 5px 11px;
-  font-size: 0.59rem;
-  letter-spacing: 0.08em;
-}
-
 /* ── Communities ── */
 
 .about-section-title {
@@ -388,23 +382,6 @@
 .about-hobbies__label--photography {
   position: static;
   transform: none;
-}
-
-.about-hobbies__view-more {
-  position: static;
-  padding: 7px 14px;
-  font-size: clamp(0.52rem, 1vw, 0.62rem);
-  letter-spacing: 0.1em;
-  background: var(--accent-pink);
-  color: var(--bg-navy);
-  border-radius: 6px;
-  font-weight: 700;
-  transition: transform var(--transition);
-  box-shadow: var(--shadow-glow-pink);
-}
-
-.about-hobbies__view-more:hover {
-  transform: scale(1.06);
 }
 
 /* ── Responsive ── */

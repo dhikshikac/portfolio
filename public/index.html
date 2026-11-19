@@ -18,6 +18,25 @@
     <link rel="icon" href="%PUBLIC_URL%/images/about/community-star.png" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/about/community-star.png" />
     <title>Dhikshika Cherivirala</title>
+    <script>
+      // Apply day/night before first paint: the visitor's saved choice if
+      // they've toggled, otherwise their system's light/dark setting.
+      (function () {
+        var saved = null;
+        try {
+          saved = localStorage.getItem('theme');
+        } catch (e) {}
+        var day = saved
+          ? saved === 'day'
+          : window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: light)').matches;
+        if (day) {
+          document.documentElement.setAttribute('data-theme', 'day');
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', '#edf3f9');
+        }
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
