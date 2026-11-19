@@ -4,7 +4,6 @@ const LINKS = {
   linkedin: 'https://www.linkedin.com/in/dhikshika-cherivirala/',
   github: 'https://github.com/dhikshikac',
   email: 'mailto:dhikshika.cherivirala@gmail.com',
-  resume: 'https://drive.google.com/file/d/1yJ01fCLhWqDKexab-v_iCCJAPCl25mcr/view',
 };
 
 const ICONS = {
@@ -13,7 +12,7 @@ const ICONS = {
   gmail: '/images/social/gmail.svg',
 };
 
-export default function SocialIcons({ showResume = true, size = 'md' }) {
+export default function SocialIcons({ size = 'md' }) {
   return (
     <div className={`social-icons social-icons--${size}`}>
       <a
@@ -37,11 +36,6 @@ export default function SocialIcons({ showResume = true, size = 'md' }) {
       <a href={LINKS.email} className="social-icons__link" aria-label="Email">
         <img src={ICONS.gmail} alt="" className="social-icons__icon" />
       </a>
-      {showResume && (
-        <a href={LINKS.resume} className="social-icons__resume" target="_blank" rel="noopener noreferrer">
-          RESUME
-        </a>
-      )}
     </div>
   );
 }
