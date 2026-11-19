@@ -1,3 +1,3 @@
 # portfolio
 
-Designed on Figma & built by me and Cursor <3
+Designed on Figma & vibecoded!
