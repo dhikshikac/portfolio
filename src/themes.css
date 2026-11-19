@@ -147,12 +147,24 @@
 /* ── Cards ── */
 
 [data-theme='day'] .project-card {
-  border-color: #2b3d5212;
-  box-shadow: 0 6px 20px #2b3d520a;
+  --pc-tint: rgba(255, 255, 255, 0.4);
+  --pc-sheen: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  --pc-border: rgba(255, 255, 255, 0.75);
+  --pc-highlight: rgba(255, 255, 255, 0.95);
+  --pc-shadow: 0 0 0 1px rgba(43, 61, 82, 0.05),
+    0 14px 40px rgba(43, 61, 82, 0.1);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
 }
 [data-theme='day'] .project-card:hover,
 [data-theme='day'] .project-card__link:hover .project-card {
-  box-shadow: 0 0 0 1px #7f8fc966, 0 12px 32px #2b3d5214;
+  box-shadow: 0 0 0 1px #7f8fc966, 0 16px 40px rgba(43, 61, 82, 0.14);
 }
 [data-theme='day'] .project-card__media {
   background: #e4ebf2;
@@ -160,12 +172,14 @@
 
 [data-theme='day'] .work-pinned__item .project-card {
   border-color: #e0789c4d;
-  background-image: linear-gradient(180deg, #fbe4ea80, transparent 160px);
+  background-image:
+    linear-gradient(180deg, #fbe4ea80, transparent 160px),
+    var(--pc-sheen);
 }
 
 @keyframes day-pinned-twinkle {
-  0%, 100% { border-color: #e0789c33; box-shadow: 0 6px 20px #2b3d520a; }
-  50% { border-color: #e0789cb3; box-shadow: 0 0 0 1px #e0789c26, 0 6px 20px #2b3d520a; }
+  0%, 100% { border-color: #e0789c33; box-shadow: 0 14px 40px rgba(43, 61, 82, 0.1); }
+  50% { border-color: #e0789cb3; box-shadow: 0 0 0 1px #e0789c26, 0 14px 40px rgba(43, 61, 82, 0.1); }
 }
 @media (prefers-reduced-motion: no-preference) {
   [data-theme='day'] .work-pinned__item .project-card {

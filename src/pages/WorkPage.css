@@ -263,11 +263,9 @@
 /* Pink rather than the grid's purple, so pinned reads as a different tier. */
 .work-pinned__item .project-card {
   border-color: rgba(255, 107, 157, 0.35);
-  background-image: linear-gradient(
-    180deg,
-    rgba(255, 107, 157, 0.07),
-    transparent 180px
-  );
+  background-image:
+    linear-gradient(180deg, rgba(255, 107, 157, 0.07), transparent 180px),
+    var(--pc-sheen);
 }
 
 .work-pinned__item .project-card:hover,
