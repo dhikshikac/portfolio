@@ -1,3 +1,4 @@
+import DayClouds from './DayClouds';
 import './AmbientSky.css';
 
 export default function AmbientSky() {
@@ -8,6 +9,7 @@ export default function AmbientSky() {
         alt=""
         className="ambient-sky__image"
       />
+      <DayClouds />
     </div>
   );
 }

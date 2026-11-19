@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import {
   ImageLoadSequenceProvider,
   SequentialImage,
@@ -117,8 +116,16 @@ export default function AboutPage() {
               tier={0}
               src="/images/about/about-frame.png"
               alt=""
-              className="about-hero__frame-overlay"
+              className="about-hero__frame-overlay about-hero__frame-overlay--night"
               aria-hidden="true"
+            />
+            {/* Same frame with the card in pale blue and a gold star, for day mode */}
+            <img
+              src="/images/about/about-frame-day.png"
+              alt=""
+              className="about-hero__frame-overlay about-hero__frame-overlay--day"
+              aria-hidden="true"
+              loading="lazy"
             />
 
             <div className="about-hero__contact">
@@ -200,9 +207,6 @@ export default function AboutPage() {
             <Label className="about-hobbies__label about-hobbies__label--photography" delay="photography">
               PHOTOGRAPHY
             </Label>
-            <Link to="/camera" className="about-hobbies__view-more">
-              VIEW MORE →
-            </Link>
           </div>
         </div>
       </section>
