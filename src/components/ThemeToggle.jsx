@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 //   and is instant otherwise or with reduced motion.
 const STORAGE_KEY = 'theme';
 // Phone browser bar colour, matched to each theme's nav background
-const THEME_COLOR = { day: '#edf3f9', night: '#0d1b2a' };
+const THEME_COLOR = { day: '#cfe1f3', night: '#0d1b2a' };
 const SYSTEM_LIGHT = '(prefers-color-scheme: light)';
 
 function readTheme() {
