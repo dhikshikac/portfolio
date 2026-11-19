@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import ThemeToggle from './ThemeToggle';
 import './Nav.css';
+
+const RESUME_URL =
+  'https://drive.google.com/file/d/1yJ01fCLhWqDKexab-v_iCCJAPCl25mcr/view';
 
 const LINKS = [
   { to: '/work', label: 'WORK' },
   { to: '/about', label: 'ABOUT' },
-  { to: '/camera', label: 'MY CAMERA' },
 ];
 
 export default function Nav() {
@@ -84,8 +87,19 @@ export default function Nav() {
               {label}
             </NavLink>
           ))}
+          <a
+            href={RESUME_URL}
+            className="nav__link"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMenuOpen(false)}
+          >
+            RESUME
+          </a>
         </nav>
       </div>
+
+      <ThemeToggle />
     </header>
   );
 }

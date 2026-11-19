@@ -7,7 +7,8 @@ import { CaseStudyRoute } from './pages/case-studies/caseStudyRoutes';
 import WorkPage from './pages/WorkPage';
 
 const AboutPage = lazy(() => import('./pages/AboutPage'));
-const CameraPage = lazy(() => import('./pages/CameraPage'));
+// Camera page is hidden for now; /camera redirects to /work.
+// const CameraPage = lazy(() => import('./pages/CameraPage'));
 
 function App() {
   return (
@@ -25,14 +26,7 @@ function App() {
               </Suspense>
             }
           />
-          <Route
-            path="camera"
-            element={
-              <Suspense fallback={null}>
-                <CameraPage />
-              </Suspense>
-            }
-          />
+          <Route path="camera" element={<Navigate to="/work" replace />} />
         </Route>
       </Routes>
       <Analytics />

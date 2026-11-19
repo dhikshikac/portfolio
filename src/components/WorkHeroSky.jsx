@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Constellation from './Constellation';
+import DayClouds from './DayClouds';
 import { HERO_CONSTELLATIONS, SKY_DIMENSIONS } from '../data/constellations';
 import './WorkHeroSky.css';
 
@@ -37,6 +38,7 @@ export default function WorkHeroSky({ constellationOpacity = 1 }) {
         alt=""
         className="work-hero__sky-bg"
       />
+      <DayClouds />
       <svg
         className="work-hero__sky-constellations"
         viewBox={`0 0 ${width} ${height}`}

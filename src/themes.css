@@ -1,0 +1,320 @@
+/* ─────────────────────────────────────────────────────────────
+   DAY MODE
+   Applied via <html data-theme="day">. Night (the default) lives in
+   the component stylesheets and is untouched here.
+   ───────────────────────────────────────────────────────────── */
+
+/* ══════════════════════════════════════════════
+   DAYTIME SKY
+   The night theme in daylight: same restraint,
+   same structure. Pale blue and white, navy-gray
+   type, a little gold and pink, a few soft clouds
+   where the constellations would be.
+   ══════════════════════════════════════════════ */
+
+:root[data-theme='day'] {
+  --bg-navy: #edf3f9;
+  --bg-card: #f8fbfd;
+  --text-primary: #2b3d52;
+  /* Text-bearing accents are darkened so small text clears WCAG AA
+     (4.5:1) against every part of the day sky; decorative borders and
+     fills below keep the lighter tints. */
+  --text-muted: #526175;
+  --accent-pink: #a3395f;
+  --accent-gold: #7a5a18;
+  --accent-purple: #4f5f9e;
+  --border-subtle: #2b3d5214;
+  --overlay: #edf3f9f2;
+  --overlay-soft: #edf3f980;
+  --shadow-soft: 0 6px 20px #2b3d520d;
+  --shadow-lift: 0 8px 26px #2b3d5214;
+  --shadow-glow-pink: 0 4px 14px #e0789c26;
+  --cs-card-bg: #f8fbfdcc;
+  --cs-card-border: #2b3d521a;
+  color-scheme: light;
+}
+
+/* Mostly blue to white, with the faintest warmth at the very bottom */
+[data-theme='day'] body {
+  background: linear-gradient(
+      180deg,
+      #cfe1f3 0%,
+      #e2ecf7 35%,
+      #f1eef6 65%,
+      #fbe9e6 88%,
+      #fdf0e1 100%
+    )
+    fixed;
+}
+
+/* No stars or constellations by day */
+[data-theme='day'] .work-hero__sky-bg,
+[data-theme='day'] .ambient-sky__image,
+[data-theme='day'] .work-hero__sky-constellations {
+  display: none;
+}
+
+/* ── Clouds ── */
+
+.day-sky {
+  display: none;
+}
+
+[data-theme='day'] .day-sky {
+  display: block;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+[data-theme='day'] .day-cloud {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--w);
+  height: calc(var(--w) * 0.4);
+  overflow: visible;
+  fill: #ffffff;
+  opacity: var(--o);
+  animation: day-cloud-drift var(--dur) ease-in-out var(--delay) infinite
+    alternate;
+}
+
+@keyframes day-cloud-drift {
+  from {
+    translate: calc(var(--drift) * -1) 0;
+  }
+  to {
+    translate: var(--drift) 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme='day'] .day-cloud {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  [data-theme='day'] .day-cloud {
+    width: calc(var(--w) * 0.6);
+    height: calc(var(--w) * 0.6 * 0.4);
+  }
+}
+
+/* ── Chrome ── */
+
+[data-theme='day'] .work-hero__title {
+  color: var(--text-primary);
+  text-shadow: none;
+}
+[data-theme='day'] .work-hero__title em {
+  background: linear-gradient(100deg, #9a6c22 0%, #b04068 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: none;
+}
+
+[data-theme='day'] .social-icons__icon--github {
+  opacity: 0.8;
+}
+
+[data-theme='day'] .work-filter {
+  background: #f8fbfdb3;
+}
+[data-theme='day'] .work-filter__option--active {
+  background: #f3d48a33;
+}
+
+[data-theme='day'] .tag-pill--default {
+  background: #7f8fc914;
+}
+[data-theme='day'] .tag-pill--gold {
+  background: #f3d48a26;
+}
+
+/* ── Cards ── */
+
+[data-theme='day'] .project-card {
+  border-color: #2b3d5212;
+  box-shadow: 0 6px 20px #2b3d520a;
+}
+[data-theme='day'] .project-card:hover,
+[data-theme='day'] .project-card__link:hover .project-card {
+  box-shadow: 0 0 0 1px #7f8fc966, 0 12px 32px #2b3d5214;
+}
+[data-theme='day'] .project-card__media {
+  background: #e4ebf2;
+}
+
+[data-theme='day'] .work-pinned__item .project-card {
+  border-color: #e0789c4d;
+  background-image: linear-gradient(180deg, #fbe4ea80, transparent 160px);
+}
+
+@keyframes day-pinned-twinkle {
+  0%, 100% { border-color: #e0789c33; box-shadow: 0 6px 20px #2b3d520a; }
+  50% { border-color: #e0789cb3; box-shadow: 0 0 0 1px #e0789c26, 0 6px 20px #2b3d520a; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-theme='day'] .work-pinned__item .project-card {
+    animation-name: day-pinned-twinkle;
+  }
+}
+
+[data-theme='day'] .tool-icons__item {
+  border-color: #2b3d5226;
+}
+
+/* ── Case studies ── */
+
+[data-theme='day'] .cs {
+  --glass-tint: rgba(255, 255, 255, 0.4);
+  --glass-tint-strong: rgba(255, 255, 255, 0.62);
+  --glass-sheen: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-highlight: rgba(255, 255, 255, 0.95);
+  --glass-shadow: 0 0 0 1px rgba(43, 61, 82, 0.05),
+    0 14px 40px rgba(43, 61, 82, 0.1);
+  --glass-blur: blur(20px) saturate(170%);
+  --glass-callout-tint: rgba(253, 244, 225, 0.5);
+  --glass-callout-border: rgba(217, 181, 106, 0.6);
+  --glass-nav-border: rgba(224, 120, 156, 0.45);
+  --glass-nav-glow: 0 0 16px rgba(224, 120, 156, 0.12);
+}
+
+[data-theme='day'] .cs-sidenav-link:hover {
+  background: #e0789c14;
+}
+[data-theme='day'] .cs-sidenav-link--active {
+  background: #e0789c1f;
+}
+
+[data-theme='day'] .cs-card--neutral {
+  --cs-card-bg: rgba(255, 255, 255, 0.4);
+  --cs-card-border: rgba(255, 255, 255, 0.8);
+}
+[data-theme='day'] .cs-card--blue {
+  --cs-card-bg: rgba(214, 230, 247, 0.5);
+  --cs-card-border: rgba(255, 255, 255, 0.8);
+}
+[data-theme='day'] .cs-card--gray {
+  --cs-card-bg: rgba(234, 238, 243, 0.5);
+  --cs-card-border: rgba(255, 255, 255, 0.8);
+}
+[data-theme='day'] .cs-card {
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 0 0 1px rgba(43, 61, 82, 0.05),
+    0 6px 18px rgba(43, 61, 82, 0.06);
+}
+
+/* Media frames are white on night; give them an edge on the light page */
+[data-theme='day'] .cs-figure--board,
+[data-theme='day'] .cs-media-frame {
+  box-shadow: 0 0 0 1px #2b3d5214;
+}
+
+/* ── About ── */
+
+/* The night frames are a mid blue; by day they become white, like
+   prints pinned to the sky, with a soft blue shadow for lift. */
+[data-theme='day'] .about-page {
+  /* a soft sky blue, a few steps lighter than night's frame blue */
+  --surface-frame-accent: #c9d9ea;
+  --surface-neutral: #dbe5ef;
+  --shadow-lift: 0 10px 28px rgba(43, 61, 82, 0.1);
+}
+
+[data-theme='day'] .about-hero__title {
+  color: var(--text-primary);
+}
+[data-theme='day'] .about-hero__location,
+[data-theme='day'] .about-hero__bio {
+  color: #4a5c70;
+}
+[data-theme='day'] .about-section-title {
+  color: var(--text-primary);
+}
+
+/* Same frosted glass as the case study panels: a clear pane with a
+   white sheen, so the sky tints it evenly instead of a flat blue fill */
+[data-theme='day'] .about-community-card {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.15) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.3) 100%
+    ),
+    rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 0 0 1px rgba(43, 61, 82, 0.05),
+    0 14px 40px rgba(43, 61, 82, 0.1);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+}
+[data-theme='day'] .about-community-card__title {
+  color: var(--text-primary);
+}
+[data-theme='day'] .about-community-card__role {
+  color: var(--text-muted);
+}
+
+[data-theme='day'] .about-hobby-frame {
+  background: #dbe5ef;
+}
+
+/* about-frame.png paints the contact card navy; by day swap in the
+   recoloured copy (pale-blue card, gold star) */
+.about-hero__frame-overlay--day {
+  display: none;
+}
+[data-theme='day'] .about-hero__frame-overlay--night {
+  display: none;
+}
+[data-theme='day'] .about-hero__frame-overlay--day {
+  display: block;
+}
+@media (max-width: 768px) {
+  [data-theme='day'] .about-hero__frame-overlay--day {
+    display: none;
+  }
+}
+
+[data-theme='day'] .about-hero__contact {
+  color: var(--text-primary);
+}
+[data-theme='day'] .about-hero__contact-title {
+  color: var(--accent-pink);
+}
+[data-theme='day'] .about-hero__contact a {
+  color: #4a5c70;
+}
+
+/* ── Stars ── */
+
+/* The star images are painted dark navy for the night sky. By day they
+   turn warm gold: flatten to black, then tint toward #d9a54f. */
+[data-theme='day'] .nav__logo,
+[data-theme='day'] .about-community-card__star {
+  filter: brightness(0) saturate(100%) invert(72%) sepia(38%) saturate(720%)
+    hue-rotate(354deg) brightness(92%) drop-shadow(0 0 4px rgba(232, 182, 92, 0.45));
+}
+
+/* GitHub mark is inverted to white for night; restore it by day */
+[data-theme='day'] .social-icons__icon--github {
+  filter: none;
+}

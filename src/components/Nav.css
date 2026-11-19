@@ -83,6 +83,43 @@
 .nav__links {
   display: flex;
   gap: clamp(16px, 3vw, 32px);
+  margin-left: auto;
+}
+
+/* ── Day / night toggle ── */
+
+.theme-toggle {
+  position: relative;
+  z-index: 102;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-left: clamp(16px, 2.4vw, 28px);
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--accent-gold) 45%, transparent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent-gold);
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent-gold);
+  background: color-mix(in srgb, var(--accent-gold) 12%, transparent);
+  transform: rotate(-12deg);
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.8;
 }
 
 .nav__link {
@@ -107,6 +144,14 @@
 
   .nav__toggle {
     display: block;
+    order: 2;
+  }
+
+  /* Sits just left of the hamburger, above the open menu overlay */
+  .theme-toggle {
+    order: 1;
+    margin-left: auto;
+    margin-right: 8px;
   }
 
   .nav__menu {
@@ -164,4 +209,12 @@
   .nav__toggle-bar {
     transition: none;
   }
+}
+
+/* Day / night cross-fade (View Transitions). Only the root snapshot
+   animates, and only while a switch is in progress. */
+html.theme-switching::view-transition-old(root),
+html.theme-switching::view-transition-new(root) {
+  animation-duration: 380ms;
+  animation-timing-function: ease;
 }
