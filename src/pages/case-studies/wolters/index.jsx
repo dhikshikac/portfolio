@@ -57,6 +57,7 @@ export default function WoltersCaseStudy() {
           src={images.competitorAnalysis}
           alt={userResearch.competitors.analysisAlt}
           className="cs-figure--board"
+          zoomable
         />
 
         <p className="cs-subheading">{userResearch.competitors.patternsIntro}</p>
@@ -109,6 +110,7 @@ export default function WoltersCaseStudy() {
             src={images.wkPages}
             alt={ideation.pagesAlt}
             className="cs-figure--board"
+            zoomable
           />
           <aside className="cs-callout">
             <p>I focused on 3 pages:</p>

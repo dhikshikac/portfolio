@@ -73,14 +73,23 @@
   padding: 0 clamp(20px, 5vw, 48px);
 }
 
+.cs-hero-frame {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  box-shadow: var(--shadow-lift);
+}
+
 .cs-hero-cover {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
   object-position: center top;
-  border-radius: 20px;
-  box-shadow: var(--shadow-lift);
+  /* Cover images are screen grabs with a few pixels of window edge
+     (border lines, stray white strip); zoom just past them */
+  transform: scale(1.025);
+  transform-origin: center top;
 }
 
 /* ── Header / overview card ── */
@@ -440,6 +449,14 @@
   margin-inline: auto;
 }
 
+/* Side-by-side boards stretch to the taller one; centre the shorter
+   image on its white board instead of leaving a gap underneath */
+.cs-image-row > .cs-figure--board {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .cs-image-row--weighted {
   grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
   align-items: start;
@@ -666,7 +683,7 @@
     grid-template-columns: 1fr;
   }
 
-  .cs-hero-cover {
+  .cs-hero-frame {
     aspect-ratio: 4 / 3;
     border-radius: 14px;
   }

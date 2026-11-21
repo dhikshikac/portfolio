@@ -82,6 +82,10 @@
   object-fit: cover;
   object-position: center;
   display: block;
+  /* The thumbnail recordings carry a few pixels of the app window's own
+     edge (dark border lines, a stray white strip). A slight zoom keeps
+     those outside the rounded frame. */
+  transform: scale(1.025);
   transition: transform var(--transition);
 }
 
@@ -93,7 +97,7 @@
 .project-card:focus-visible .project-card__image,
 .project-card__link:hover .project-card .project-card__image,
 .project-card__link:focus-visible .project-card .project-card__image {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 .project-card__tools {
