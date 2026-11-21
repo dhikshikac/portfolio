@@ -1,0 +1,234 @@
+/* ── Zoomable figure trigger ── */
+
+.cs-zoom-trigger {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: zoom-in;
+  border-radius: inherit;
+}
+
+.cs-zoom-trigger img {
+  display: block;
+  width: 100%;
+}
+
+.cs-zoom-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(13, 27, 42, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #e8edf2;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  transition:
+    opacity var(--transition),
+    transform var(--transition);
+  pointer-events: none;
+}
+
+.cs-zoom-badge svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.cs-zoom-trigger:hover .cs-zoom-badge,
+.cs-zoom-trigger:focus-visible .cs-zoom-badge {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.cs-zoom-trigger:focus-visible {
+  outline: 2px solid var(--accent-purple);
+  outline-offset: 4px;
+}
+
+[data-theme='day'] .cs-zoom-badge {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.78);
+  color: #2b3d52;
+  box-shadow: 0 4px 14px rgba(43, 61, 82, 0.12);
+}
+
+/* ── Viewer ── */
+
+.iv {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(8, 16, 26, 0.9);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: iv-in 200ms ease;
+}
+
+[data-theme='day'] .iv {
+  background: rgba(226, 235, 245, 0.94);
+}
+
+@keyframes iv-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.iv-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: none;
+  cursor: zoom-in;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.iv-stage--zoomed {
+  cursor: grab;
+}
+
+.iv-stage--zoomed:active {
+  cursor: grabbing;
+}
+
+.iv-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+  transform-origin: 0 0;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Shared glass control style */
+.iv-btn,
+.iv-zoom-level,
+.iv-hint {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(21, 37, 53, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #e8edf2;
+}
+
+[data-theme='day'] .iv-btn,
+[data-theme='day'] .iv-zoom-level,
+[data-theme='day'] .iv-hint {
+  border-color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.8);
+  color: #2b3d52;
+  box-shadow: 0 6px 18px rgba(43, 61, 82, 0.12);
+}
+
+.iv-btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    opacity var(--transition),
+    transform var(--transition);
+}
+
+.iv-btn:hover:not(:disabled) {
+  transform: scale(1.06);
+}
+
+.iv-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.iv-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.iv-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+
+.iv-toolbar {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.iv-zoom-level {
+  min-width: 68px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.iv-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 78px;
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  transition: opacity 400ms ease;
+  pointer-events: none;
+}
+
+.iv-hint--hidden {
+  opacity: 0;
+}
+
+.iv-btn:focus-visible,
+.iv-zoom-level:focus-visible {
+  outline: 2px solid var(--accent-purple);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iv {
+    animation: none;
+  }
+}

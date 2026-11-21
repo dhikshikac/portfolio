@@ -50,10 +50,12 @@ export default function HvtpCaseStudy() {
               <CaseStudyFigure
                 src={hvtpAssets.uxrAffinityTop}
                 alt="Affinity map: user research themes (top)"
+                zoomable
               />
               <CaseStudyFigure
                 src={hvtpAssets.uxrAffinityBottom}
                 alt="Affinity map: user research themes (bottom)"
+                zoomable
               />
             </div>
 
@@ -100,6 +102,7 @@ export default function HvtpCaseStudy() {
             <CaseStudyFigure
               src={hvtpAssets.featurePrioritization}
               alt="Feature prioritization matrix: quick wins vs major projects"
+              zoomable
               className="cs-figure--board"
             />
 
@@ -110,6 +113,7 @@ export default function HvtpCaseStudy() {
             <CaseStudyFigure
               src={hvtpAssets.informationArchitecture}
               alt="Information architecture diagram showing page structure"
+              zoomable
               className="cs-figure--board"
             />
 
