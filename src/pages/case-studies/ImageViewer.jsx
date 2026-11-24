@@ -25,6 +25,9 @@ export default function ImageViewer({ src, alt, onClose }) {
   const [fit, setFit] = useState(null); // { w, h, stageW, stageH }
   const [view, setView] = useState({ scale: 1, x: 0, y: 0 });
   const [natural, setNatural] = useState(null);
+  // Zoom cap: at least MAX_SCALE, and always enough to reach the file's
+  // own pixels, so very wide boards become readable when zoomed in.
+  const maxScale = useRef(MAX_SCALE);
   const [showHint, setShowHint] = useState(true);
 
   // ── Geometry ──────────────────────────────────────────────
@@ -35,6 +38,7 @@ export default function ImageViewer({ src, alt, onClose }) {
     const stageW = stage.clientWidth;
     const stageH = stage.clientHeight;
     const ratio = Math.min(stageW / natural.w, stageH / natural.h);
+    maxScale.current = Math.max(MAX_SCALE, 1 / ratio);
     setFit({ w: natural.w * ratio, h: natural.h * ratio, stageW, stageH });
   }, [natural]);
 
@@ -48,7 +52,7 @@ export default function ImageViewer({ src, alt, onClose }) {
   const constrain = useCallback(
     (next) => {
       if (!fit) return next;
-      const scale = clamp(next.scale, MIN_SCALE, MAX_SCALE);
+      const scale = clamp(next.scale, MIN_SCALE, maxScale.current);
       const w = fit.w * scale;
       const h = fit.h * scale;
       const x =
@@ -70,7 +74,7 @@ export default function ImageViewer({ src, alt, onClose }) {
     (targetScale, px, py, base) => {
       setView((current) => {
         const from = base || current;
-        const scale = clamp(targetScale, MIN_SCALE, MAX_SCALE);
+        const scale = clamp(targetScale, MIN_SCALE, maxScale.current);
         const u = (px - from.x) / from.scale;
         const v = (py - from.y) / from.scale;
         return constrain({ scale, x: px - u * scale, y: py - v * scale });
@@ -83,7 +87,7 @@ export default function ImageViewer({ src, alt, onClose }) {
     (factor) => {
       if (!fit) return;
       setView((current) => {
-        const scale = clamp(current.scale * factor, MIN_SCALE, MAX_SCALE);
+        const scale = clamp(current.scale * factor, MIN_SCALE, maxScale.current);
         const px = fit.stageW / 2;
         const py = fit.stageH / 2;
         const u = (px - current.x) / current.scale;
@@ -146,7 +150,7 @@ export default function ImageViewer({ src, alt, onClose }) {
       const sensitivity = event.ctrlKey ? 0.01 : 0.0015;
       const factor = Math.exp(-event.deltaY * sensitivity);
       setView((current) => {
-        const scale = clamp(current.scale * factor, MIN_SCALE, MAX_SCALE);
+        const scale = clamp(current.scale * factor, MIN_SCALE, maxScale.current);
         const px = event.clientX - rect.left;
         const py = event.clientY - rect.top;
         const u = (px - current.x) / current.scale;
@@ -205,7 +209,7 @@ export default function ImageViewer({ src, alt, onClose }) {
       const [a, b] = pts;
       const dist = Math.hypot(a.x - b.x, a.y - b.y);
       const mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
-      const scale = clamp(g.view.scale * (dist / g.dist), MIN_SCALE, MAX_SCALE);
+      const scale = clamp(g.view.scale * (dist / g.dist), MIN_SCALE, maxScale.current);
       const u = (g.mid.x - g.view.x) / g.view.scale;
       const v = (g.mid.y - g.view.y) / g.view.scale;
       setView(constrain({ scale, x: mid.x - u * scale, y: mid.y - v * scale }));
@@ -288,9 +292,11 @@ export default function ImageViewer({ src, alt, onClose }) {
           style={
             fit
               ? {
-                  width: fit.w,
-                  height: fit.h,
-                  transform: `translate(${view.x}px, ${view.y}px) scale(${view.scale})`,
+                  // Resize rather than scale(): a scaled layer is rasterised at
+                  // its fitted size and stretched, which blurs small text.
+                  width: fit.w * view.scale,
+                  height: fit.h * view.scale,
+                  transform: `translate(${view.x}px, ${view.y}px)`,
                 }
               : { opacity: 0 }
           }
@@ -324,7 +330,7 @@ export default function ImageViewer({ src, alt, onClose }) {
           type="button"
           className="iv-btn"
           onClick={() => zoomCentre(STEP)}
-          disabled={view.scale >= MAX_SCALE}
+          disabled={view.scale >= maxScale.current - 0.001}
           aria-label="Zoom in"
         >
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14" /></svg>

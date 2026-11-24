@@ -7,7 +7,11 @@ import {
 } from '../../components/ImageLoadSequence';
 import LazyVideo from '../../components/LazyVideo';
 import ImageViewer from './ImageViewer';
+import useIsPhone from './useIsPhone';
+import useZoomPreload from './useZoomPreload';
 import './caseStudyShared.css';
+
+const SITE_NAME = 'Dhikshika Cherivirala';
 
 const CaseStudySectionTierContext = createContext(1);
 const CaseStudySectionTierAllocatorContext = createContext(() => 1);
@@ -232,8 +236,19 @@ export function CaseStudyHeader({
   );
 }
 
+// Browser tab title, e.g. "Wolters Kluwer | Dhikshika Cherivirala"
+function useDocumentTitle(title) {
+  useEffect(() => {
+    document.title = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+    return () => {
+      document.title = SITE_NAME;
+    };
+  }, [title]);
+}
+
 export function CaseStudyLayout({
   ariaLabel,
+  heroTitle,
   cover,
   overviewName,
   overviewType,
@@ -245,6 +260,9 @@ export function CaseStudyLayout({
   children,
 }) {
   const scrollProgress = useScrollProgress();
+  const rootRef = useRef(null);
+  useZoomPreload(rootRef);
+  useDocumentTitle(heroTitle);
   const sectionTierRef = useRef(1);
   const allocateSectionTier = useCallback(() => {
     const tier = sectionTierRef.current;
@@ -271,7 +289,7 @@ export function CaseStudyLayout({
     <ImageLoadSequenceProvider>
       <CaseStudySectionTierAllocatorContext.Provider value={allocateSectionTier}>
         <CaseStudySectionRegistryContext.Provider value={registerSection}>
-          <div className="cs" aria-label={ariaLabel}>
+          <div className="cs" aria-label={ariaLabel} ref={rootRef}>
             <div
               className="cs-scroll-progress"
               style={{ width: `${scrollProgress}%` }}
@@ -335,12 +353,30 @@ export function CaseStudySection({ label, children }) {
 
 // `zoomable` turns the figure into a button that opens a full-screen
 // zoom-and-pan viewer. `zoomSrc` (optional) is a higher-resolution file
-// loaded only when the viewer opens.
-export function CaseStudyFigure({ src, alt, className = '', zoomable = false, zoomSrc }) {
+// loaded only when the viewer opens. `label` (optional) adds a short tag
+// above the figure, e.g. to tell an early version from the final one;
+// `zoomHint` follows it wherever zoom is available. Phones get a plain image.
+export function CaseStudyFigure({ label, zoomHint, ...props }) {
+  const isPhone = useIsPhone();
+
+  if (!label) return <CaseStudyFigureBody {...props} />;
+  return (
+    <div className="cs-labeled-figure">
+      <p className="cs-figure-label">
+        {label}
+        {zoomHint && !isPhone && ` · ${zoomHint}`}
+      </p>
+      <CaseStudyFigureBody {...props} />
+    </div>
+  );
+}
+
+function CaseStudyFigureBody({ src, alt, className = '', zoomable = false, zoomSrc }) {
   const tier = useCaseStudySectionTier();
+  const isPhone = useIsPhone();
   const [viewerOpen, setViewerOpen] = useState(false);
 
-  if (!zoomable) {
+  if (!zoomable || isPhone) {
     return (
       <figure className={`cs-figure ${className}`.trim()}>
         <SequentialImage tier={tier} src={src} alt={alt} />
@@ -353,6 +389,7 @@ export function CaseStudyFigure({ src, alt, className = '', zoomable = false, zo
       <button
         type="button"
         className="cs-zoom-trigger"
+        data-zoom-src={zoomSrc}
         onClick={() => setViewerOpen(true)}
         aria-label={`Open zoomable view: ${alt}`}
       >
