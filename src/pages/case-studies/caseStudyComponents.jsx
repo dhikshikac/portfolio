@@ -6,7 +6,12 @@ import {
   useNoteImageTier,
 } from '../../components/ImageLoadSequence';
 import LazyVideo from '../../components/LazyVideo';
+import ImageViewer from './ImageViewer';
+import useIsPhone from './useIsPhone';
+import useZoomPreload from './useZoomPreload';
 import './caseStudyShared.css';
+
+const SITE_NAME = 'Dhikshika Cherivirala';
 
 const CaseStudySectionTierContext = createContext(1);
 const CaseStudySectionTierAllocatorContext = createContext(() => 1);
@@ -114,14 +119,19 @@ export function CaseStudyHero({ cover }) {
 
   return (
     <div className="cs-hero">
-      <SequentialImage
-        tier={0}
-        src={cover}
-        alt=""
-        className="cs-hero-cover"
-        aria-hidden="true"
-        fetchPriority="high"
-      />
+      {/* The frame clips the slightly zoomed cover, so edges baked into
+          the screenshot stay hidden while the rounded corners and shadow
+          stay put. */}
+      <div className="cs-hero-frame">
+        <SequentialImage
+          tier={0}
+          src={cover}
+          alt=""
+          className="cs-hero-cover"
+          aria-hidden="true"
+          fetchPriority="high"
+        />
+      </div>
     </div>
   );
 }
@@ -226,8 +236,19 @@ export function CaseStudyHeader({
   );
 }
 
+// Browser tab title, e.g. "Wolters Kluwer | Dhikshika Cherivirala"
+function useDocumentTitle(title) {
+  useEffect(() => {
+    document.title = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+    return () => {
+      document.title = SITE_NAME;
+    };
+  }, [title]);
+}
+
 export function CaseStudyLayout({
   ariaLabel,
+  heroTitle,
   cover,
   overviewName,
   overviewType,
@@ -239,6 +260,9 @@ export function CaseStudyLayout({
   children,
 }) {
   const scrollProgress = useScrollProgress();
+  const rootRef = useRef(null);
+  useZoomPreload(rootRef);
+  useDocumentTitle(heroTitle);
   const sectionTierRef = useRef(1);
   const allocateSectionTier = useCallback(() => {
     const tier = sectionTierRef.current;
@@ -265,7 +289,7 @@ export function CaseStudyLayout({
     <ImageLoadSequenceProvider>
       <CaseStudySectionTierAllocatorContext.Provider value={allocateSectionTier}>
         <CaseStudySectionRegistryContext.Provider value={registerSection}>
-          <div className="cs" aria-label={ariaLabel}>
+          <div className="cs" aria-label={ariaLabel} ref={rootRef}>
             <div
               className="cs-scroll-progress"
               style={{ width: `${scrollProgress}%` }}
@@ -327,12 +351,64 @@ export function CaseStudySection({ label, children }) {
   );
 }
 
-export function CaseStudyFigure({ src, alt, className = '' }) {
+// `zoomable` turns the figure into a button that opens a full-screen
+// zoom-and-pan viewer. `zoomSrc` (optional) is a higher-resolution file
+// loaded only when the viewer opens. `label` (optional) adds a short tag
+// above the figure, e.g. to tell an early version from the final one;
+// `zoomHint` follows it wherever zoom is available. Phones get a plain image.
+export function CaseStudyFigure({ label, zoomHint, ...props }) {
+  const isPhone = useIsPhone();
+
+  if (!label) return <CaseStudyFigureBody {...props} />;
+  return (
+    <div className="cs-labeled-figure">
+      <p className="cs-figure-label">
+        {label}
+        {zoomHint && !isPhone && ` · ${zoomHint}`}
+      </p>
+      <CaseStudyFigureBody {...props} />
+    </div>
+  );
+}
+
+function CaseStudyFigureBody({ src, alt, className = '', zoomable = false, zoomSrc }) {
   const tier = useCaseStudySectionTier();
+  const isPhone = useIsPhone();
+  const [viewerOpen, setViewerOpen] = useState(false);
+
+  if (!zoomable || isPhone) {
+    return (
+      <figure className={`cs-figure ${className}`.trim()}>
+        <SequentialImage tier={tier} src={src} alt={alt} />
+      </figure>
+    );
+  }
 
   return (
-    <figure className={`cs-figure ${className}`.trim()}>
-      <SequentialImage tier={tier} src={src} alt={alt} />
+    <figure className={`cs-figure cs-figure--zoomable ${className}`.trim()}>
+      <button
+        type="button"
+        className="cs-zoom-trigger"
+        data-zoom-src={zoomSrc}
+        onClick={() => setViewerOpen(true)}
+        aria-label={`Open zoomable view: ${alt}`}
+      >
+        <SequentialImage tier={tier} src={src} alt={alt} />
+        <span className="cs-zoom-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="6.5" />
+            <path d="M16 16l4.5 4.5M11 8.5v5M8.5 11h5" />
+          </svg>
+          Zoom
+        </span>
+      </button>
+      {viewerOpen && (
+        <ImageViewer
+          src={zoomSrc || src}
+          alt={alt}
+          onClose={() => setViewerOpen(false)}
+        />
+      )}
     </figure>
   );
 }

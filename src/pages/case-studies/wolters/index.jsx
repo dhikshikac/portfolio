@@ -13,10 +13,11 @@ import {
 } from './woltersContent';
 
 export default function WoltersCaseStudy() {
-  const { userResearch, ideation, midFidelity, highFidelity } = woltersCopy;
+  const { userResearch, ideation, midFidelity, highFidelity, whereItLeads } = woltersCopy;
 
   return (
     <CaseStudyLayout
+      ariaLabel={`${woltersMeta.title} case study`}
       logo={images.wkLogo}
       cover={images.hero}
       heroTitle="Wolters Kluwer"
@@ -54,22 +55,38 @@ export default function WoltersCaseStudy() {
         </div>
 
         <CaseStudyFigure
-          src={images.competitorAnalysis}
-          alt={userResearch.competitors.analysisAlt}
-          className="cs-figure--board"
+          label={userResearch.competitors.breakdownLabel}
+          zoomHint={userResearch.competitors.breakdownZoomHint}
+          src={images.competitorBreakdown}
+          alt={userResearch.competitors.breakdownAlt}
+          className="cs-figure--board cs-figure--swipe"
+          zoomable
+          zoomSrc={images.zoom.competitorBreakdown}
         />
 
-        <p className="cs-subheading">{userResearch.competitors.patternsIntro}</p>
+        <p className="cs-subheading">{userResearch.competitors.affinityIntro}</p>
 
-        <div className="cs-card-grid cs-card-grid--4">
-          {competitorPatterns.map((pattern, i) => (
-            <div key={i} className="cs-card cs-card--neutral">
-              <p>{pattern.text}</p>
+        <div className="cs-map-split cs-map-split--wide">
+          <CaseStudyFigure
+            src={images.competitorAnalysis}
+            alt={userResearch.competitors.analysisAlt}
+            className="cs-figure--board"
+            zoomable
+            zoomSrc={images.zoom.competitorAnalysis}
+          />
+          <div className="cs-map-split-text cs-map-split-text--cards">
+            <p className="cs-subheading">{userResearch.competitors.patternsIntro}</p>
+            <div className="cs-card-grid">
+              {competitorPatterns.map((pattern, i) => (
+                <div key={i} className="cs-card cs-card--neutral">
+                  <p>{pattern.text}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
 
-        <h2 className="cs-heading cs-heading--spaced">{userResearch.users.title}</h2>
+        <h3 className="cs-heading cs-heading--spaced">{userResearch.users.title}</h3>
         <div className="cs-prose">
           {userResearch.users.paragraphs.map((paragraph) => (
             <p key={paragraph.slice(0, 40)}>{paragraph}</p>
@@ -87,11 +104,17 @@ export default function WoltersCaseStudy() {
 
         <p className="cs-subheading">{userResearch.userFlow.intro}</p>
 
-        <CaseStudyFigure
-          src={images.wkFlow}
-          alt={userResearch.userFlow.alt}
-          className="cs-figure--flow"
-        />
+        <ol className="cs-card-grid cs-card-grid--3 cs-flow">
+          {userResearch.userFlow.steps.map((step, i) => (
+            <li key={step.title} className="cs-card cs-card--neutral cs-card--titled">
+              <h3>
+                <span className="cs-flow-index">{String(i + 1).padStart(2, '0')}</span>
+                {step.title}
+              </h3>
+              <p>{step.body}</p>
+            </li>
+          ))}
+        </ol>
 
         <div className="cs-prose">
           <p>{userResearch.userFlow.closing}</p>
@@ -100,26 +123,33 @@ export default function WoltersCaseStudy() {
 
       <CaseStudySection label="Ideation">
         <h2 className="cs-heading">{ideation.title}</h2>
-        <div className="cs-prose">
-          <p>{ideation.intro}</p>
-        </div>
 
-        <div className="cs-aside-split">
+        <div className="cs-map-split">
           <CaseStudyFigure
             src={images.wkPages}
             alt={ideation.pagesAlt}
             className="cs-figure--board"
+            zoomable
           />
-          <aside className="cs-callout">
-            <p>I focused on 3 pages:</p>
-            <ol>
-              {ideation.focusPages.map((page) => (
-                <li key={page}>{page}</li>
-              ))}
-            </ol>
-          </aside>
+          <div className="cs-map-split-text">
+            <div className="cs-prose">
+              <p>{ideation.intro}</p>
+            </div>
+            <div>
+              <p className="cs-figure-label">{ideation.ownedPagesLabel}</p>
+              <ul className="cs-owned-list">
+                {ideation.ownedPages.map((page) => (
+                  <li key={page.title}>
+                    <h3>{page.title}</h3>
+                    <p>{page.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
 
+        <h3 className="cs-heading cs-heading--spaced">{ideation.sketchesTitle}</h3>
         <div className="cs-prose">
           <p>{ideation.sketchesIntro}</p>
         </div>
@@ -148,7 +178,7 @@ export default function WoltersCaseStudy() {
           <p>{midFidelity.intro}</p>
         </div>
 
-        <h2 className="cs-heading cs-heading--spaced">{midFidelity.homePage.title}</h2>
+        <h3 className="cs-heading cs-heading--spaced">{midFidelity.homePage.title}</h3>
         <div className="cs-prose">
           <p>{midFidelity.homePage.intro}</p>
         </div>
@@ -170,31 +200,33 @@ export default function WoltersCaseStudy() {
           <p>{midFidelity.homePage.outro}</p>
         </div>
 
-        <h2 className="cs-heading cs-heading--spaced">{midFidelity.projectOnboarding.title}</h2>
-        <div className="cs-prose">
-          {midFidelity.projectOnboarding.paragraphs.map((paragraph) => (
-            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-          ))}
+        <h3 className="cs-heading cs-heading--spaced">{midFidelity.projectOnboarding.title}</h3>
+        <div className="cs-media-split cs-media-split--text">
+          <CaseStudyFigure
+            src={images.wkMidfi2}
+            alt={midFidelity.projectOnboarding.alt}
+            className="cs-figure--board"
+          />
+          <div className="cs-prose">
+            {midFidelity.projectOnboarding.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            ))}
+          </div>
         </div>
 
-        <CaseStudyFigure
-          src={images.wkMidfi2}
-          alt={midFidelity.projectOnboarding.alt}
-          className="cs-figure--board"
-        />
-
-        <h2 className="cs-heading cs-heading--spaced">{midFidelity.promptingPage.title}</h2>
-        <div className="cs-prose">
-          {midFidelity.promptingPage.paragraphs.map((paragraph) => (
-            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-          ))}
+        <h3 className="cs-heading cs-heading--spaced">{midFidelity.promptingPage.title}</h3>
+        <div className="cs-media-split cs-media-split--text">
+          <CaseStudyFigure
+            src={images.wkMidfi1}
+            alt={midFidelity.promptingPage.alt}
+            className="cs-figure--board"
+          />
+          <div className="cs-prose">
+            {midFidelity.promptingPage.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            ))}
+          </div>
         </div>
-
-        <CaseStudyFigure
-          src={images.wkMidfi1}
-          alt={midFidelity.promptingPage.alt}
-          className="cs-figure--board"
-        />
       </CaseStudySection>
 
       <CaseStudySection label="High-Fidelity">
@@ -205,14 +237,58 @@ export default function WoltersCaseStudy() {
 
         {highFidelity.showcases.map((showcase) => (
           <div key={showcase.title} className="cs-showcase">
-            <h2 className="cs-heading cs-heading--spaced">{showcase.title}</h2>
-            <CaseStudyFigure
-              src={images[showcase.image]}
-              alt={showcase.alt}
-              className="cs-figure--board"
-            />
+            <h3 className="cs-heading cs-heading--spaced">{showcase.title}</h3>
+            {showcase.images ? (
+              // Several screens: side by side, with the text underneath
+              <>
+                <div className="cs-image-row">
+                  {showcase.images.map((item) => (
+                    <CaseStudyFigure
+                      key={item.image}
+                      src={images[item.image]}
+                      alt={item.alt}
+                      className="cs-figure--board"
+                      zoomable
+                    />
+                  ))}
+                </div>
+                <div className="cs-prose">
+                  <p>{showcase.description}</p>
+                </div>
+              </>
+            ) : (
+              <div className="cs-media-split cs-media-split--text">
+                <CaseStudyFigure
+                  src={images[showcase.image]}
+                  alt={showcase.alt}
+                  className="cs-figure--board"
+                  zoomable
+                />
+                <div className="cs-prose">
+                  <p>{showcase.description}</p>
+                </div>
+              </div>
+            )}
           </div>
         ))}
+
+        <h3 className="cs-heading cs-heading--spaced">{whereItLeads.title}</h3>
+        <div className="cs-prose">
+          {whereItLeads.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+          ))}
+        </div>
+        <div className="cs-image-row">
+          {whereItLeads.images.map((item) => (
+            <CaseStudyFigure
+              key={item.image}
+              src={images[item.image]}
+              alt={item.alt}
+              className="cs-figure--board"
+            />
+          ))}
+        </div>
+        <p className="cs-figure-credit">{whereItLeads.credit}</p>
       </CaseStudySection>
 
       <CaseStudySection label="Reflection">

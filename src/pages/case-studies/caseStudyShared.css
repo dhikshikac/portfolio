@@ -73,14 +73,23 @@
   padding: 0 clamp(20px, 5vw, 48px);
 }
 
+.cs-hero-frame {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  box-shadow: var(--shadow-lift);
+}
+
 .cs-hero-cover {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
   object-position: center top;
-  border-radius: 20px;
-  box-shadow: var(--shadow-lift);
+  /* Cover images are screen grabs with a few pixels of window edge
+     (border lines, stray white strip); zoom just past them */
+  transform: scale(1.025);
+  transform-origin: center top;
 }
 
 /* ── Header / overview card ── */
@@ -394,8 +403,9 @@
   border-radius: 4px;
 }
 
+/* Tinted frame, so white screens don't blend into it */
 .cs-figure--board {
-  background: var(--surface-white);
+  background: var(--cs-frame-tint, rgba(255, 255, 255, 0.06));
   padding: clamp(6px, 1vw, 10px);
   border-radius: 4px;
   max-width: 980px;
@@ -404,6 +414,8 @@
 
 .cs-figure--board img,
 .cs-figure--board video {
+  /* some exports are transparent and need white behind them */
+  background: var(--surface-white);
   border-radius: 4px;
 }
 
@@ -412,22 +424,80 @@
   border-radius: 4px;
 }
 
-.cs-figure--flow img {
-  width: auto;
-  max-width: 100%;
-  border-radius: 4px;
-}
-
-.cs-figure--framed img {
-  border-radius: 4px;
-}
-
-.cs-figure-stack {
+/* Figure with a small tag above it (e.g. "Early" / "Final") */
+.cs-labeled-figure {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 980px;
-  margin-inline: auto;
+  gap: 10px;
+  min-width: 0;
+}
+
+.cs-labeled-figure > .cs-figure {
+  flex: 1;
+  width: 100%;
+}
+
+.cs-figure-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+/* Attribution under work that isn't the author's own */
+.cs-figure-credit {
+  margin-top: -12px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* A task read to participants during testing */
+.cs-task {
+  margin: 0;
+  padding: 2px 0 2px 18px;
+  border-left: 2px solid var(--accent-gold);
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.75;
+  color: var(--text-primary);
+}
+
+/* Findings: each card pairs a question with a small crop of the answer */
+.cs-findings .cs-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-findings .cs-labeled-figure {
+  margin-top: auto;
+  padding-top: 22px;
+  align-items: center;
+  text-align: center;
+}
+
+.cs-findings .cs-labeled-figure > .cs-figure {
+  flex: none;
+  width: auto;
+  max-width: 100%;
+}
+
+.cs-findings .cs-card .cs-figure-label {
+  font-size: 0.72rem;
+  line-height: inherit;
+  color: var(--accent-gold);
+}
+
+/* Same height for both, so the two crops line up */
+.cs-findings .cs-figure img {
+  width: auto;
+  max-width: 100%;
+  height: 440px;
+  padding: 4px 8px;
+  object-fit: contain;
 }
 
 /* ── Image rows ── */
@@ -438,6 +508,14 @@
   gap: 20px;
   max-width: 1100px;
   margin-inline: auto;
+}
+
+/* Side-by-side boards stretch to the taller one; centre the shorter
+   image on its white board instead of leaving a gap underneath */
+.cs-image-row > .cs-figure--board {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cs-image-row--weighted {
@@ -456,72 +534,131 @@
   margin-inline: auto;
 }
 
-.cs-media-frame {
-  background: var(--surface-white);
-  border-radius: 4px;
-  padding: clamp(6px, 1vw, 10px);
-  overflow: hidden;
-}
-
-.cs-media-frame img,
-.cs-media-frame video {
-  border-radius: 4px;
-}
-
-.cs-aside-split {
+/* Diagram on the left; the explanation and a short list on the right */
+.cs-map-split {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(200px, 1fr);
-  gap: 20px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 48px);
   align-items: start;
-  max-width: 1100px;
-  margin-inline: auto;
 }
 
-/* ── Callouts ── */
+.cs-map-split > .cs-figure {
+  width: 100%;
+  margin: 0;
+}
 
-.cs-callout-stack {
+.cs-map-split-text {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 28px;
 }
 
-.cs-callout {
-  border: 1px solid var(--glass-callout-border);
-  border-radius: 10px;
-  padding: 22px 20px;
-  background: var(--glass-sheen), var(--glass-callout-tint);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
-  box-shadow: inset 0 1px 0 var(--glass-highlight);
+/* Too narrow for both: map on top, cards two by two beneath it */
+@media (max-width: 1239px) {
+  .cs-map-split.cs-map-split--wide {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
-.cs-callout p {
-  font-size: 0.95rem;
+@media (min-width: 641px) and (max-width: 1239px) {
+  .cs-map-split--wide .cs-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Wider board; the cards beside it share its height evenly */
+@media (min-width: 1240px) {
+  .cs-map-split--wide {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .cs-map-split--wide > .cs-figure {
+    align-self: start;
+  }
+
+  .cs-map-split--wide .cs-card-grid {
+    flex: 1;
+    grid-auto-rows: auto;
+  }
+
+  .cs-map-split--wide .cs-card {
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* Insight cards stacked beside a board */
+.cs-map-split-text--cards {
+  gap: 12px;
+}
+
+.cs-map-split-text--cards .cs-card-grid {
+  gap: 10px;
+}
+
+.cs-map-split-text--cards .cs-card {
+  padding: 12px 18px;
+}
+
+.cs-map-split-text--cards .cs-card p {
+  line-height: 1.55;
+}
+
+.cs-map-split-text--cards .cs-card h3 {
+  margin-bottom: 4px;
+}
+
+/* Three titled cards sit in a row when the board goes full width */
+@media (min-width: 641px) and (max-width: 1239px) {
+  .cs-map-split--wide .cs-card-grid:has(> :last-child:nth-child(3)) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.cs-map-split-text .cs-figure-label {
+  margin-bottom: 4px;
+}
+
+.cs-owned-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cs-owned-list li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cs-owned-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.cs-owned-list h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
   color: var(--text-primary);
-  line-height: 1.6;
 }
 
-.cs-callout p:last-child {
-  margin-bottom: 0;
-}
-
-.cs-callout p:not(:last-child) {
-  margin-bottom: 12px;
-}
-
-.cs-callout ol {
-  padding-left: 1.2rem;
-  list-style: decimal;
-}
-
-.cs-callout li {
-  font-size: 0.95rem;
-  color: var(--text-primary);
+.cs-owned-list p {
+  font-size: 0.85rem;
   line-height: 1.65;
+  color: var(--text-muted);
 }
 
-.cs-callout li + li {
-  margin-top: 6px;
+/* Screenshot with its explanation beside it, text centred on the image */
+.cs-media-split--text {
+  align-items: center;
+  gap: clamp(20px, 3vw, 36px);
+}
+
+.cs-media-split--text > .cs-figure {
+  width: 100%;
 }
 
 /* ── Showcase blocks (heading + image + caption) ── */
@@ -536,15 +673,26 @@
   margin-top: 12px;
 }
 
+/* Numbered user-flow steps (an ordered list of cards) */
+.cs-flow {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cs-flow-index {
+  margin-right: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--accent-gold);
+}
+
 /* ── Card grids ── */
 
 .cs-card-grid {
   display: grid;
   gap: 18px;
-}
-
-.cs-card-grid--4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .cs-card-grid--3 {
@@ -581,16 +729,7 @@
   font-weight: 600;
   line-height: 1.5;
   color: var(--cs-card-heading);
-  margin-bottom: 14px;
-}
-
-.cs-card--titled p {
-  color: var(--cs-card-body);
-  line-height: 1.7;
-}
-
-.cs-card--titled strong {
-  color: var(--cs-card-heading);
+  margin-bottom: 8px;
 }
 
 .cs-card--neutral {
@@ -598,25 +737,15 @@
   --cs-card-border: rgba(160, 190, 225, 0.22);
 }
 
-.cs-card--blue {
-  --cs-card-bg: rgba(40, 80, 130, 0.26);
-  --cs-card-border: rgba(130, 170, 220, 0.3);
-}
-
-.cs-card--gray {
-  --cs-card-bg: rgba(90, 100, 110, 0.24);
-  --cs-card-border: rgba(180, 190, 200, 0.24);
-}
-
 /* ── Responsive ── */
 
 @media (max-width: 960px) {
-  .cs-card-grid--4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  .cs-media-split {
+    grid-template-columns: 1fr;
   }
 
-  .cs-aside-split,
-  .cs-media-split {
+  .cs-map-split {
     grid-template-columns: 1fr;
   }
 }
@@ -652,7 +781,6 @@
     gap: 22px;
   }
 
-  .cs-card-grid--4,
   .cs-card-grid--3,
   .cs-card-grid--2,
   .cs-image-row,
@@ -661,12 +789,38 @@
   }
 }
 
+/* Very wide boards would shrink to a sliver on phones, so they keep a
+   readable height and scroll sideways instead */
+@media (max-width: 640px), (max-height: 480px) and (pointer: coarse) {
+  .cs-figure--swipe {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cs-figure--swipe img {
+    width: auto;
+    max-width: none;
+    height: 240px;
+  }
+
+  /* shorter, so the notes past its legend show at the right edge */
+  .cs-figure--swipe-short img {
+    height: 160px;
+  }
+}
+
 @media (max-width: 480px) {
+  .cs-findings .cs-figure img {
+    width: 100%;
+    height: auto;
+  }
+
   .cs-meta-fields {
     grid-template-columns: 1fr;
   }
 
-  .cs-hero-cover {
+  .cs-hero-frame {
     aspect-ratio: 4 / 3;
     border-radius: 14px;
   }

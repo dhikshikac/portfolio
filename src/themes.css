@@ -194,6 +194,7 @@
 /* ── Case studies ── */
 
 [data-theme='day'] .cs {
+  --cs-frame-tint: rgba(43, 61, 82, 0.045);
   --glass-tint: rgba(255, 255, 255, 0.4);
   --glass-tint-strong: rgba(255, 255, 255, 0.62);
   --glass-sheen: linear-gradient(
@@ -225,14 +226,6 @@
   --cs-card-bg: rgba(255, 255, 255, 0.4);
   --cs-card-border: rgba(255, 255, 255, 0.8);
 }
-[data-theme='day'] .cs-card--blue {
-  --cs-card-bg: rgba(214, 230, 247, 0.5);
-  --cs-card-border: rgba(255, 255, 255, 0.8);
-}
-[data-theme='day'] .cs-card--gray {
-  --cs-card-bg: rgba(234, 238, 243, 0.5);
-  --cs-card-border: rgba(255, 255, 255, 0.8);
-}
 [data-theme='day'] .cs-card {
   box-shadow:
     inset 0 1px 0 #ffffff,
@@ -241,8 +234,7 @@
 }
 
 /* Media frames are white on night; give them an edge on the light page */
-[data-theme='day'] .cs-figure--board,
-[data-theme='day'] .cs-media-frame {
+[data-theme='day'] .cs-figure--board {
   box-shadow: 0 0 0 1px #2b3d5214;
 }
 
