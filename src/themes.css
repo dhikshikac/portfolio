@@ -197,6 +197,7 @@
   --cs-frame-tint: rgba(43, 61, 82, 0.045);
   --glass-tint: rgba(255, 255, 255, 0.4);
   --glass-tint-strong: rgba(255, 255, 255, 0.62);
+  --glass-tint-header: rgba(255, 255, 255, 0.62);
   --glass-sheen: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.7) 0%,

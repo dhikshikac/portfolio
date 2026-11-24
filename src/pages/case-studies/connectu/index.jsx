@@ -52,7 +52,7 @@ export default function ConnectuCaseStudy() {
   return (
     <CaseStudyLayout
       ariaLabel={`${connectuMeta.title} case study`}
-      cover={finalPrototype.poster}
+      cover={images.cover}
       heroTitle={connectuMeta.title}
       overviewName={connectuMeta.title}
       overviewType={connectuMeta.subtitle}
