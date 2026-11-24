@@ -1,3 +1,4 @@
+import cover from './images/cover.webp';
 import affinityMap from './images/affinity-map.webp';
 import sketches1 from './images/sketches-1.webp';
 import sketches2 from './images/sketches-2.webp';
@@ -37,8 +38,9 @@ import yourProfile4 from './images/your-profile-4.webp';
 import clubAccount1 from './images/club-account-1.webp';
 import clubAccount2 from './images/club-account-2.webp';
 
-// Keyed by file name. scripts/export-connectu-screens.mjs produces all but the affinity map
+// Keyed by file name. scripts/export-connectu-screens.mjs produces all but the cover and affinity map
 export const images = {
+  cover,
   'affinity-map': affinityMap,
   'sketches-1': sketches1,
   'sketches-2': sketches2,
