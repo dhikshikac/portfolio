@@ -44,14 +44,14 @@ export const projects = [
   },
   {
     slug: 'hudson-valley-textile',
-    title: 'Hudson Valley Textile',
+    title: 'Hudson Valley Textile Project',
     tags: ['NON-PROFIT', 'WEBSITE', 'DESIGN'],
     thumbnail: '/videos/hvtp-thumb.mp4',
     poster: '/images/posters/hvtp-thumb.webp',
     description: 'Designed an inventory platform for a sustainable regional wool supply chain npo.',
     role: 'Product Designer',
-    team: '1 Product Manager, 1 Technical Lead, 3 Product Designers',
-    timeframe: '1 Semester , January – May 2026',
+    team: '1 PM, 1 Technical Lead, 3 Designers, 6 Developers',
+    timeframe: '1 Semester, January – May 2026',
     tools: ['Figma'],
   },
   {

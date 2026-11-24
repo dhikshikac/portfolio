@@ -1,35 +1,47 @@
-import competitorAnalysis from './images/competitor-analysis.png';
+import competitorAnalysis from './images/competitor-analysis.webp';
+import competitorBreakdown from './images/competitor-breakdown-excerpt.webp';
 import wkPages from './images/wk-pages.png';
 import wkLofi1 from './images/wk-lofi-1.png';
 import wkLofi2 from './images/wk-lofi-2.png';
-import wkHifi1 from './images/wk-hifi-1.png';
-import wkHifi2 from './images/wk-hifi-2.png';
-import wkHifi3 from './images/wk-hifi-3.png';
+import wkHifiHome from './images/wk-hifi-home.webp';
+import wkHifiPrompting from './images/wk-hifi-prompting.webp';
 import wkMidfi1 from './images/wk-midfi-1.png';
 import wkMidfi2 from './images/wk-midfi-2.png';
 import wkMidfi3 from './images/wk-midfi-3.png';
 import wkMidfi4 from './images/wk-midfi-4.png';
-import wkFlow from './images/wk.png';
 import wkLogo from './images/wk-logo.svg';
+import wkCreateFilled from './images/wk-create-filled.webp';
+import wkCreateShare from './images/wk-create-share.webp';
+import wkSearchOutput from './images/wk-search-output.webp';
+import wkSourceReply from './images/wk-source-reply.webp';
 // Hi-fi filtered-search state, lifted from the prototype walkthrough.
 import wkHero from './images/wk-hero.png';
 
 export const images = {
   hero: wkHero,
   competitorAnalysis,
+  competitorBreakdown,
   wkPages,
   wkLofi1,
   wkLofi2,
-  wkHifi1,
-  wkHifi2,
-  wkHifi3,
+  wkHifiHome,
+  wkHifiPrompting,
   wkMidfi1,
   wkMidfi2,
   wkMidfi3,
   wkMidfi4,
-  wkFlow,
+  wkCreateFilled,
+  wkCreateShare,
+  wkSearchOutput,
+  wkSourceReply,
   wkLogo,
   finalPrototypeVideo: '/videos/wk-final-prototype.mp4',
+
+  // Full-resolution boards, loaded only when the zoom viewer opens
+  zoom: {
+    competitorAnalysis: '/images/zoom/wk-competitor-analysis.webp',
+    competitorBreakdown: '/images/zoom/wk-competitor-breakdown.webp',
+  },
 };
 
 export const woltersMeta = {
@@ -61,10 +73,16 @@ export const woltersCopy = {
     competitors: {
       title: 'Looking into our competitors',
       paragraphs: [
-        'To understand what approaches were already working in adjacent spaces, we analyzed 15 products across three categories: direct competitors, regulatory intelligence tools, and AI-powered search tools — including platforms like vLex, Bloomberg Law, Ascent, Perplexity, Microsoft Copilot, and others.',
+        'To understand what approaches were already working in adjacent spaces, we analyzed 15 products across three categories: direct competitors, regulatory intelligence tools, and AI-powered search tools — including platforms like vLex, Bloomberg Law, Ascent, Perplexity, Microsoft Copilot, and others. For each one, we noted its strengths, weaknesses, unique value, and opportunities.',
       ],
       analysisAlt:
         'Affinity map clustering competitor research findings across prompting, AI summaries, linking sources, and collaboration',
+      affinityIntro:
+        'We then pulled our findings into an affinity map, grouping them by theme:',
+      breakdownLabel: 'One of 15: LexisNexis',
+      breakdownZoomHint: 'zoom for all of them',
+      breakdownAlt:
+        'LexisNexis breakdown: its strengths, weaknesses, unique value proposition, and opportunities.',
       patternsIntro: 'Four patterns stood out as most relevant to our design direction:',
     },
     users: {
@@ -75,7 +93,20 @@ export const woltersCopy = {
     },
     userFlow: {
       intro: 'Based on our insights, we defined a high-level user flow:',
-      alt: 'User flow diagram: Prompt, Source Output, and Synthesis',
+      steps: [
+        {
+          title: 'Prompt',
+          body: 'Ask a research question in plain language, scoped to a project.',
+        },
+        {
+          title: 'Source Output',
+          body: 'See the internal content the answer draws on, linked so it can be verified.',
+        },
+        {
+          title: 'Synthesis',
+          body: 'Pull the findings together into something a PM can make a decision with.',
+        },
+      ],
       closing:
         'This structure reflects the two core opportunities we identified: improving content discovery and validation at the front end, and supporting synthesis and confident decision-making at the back end.',
     },
@@ -84,11 +115,26 @@ export const woltersCopy = {
     title: 'Starting the designs',
     intro:
       'Before jumping into wireframes, we mapped out the full scope of the product — identifying which pages were essential, how they connected, and dividing ownership so each designer could go deep on their part of the experience.',
-    focusPages: ['Home Page', 'Project Creation Page', 'Prompting Page'],
+    ownedPagesLabel: 'The pages I owned',
+    ownedPages: [
+      {
+        title: 'Home Page',
+        body: 'Where every visit starts, with quick, easy access to anything recently worked on.',
+      },
+      {
+        title: 'Project Creation',
+        body: 'The new project branch setting up the context each project is scoped to.',
+      },
+      {
+        title: 'Prompting',
+        body: 'Where each new chat starts, scoped to the project’s topic.',
+      },
+    ],
+    sketchesTitle: 'Early sketches',
     pagesAlt:
       'User flow diagram from Home Page through project list, project home, source list, and chat history',
     sketchesIntro:
-      "Our initial features didn't include a Home Page and Project Creation, and instead users stepped right into prompting. However, here are my personal sketches of the pages:",
+      "Our initial features didn't include a Home Page and Project Creation, and instead users stepped right into prompting, so my early sketches focused on the prompting page:",
     lofi1Alt:
       'Hand-drawn wireframe sketch of the prompting page with project sidebar and filter chips',
     lofi2Alt:
@@ -99,7 +145,7 @@ export const woltersCopy = {
   midFidelity: {
     title: 'Exploring and Refining',
     intro:
-      'I began refining the layouts and interaction systems into more structured mid-fidelity designs. Here, is when we also flushed out other pages to include, like the Home and Project Onboarding page.',
+      'I began refining the layouts and interaction systems into more structured mid-fidelity designs. This is also when we fleshed out other pages to include, like the Home and Project Onboarding pages.',
     homePage: {
       title: 'Home Page',
       intro:
@@ -119,7 +165,7 @@ export const woltersCopy = {
     promptingPage: {
       title: 'Prompting Page',
       paragraphs: [
-        "Once inside a project, users can ask any research question in natural language. The prompting interface is scoped to the project's topic, with the project name and subject visible as a header, reinforcing the bounded context and gives users the power to continue refining their search with a set of filters.",
+        "Once inside a project, users can ask any research question in natural language. The prompting interface is scoped to the project's topic, with the project name and subject visible as a header, reinforcing the bounded context and giving users the power to keep refining their search with a set of filters.",
       ],
       alt: 'Mid-fidelity Healthcare Compliance prompting page with deep search bar and filter sources panel',
     },
@@ -127,30 +173,63 @@ export const woltersCopy = {
   highFidelity: {
     title: 'Wrapping up the designs',
     intro:
-      'The high-fidelity pass focused on refining spacing, tightening consistency, and making the visual language feel cohesive across all three pages. We received positive feedback on the mid-fidelity direction, which gave us confidence to invest in polish at this stage.',
+      'Wolters Kluwer gave us detailed critique after every session where we presented, including comments throughout our files. The high-fidelity pass focused on refining spacing, tightening consistency, and making the visual language feel cohesive across all three pages.',
     showcases: [
       {
         title: 'Home Page',
-        image: 'wkHifi3',
+        image: 'wkHifiHome',
+        description:
+          'I iterated on the format of the Recently Visited row. One early version showed only the last 3 projects. The final version highlights different projects, chats, and sources.',
         alt: 'High-fidelity home page dashboard with recently visited cards and an all projects table',
       },
       {
         title: 'Project Creation',
-        image: 'wkHifi2',
-        alt: 'High-fidelity create a new project form with name, description, industry, and jurisdiction fields',
+        images: [
+          {
+            image: 'wkCreateFilled',
+            alt: 'High-fidelity create a new project form filled in for a Healthcare Compliance project in the United States',
+          },
+          {
+            image: 'wkCreateShare',
+            alt: 'Share dialog over the project form, with private or public access, a copyable link, and an email invite field',
+          },
+        ],
+        description:
+          'The form stays short: a name, a description, an industry, and a jurisdiction. This context is used to scope and filter the sources the AI recommends. A Share option sets private or public access, with sharing by link or email.',
       },
       {
         title: 'Prompting',
-        image: 'wkHifi1',
-        alt: 'High-fidelity Healthcare Compliance prompting page with deep search bar and filter sources panel',
+        image: 'wkHifiPrompting',
+        description:
+          'For prompting, I iterated on which filters to offer and how they behave. The final panel narrows sources by type, by a publication date range (before, between, or after a year), and by jurisdiction.',
+        alt: 'High-fidelity Healthcare Compliance prompting page with the filter sources panel open and filters applied',
       },
     ],
+  },
+  whereItLeads: {
+    title: 'Where my pages lead',
+    paragraphs: [
+      'Once a PM asks a question, the search output takes over. A teammate designed this part. Each result is tagged with its type, availability, year, and jurisdiction, links back to the original source, and explains why it matters.',
+      'Replying to a result opens a side panel for follow-up questions about that one source.',
+    ],
+    images: [
+      {
+        image: 'wkSearchOutput',
+        alt: 'Search results for a question about emergency care rulings, each a card with type, availability, source link, and a Why it matters summary',
+      },
+      {
+        image: 'wkSourceReply',
+        alt: 'Side panel open on one ruling, answering a follow-up question about the legal claim',
+      },
+    ],
+    credit: 'Search output designed by a teammate.',
   },
   reflection: {
     title: 'Final Thoughts',
     paragraphs: [
       'This project pushed me to think beyond aesthetics and approach every design decision through the lens of research and usability. The competitor analysis was especially impactful because it grounded our process in real-world patterns and user expectations, rather than designing in a vacuum.',
       'If I could revisit one aspect of the project, I would prioritize more direct communication with the client earlier in the process. While our PMs primarily handled those conversations, having additional one-on-one discussions would have helped the design team align more confidently and make decisions with greater clarity.',
+      'Our client gave us paragraphs of critique after every session. We also got positive feedback from other consultants in the club when we presented our designs to everyone.',
       'Overall, it was a meaningful and rewarding experience to design solutions aimed at reducing friction for professionals working in high-stakes environments.',
     ],
   },
