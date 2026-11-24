@@ -424,6 +424,11 @@
   border-radius: 4px;
 }
 
+/* Screen recordings of an app window: hide the black around its rounded corners */
+.cs-figure--window video {
+  clip-path: inset(0 0 4px round 4px 4px 14px 14px);
+}
+
 /* Figure with a small tag above it (e.g. "Early" / "Final") */
 .cs-labeled-figure {
   display: flex;
@@ -453,6 +458,90 @@
   letter-spacing: 0.04em;
   color: var(--text-muted);
   text-align: center;
+}
+
+/* A row of phone screens; on phones it scrolls sideways */
+.cs-phones {
+  display: grid;
+  grid-template-columns: repeat(var(--phones), minmax(0, 220px));
+  justify-content: center;
+  gap: clamp(10px, 1.6vw, 20px);
+}
+
+.cs-figure--phone {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--border-subtle);
+}
+
+.cs-figure--phone img {
+  border-radius: 12px;
+  background: var(--surface-white);
+}
+
+@media (max-width: 640px) {
+  .cs-phones {
+    grid-template-columns: repeat(var(--phones), 62%);
+    justify-content: start;
+    overflow-x: auto;
+    padding: 1px;
+  }
+}
+
+/* Color palette */
+.cs-swatches {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(10px, 1.6vw, 20px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cs-swatches li {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-swatch {
+  height: 88px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--border-subtle);
+}
+
+.cs-swatch-hex {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.cs-swatch-use {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .cs-swatches {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 18px;
+  }
+
+  .cs-swatch {
+    height: 72px;
+  }
+}
+
+/* Short bullet list inside a card */
+.cs-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.1rem;
+  list-style: disc;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--cs-card-body);
 }
 
 /* A task read to participants during testing */
@@ -521,6 +610,14 @@
 .cs-image-row--weighted {
   grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
   align-items: start;
+}
+
+/* Columns follow the two sketches' shapes so they end up the same height */
+@media (min-width: 901px) {
+  .cs-image-row--sketches {
+    --pad: clamp(6px, 1vw, 10px);
+    grid-template-columns: calc((100% - 20px - 4 * var(--pad)) * 0.4377 + 2 * var(--pad)) minmax(0, 1fr);
+  }
 }
 
 /* ── Media + annotation splits ── */

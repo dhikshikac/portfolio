@@ -413,12 +413,12 @@ function CaseStudyFigureBody({ src, alt, className = '', zoomable = false, zoomS
   );
 }
 
-export function CaseStudyVideo({ src, label, poster }) {
+export function CaseStudyVideo({ src, label, poster, className = '' }) {
   const tier = useCaseStudySectionTier();
   const { active, markSettled } = useImageLoadSequence(tier);
 
   return (
-    <figure className="cs-figure cs-figure--video">
+    <figure className={`cs-figure cs-figure--video ${className}`.trim()}>
       <LazyVideo
         src={src}
         poster={poster || posterFromVideoSrc(src)}

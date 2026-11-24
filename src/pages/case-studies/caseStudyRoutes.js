@@ -4,11 +4,13 @@ import { Navigate, useParams } from 'react-router-dom';
 const CASE_STUDY_SLUGS = new Set([
   'wolters-kluwer',
   'hudson-valley-textile',
+  'connectu',
 ]);
 
 const caseStudies = {
   'wolters-kluwer': lazy(() => import('./wolters/index')),
   'hudson-valley-textile': lazy(() => import('./hvtp/index')),
+  connectu: lazy(() => import('./connectu/index')),
 };
 
 export function hasCaseStudy(slug) {
