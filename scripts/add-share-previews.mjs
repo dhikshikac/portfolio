@@ -30,6 +30,13 @@ const pages = [
       'Designed a GenAI research tool for a global professional information company.',
     image: '/images/share/wolters-kluwer.jpg',
   },
+  {
+    route: 'work/connectu',
+    title: `ConnectU | ${NAME}`,
+    description:
+      'Designed a concept app for Cornell freshmen to discover clubs and communities.',
+    image: '/images/share/connectu.jpg',
+  },
 ];
 
 const host = process.env.SITE_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL || '';

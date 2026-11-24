@@ -63,7 +63,7 @@ export const projects = [
     description: 'Designed a concept app for Cornell freshmen to discover clubs and communities.',
     role: 'Product Designer',
     team: '2 Designers',
-    timeframe: '1 Semester , October – December 2025',
+    timeframe: '1 Semester, October – December 2025',
     tools: ['Figma'],
   },
   {
